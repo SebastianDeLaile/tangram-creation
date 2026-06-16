@@ -1,0 +1,118 @@
+{
+  "name": "bird",
+  "description": "Bird in flight silhouette",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          24,
+          0
+        ],
+        "y": [
+          0,
+          0
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          36,
+          0
+        ],
+        "y": [
+          12,
+          0
+        ]
+      },
+      "orientation": 5,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          12,
+          18
+        ],
+        "y": [
+          12,
+          6
+        ]
+      },
+      "orientation": 3,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          6,
+          0
+        ],
+        "y": [
+          6,
+          0
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          12,
+          6
+        ],
+        "y": [
+          12,
+          0
+        ]
+      },
+      "orientation": 2,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          12,
+          6
+        ],
+        "y": [
+          12,
+          0
+        ]
+      },
+      "orientation": 0,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          12,
+          12
+        ],
+        "y": [
+          12,
+          0
+        ]
+      },
+      "orientation": 0,
+      "flipped": false
+    }
+  ]
+}

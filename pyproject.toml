@@ -1,0 +1,12 @@
+[project]
+name = "tangram"
+version = "0.1.0"
+description = "Tangram geometry model, SVG renderer, and interactive piece editor"
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

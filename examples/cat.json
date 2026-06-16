@@ -1,0 +1,118 @@
+{
+  "name": "cat",
+  "description": "Classic sitting cat silhouette",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          18,
+          12
+        ],
+        "y": [
+          30,
+          -6
+        ]
+      },
+      "orientation": 3,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          18,
+          12
+        ],
+        "y": [
+          30,
+          6
+        ]
+      },
+      "orientation": 4,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          6,
+          6
+        ],
+        "y": [
+          18,
+          0
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          6,
+          0
+        ],
+        "y": [
+          6,
+          0
+        ]
+      },
+      "orientation": 3,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          6,
+          0
+        ],
+        "y": [
+          6,
+          0
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          6,
+          0
+        ],
+        "y": [
+          6,
+          0
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          6,
+          0
+        ],
+        "y": [
+          18,
+          0
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    }
+  ]
+}
