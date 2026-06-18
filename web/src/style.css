@@ -1,0 +1,249 @@
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #1a1a1a;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  gap: 16px;
+}
+
+h1 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+h2 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #888;
+  margin: 0 0 8px;
+}
+
+#layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+#sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: width 150ms ease;
+}
+
+#sidebar.collapsed {
+  width: auto;
+}
+
+#sidebar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 220px;
+}
+
+#sidebar.collapsed #sidebar-content {
+  display: none;
+}
+
+#sidebar section {
+  display: flex;
+  flex-direction: column;
+}
+
+#sidebar-toggle {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f4f4f4;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#canvases {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.canvas-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.panel-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #888;
+}
+
+.canvas-wrap {
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+svg {
+  display: block;
+}
+
+svg path {
+  transition: stroke 80ms ease, fill 80ms ease;
+}
+
+#canvas-solution path {
+  cursor: grab;
+}
+
+#canvas-solution path.selected {
+  cursor: grabbing;
+}
+
+#status {
+  font-family: "SF Mono", Menlo, monospace;
+  font-size: 0.85rem;
+  color: #555;
+  min-height: 1.2em;
+}
+
+#help {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+button,
+select {
+  font: inherit;
+  padding: 4px 10px;
+}
+
+.button-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.button-list button {
+  text-align: left;
+  background: #f4f4f4;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#shape-list {
+  max-height: 360px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.shape-category {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #aaa;
+  margin: 8px 0 2px;
+}
+
+.shape-category:first-child {
+  margin-top: 0;
+}
+
+.button-list button.active {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.color-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+}
+
+.color-row input[type="color"] {
+  width: 32px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.color-row.hidden {
+  display: none;
+}
+
+.toggle-group {
+  display: flex;
+  margin-bottom: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.toggle-group button {
+  flex: 1;
+  border: none;
+  background: #fff;
+  cursor: pointer;
+  padding: 6px 0;
+}
+
+.toggle-group button.active {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+#download-btn {
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+}
+
+.slider-row label {
+  flex-shrink: 0;
+}
+
+.slider-row input[type="range"] {
+  flex: 1;
+  padding: 0;
+}
+
+.slider-row span {
+  width: 36px;
+  text-align: right;
+  color: #888;
+  font-family: "SF Mono", Menlo, monospace;
+  font-size: 0.75rem;
+}

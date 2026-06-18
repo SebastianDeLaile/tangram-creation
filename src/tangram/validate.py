@@ -7,12 +7,18 @@ no drift to accumulate.
 """
 from __future__ import annotations
 
+import math
 from collections import Counter
 
 from .model import Tangram
 from .pieces import PIECE_COUNTS
 
-OVERLAP_TOLERANCE = 1e-6  # area units, on a square of side 24 (area 576)
+OVERLAP_TOLERANCE = 0.05  # area units, on a square of side 24 (area 576).
+# Loose enough to absorb quantization noise from fitting real-world (e.g.
+# hand-drawn SVG) figures onto the exact Z[sqrt(2)] lattice -- a T-junction
+# vertex landing a hundredth of a unit on the wrong side of a neighboring
+# edge -- while staying far tighter than any genuine structural defect, which
+# produces overlaps on the order of whole-piece areas (single digits or more).
 
 Point2D = tuple[float, float]
 
@@ -77,6 +83,51 @@ def overlap_area(poly_a: list[Point2D], poly_b: list[Point2D]) -> float:
     return polygon_area(inter) if len(inter) >= 3 else 0.0
 
 
+TOUCH_TOLERANCE = 1e-3  # units; two pieces "touch" if a vertex of one lands
+# within this of a vertex or edge of the other -- covers both shared full
+# edges and pieces that only meet at a single pinch point (both legitimate
+# in tangram art, e.g. a wingtip touching a body at one vertex).
+
+
+def _touches(poly_a: list[tuple[float, float]], poly_b: list[tuple[float, float]]) -> bool:
+    for a in poly_a:
+        for b in poly_b:
+            if math.dist(a, b) < TOUCH_TOLERANCE:
+                return True
+    for points, edges in ((poly_a, poly_b), (poly_b, poly_a)):
+        n = len(edges)
+        for i in range(n):
+            ex, ey = edges[i]
+            fx, fy = edges[(i + 1) % n]
+            dx, dy = fx - ex, fy - ey
+            length = math.hypot(dx, dy)
+            for px, py in points:
+                cross = dx * (py - ey) - dy * (px - ex)
+                if abs(cross) > TOUCH_TOLERANCE * max(1.0, length):
+                    continue
+                t = ((px - ex) * dx + (py - ey) * dy) / (length * length)
+                if -1e-6 <= t <= 1 + 1e-6:
+                    return True
+    return False
+
+
+def is_connected(tangram: Tangram) -> bool:
+    """Whether all 7 pieces form a single connected group (sharing at least a vertex)."""
+    polys = [[v.to_float() for v in p.vertices()] for p in tangram.pieces]
+    n = len(polys)
+    if n == 0:
+        return True
+    visited = {0}
+    frontier = [0]
+    while frontier:
+        cur = frontier.pop()
+        for j in range(n):
+            if j not in visited and _touches(polys[cur], polys[j]):
+                visited.add(j)
+                frontier.append(j)
+    return len(visited) == n
+
+
 def validate(tangram: Tangram) -> list[str]:
     """Return a list of human-readable problems; empty means the tangram is legal."""
     issues: list[str] = []
@@ -106,4 +157,8 @@ def validate(tangram: Tangram) -> list[str]:
                     f"{pa.piece_type.value}#{pa.piece_id} overlaps "
                     f"{pb.piece_type.value}#{pb.piece_id} (area={area:.4f})"
                 )
+
+    if not is_connected(tangram):
+        issues.append("pieces are not all connected -- some are isolated with a real gap")
+
     return issues

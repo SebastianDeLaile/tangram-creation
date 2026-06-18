@@ -1,0 +1,118 @@
+{
+  "name": "camels_149",
+  "description": "Camels",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          11,
+          17
+        ],
+        "y": [
+          4,
+          10
+        ]
+      },
+      "orientation": 2,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          17,
+          5
+        ],
+        "y": [
+          10,
+          10
+        ]
+      },
+      "orientation": 3,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          11,
+          11
+        ],
+        "y": [
+          4,
+          4
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          -1,
+          5
+        ],
+        "y": [
+          -8,
+          10
+        ]
+      },
+      "orientation": 5,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          -1,
+          5
+        ],
+        "y": [
+          -8,
+          10
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          5,
+          5
+        ],
+        "y": [
+          -2,
+          10
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          -1,
+          5
+        ],
+        "y": [
+          -8,
+          10
+        ]
+      },
+      "orientation": 2,
+      "flipped": true
+    }
+  ]
+}

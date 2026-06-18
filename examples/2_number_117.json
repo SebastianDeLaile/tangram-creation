@@ -1,0 +1,118 @@
+{
+  "name": "2_number_117",
+  "description": "2 (Number)",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          10,
+          5
+        ],
+        "y": [
+          33,
+          0
+        ]
+      },
+      "orientation": 4,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          22,
+          5
+        ],
+        "y": [
+          21,
+          -6
+        ]
+      },
+      "orientation": 3,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          10,
+          11
+        ],
+        "y": [
+          33,
+          0
+        ]
+      },
+      "orientation": 5,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          10,
+          5
+        ],
+        "y": [
+          33,
+          0
+        ]
+      },
+      "orientation": 6,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          10,
+          -1
+        ],
+        "y": [
+          9,
+          6
+        ]
+      },
+      "orientation": 4,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          10,
+          -1
+        ],
+        "y": [
+          9,
+          -6
+        ]
+      },
+      "orientation": 0,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          10,
+          -1
+        ],
+        "y": [
+          9,
+          -6
+        ]
+      },
+      "orientation": 3,
+      "flipped": true
+    }
+  ]
+}

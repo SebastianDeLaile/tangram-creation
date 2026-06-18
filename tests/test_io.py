@@ -10,11 +10,14 @@ from tangram.model import PiecePlacement, Tangram
 from tangram.pieces import PieceType
 
 EXAMPLES_DIR = Path(__file__).resolve().parent.parent / "examples"
+EXAMPLE_FILES = [
+    entry["file"] for entry in json.loads((EXAMPLES_DIR / "index.json").read_text())["figures"]
+]
 
 
-@pytest.mark.parametrize("name", ["square", "cat", "bird", "swan"])
-def test_examples_load_with_seven_pieces(name):
-    t = load_tangram(EXAMPLES_DIR / f"{name}.json")
+@pytest.mark.parametrize("filename", EXAMPLE_FILES)
+def test_examples_load_with_seven_pieces(filename):
+    t = load_tangram(EXAMPLES_DIR / filename)
     assert len(t.pieces) == 7
 
 

@@ -1,0 +1,118 @@
+{
+  "name": "nevit_185",
+  "description": "Tangram figure (Nevit Dilmen series)",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          4,
+          10
+        ],
+        "y": [
+          27,
+          -2
+        ]
+      },
+      "orientation": 5,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          16,
+          10
+        ],
+        "y": [
+          15,
+          -2
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          -8,
+          10
+        ],
+        "y": [
+          27,
+          -2
+        ]
+      },
+      "orientation": 6,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          10,
+          10
+        ],
+        "y": [
+          9,
+          -2
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          4,
+          16
+        ],
+        "y": [
+          3,
+          -2
+        ]
+      },
+      "orientation": 2,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          -14,
+          10
+        ],
+        "y": [
+          9,
+          -2
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          10,
+          10
+        ],
+        "y": [
+          9,
+          -2
+        ]
+      },
+      "orientation": 4,
+      "flipped": false
+    }
+  ]
+}

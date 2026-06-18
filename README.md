@@ -86,14 +86,16 @@ Polygon vertices aren't stored — they're derived from `anchor` + `orientation`
 
 ## Examples
 
-Four configurations are provided in `examples/`, sourced from the open-source [TangramGenerator](https://github.com/Wiebke/TangramGenerator) project and converted to this exact format:
+`examples/` holds the figure library: 12 configurations so far, mostly sourced
+from the open-source [TangramGenerator](https://github.com/Wiebke/TangramGenerator)
+project and converted to this exact format (see `scripts/import_tangram_generator.py`).
+`examples/index.json` is the manifest — every file is listed there with a
+category (`geometric`, `animals`, `objects`, `letters`, `abstract`) and source.
+The sourcing strategy, category taxonomy, and roadmap to 100+ figures are
+documented in [`docs/LIBRARY_PLAN.md`](docs/LIBRARY_PLAN.md).
 
-| File | Silhouette |
-|---|---|
-| `square.json` | The 7 pieces assembled into the original square |
-| `cat.json` | Sitting cat |
-| `bird.json` | Bird in flight |
-| `swan.json` | Swan |
+Every figure in `examples/` is required to pass `tangram.validate.validate()`
+(correct piece counts, no overlaps) — enforced by `tests/test_validate.py`.
 
 ## Usage
 
@@ -120,13 +122,41 @@ The interactive editor needs Tkinter. On macOS with Homebrew Python, install it 
 brew install python-tk@3.14   # match your Python version
 ```
 
+## Web frontend
+
+`web/` is a TypeScript + Vite port of the same editor, runnable in a browser. It's a separate implementation of the geometry model (`web/src/algebra.ts`, `geometry.ts`, `pieces.ts`, `model.ts`) that consumes the exact same JSON config schema as the Python package — not a wrapper around the Python code. The Python package stays the source of truth for configs; the web app is just another reader/writer of the same format.
+
+```bash
+cd web
+npm install
+npm run dev
+```
+
+Then open the printed `localhost` URL. Same piece interactions as the Tkinter editor: click to select, drag to translate (grid-snapped), `R` to rotate, `F` to flip. Around that:
+
+- **Collapsible left sidebar** — shapes grouped by category (reads `examples/index.json` directly, so any figure added there shows up automatically), a theme picker, a color swatch per piece type, fill/outline toggle, corner rounding slider, and a "Download JSON" button (browsers can't write back to a local file directly, so this downloads the edited config instead of overwriting it in place). Collapse it with the `«`/`»` button at the top to give the canvases more room.
+- **Themes** (`web/src/themes.ts`) — grouped palettes that set all 5 piece colors at once; individual color pickers can still override on top.
+  - *Classics*: `classic`, `pastel`, `mono`
+  - *Designer*: `bauhaus` (De Stijl primaries), `nord` (Arctic Ice Studio's aurora accents), `dracula`, `solarized` (Ethan Schoonover), `memphis` (1980s Memphis Group), `terracotta` (muted earth tones)
+- **Solution + Silhouette panels, side by side** — the Solution panel is the normal colored, editable view. Next to it, a read-only Silhouette panel always shows the same configuration as a single solid color with no internal seams (the puzzle silhouette you'd be asked to solve from). It's intentionally independent of the Solution panel's fill/outline toggle and corner rounding — always solid-filled with sharp corners, only its color is customizable.
+- **Fill / Outline** (Solution panel only) — solid pieces, or bold 4px rounded-join strokes with no fill.
+- **Corner rounding** (Solution panel only) — a slider (0-100%) that rounds every piece's corners. Implemented as a quadratic-curve cut at each vertex (`web/src/roundedPath.ts::roundedPolygonPath`), capped at half the shorter adjacent edge so corners never overlap — at 100% a square becomes a circle and triangles become lens shapes, predictably. Pieces render as `<path>` elements (not `<polygon>`) to support this.
+- **Stable canvas size** — both panels are always drawn inside a fixed box matching A-series paper proportions (1 : √2, e.g. A5), landscape or portrait depending on whichever a given figure's own bounding box fits better. The box itself only ever takes one of those two fixed pixel sizes, and each shape is scaled to fit and centered inside it — so switching between figures of very different sizes doesn't make the page jump around. Comes at the cost of true relative scale between figures (a single piece and a sprawling 7-piece figure both get scaled to fill the same box).
+
+This currently runs locally only — no public deployment yet.
+
 ## Project structure
 
 ```
 tangram-creation/
 ├── README.md
 ├── pyproject.toml
-├── src/tangram/        # the package (see Module layout above)
+├── src/tangram/        # the Python package (see Module layout above)
 ├── tests/              # pytest suite
-└── examples/           # example configurations
+├── examples/           # figure library + index.json manifest (see docs/LIBRARY_PLAN.md)
+├── scripts/            # one-off/reusable importers that feed examples/
+├── docs/               # LIBRARY_PLAN.md: sourcing strategy and roadmap
+└── web/                # TypeScript/Vite browser editor (mirrors src/tangram/)
+    ├── src/             # algebra.ts, geometry.ts, pieces.ts, model.ts, io.ts, main.ts
+    └── public/examples/ # copy of ../examples/*.json, served statically
 ```

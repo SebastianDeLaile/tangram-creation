@@ -1,0 +1,118 @@
+{
+  "name": "abstract_6",
+  "description": "Structurally interesting tangram placement (no specific silhouette)",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          27,
+          3
+        ],
+        "y": [
+          51,
+          0
+        ]
+      },
+      "orientation": 5,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          21,
+          -3
+        ],
+        "y": [
+          21,
+          0
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          33,
+          -3
+        ],
+        "y": [
+          33,
+          0
+        ]
+      },
+      "orientation": 6,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          39,
+          3
+        ],
+        "y": [
+          39,
+          0
+        ]
+      },
+      "orientation": 5,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          27,
+          -3
+        ],
+        "y": [
+          27,
+          0
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          21,
+          -3
+        ],
+        "y": [
+          21,
+          0
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          45,
+          -9
+        ],
+        "y": [
+          33,
+          -6
+        ]
+      },
+      "orientation": 1,
+      "flipped": true
+    }
+  ]
+}

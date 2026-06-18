@@ -1,0 +1,118 @@
+{
+  "name": "mountain",
+  "description": "Mountain range silhouette",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          0,
+          12
+        ],
+        "y": [
+          12,
+          6
+        ]
+      },
+      "orientation": 4,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          0,
+          24
+        ],
+        "y": [
+          12,
+          6
+        ]
+      },
+      "orientation": 6,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          0,
+          18
+        ],
+        "y": [
+          12,
+          0
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          0,
+          12
+        ],
+        "y": [
+          12,
+          6
+        ]
+      },
+      "orientation": 6,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          0,
+          18
+        ],
+        "y": [
+          12,
+          6
+        ]
+      },
+      "orientation": 6,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          0,
+          18
+        ],
+        "y": [
+          0,
+          0
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          0,
+          12
+        ],
+        "y": [
+          12,
+          -6
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    }
+  ]
+}

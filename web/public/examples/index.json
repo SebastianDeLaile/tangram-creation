@@ -1,0 +1,562 @@
+{
+  "figures": [
+    {
+      "file": "square.json",
+      "title": "Square",
+      "category": "geometric",
+      "source": "constructed",
+      "tags": [
+        "convex"
+      ]
+    },
+    {
+      "file": "cat.json",
+      "title": "Cat",
+      "category": "animals",
+      "source": "TangramGenerator",
+      "tags": []
+    },
+    {
+      "file": "bird.json",
+      "title": "Bird",
+      "category": "animals",
+      "source": "TangramGenerator",
+      "tags": []
+    },
+    {
+      "file": "swan.json",
+      "title": "Swan",
+      "category": "animals",
+      "source": "TangramGenerator",
+      "tags": []
+    },
+    {
+      "file": "mountain.json",
+      "title": "Mountain",
+      "category": "objects",
+      "source": "TangramGenerator",
+      "tags": [
+        "nature"
+      ]
+    },
+    {
+      "file": "arrow.json",
+      "title": "Arrow",
+      "category": "objects",
+      "source": "TangramGenerator",
+      "tags": [
+        "symbol"
+      ]
+    },
+    {
+      "file": "abstract_1.json",
+      "title": "Abstract 1",
+      "category": "abstract",
+      "source": "TangramGenerator",
+      "tags": []
+    },
+    {
+      "file": "abstract_2.json",
+      "title": "Abstract 2",
+      "category": "abstract",
+      "source": "TangramGenerator",
+      "tags": []
+    },
+    {
+      "file": "abstract_3.json",
+      "title": "Abstract 3",
+      "category": "abstract",
+      "source": "TangramGenerator",
+      "tags": []
+    },
+    {
+      "file": "abstract_4.json",
+      "title": "Abstract 4",
+      "category": "abstract",
+      "source": "TangramGenerator",
+      "tags": []
+    },
+    {
+      "file": "abstract_5.json",
+      "title": "Abstract 5",
+      "category": "abstract",
+      "source": "TangramGenerator",
+      "tags": []
+    },
+    {
+      "file": "abstract_6.json",
+      "title": "Abstract 6",
+      "category": "abstract",
+      "source": "TangramGenerator",
+      "tags": []
+    },
+    {
+      "file": "nevit_085.json",
+      "title": "Fish",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_041.json",
+      "title": "Bird",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_049.json",
+      "title": "Cat",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_050.json",
+      "title": "Cat",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_052.json",
+      "title": "Cat",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_053.json",
+      "title": "Cat",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_071.json",
+      "title": "Cat",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_072.json",
+      "title": "Cat",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_081.json",
+      "title": "Fish",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_098.json",
+      "title": "Kite",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_099.json",
+      "title": "Diamond",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_100.json",
+      "title": "Crown",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_101.json",
+      "title": "Abstract",
+      "category": "abstract",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_103.json",
+      "title": "Jar",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_107.json",
+      "title": "Stool",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_109.json",
+      "title": "House",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_110.json",
+      "title": "Tower",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_116.json",
+      "title": "1",
+      "category": "letters",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "2_number_117.json",
+      "title": "2",
+      "category": "letters",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": [
+        "2 (Number)"
+      ]
+    },
+    {
+      "file": "3_number_118.json",
+      "title": "3",
+      "category": "letters",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": [
+        "3 (Number)"
+      ]
+    },
+    {
+      "file": "nevit_120.json",
+      "title": "5",
+      "category": "letters",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_124.json",
+      "title": "C",
+      "category": "letters",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_128.json",
+      "title": "Triangle",
+      "category": "geometric",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_129.json",
+      "title": "Rectangle",
+      "category": "geometric",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_130.json",
+      "title": "Hexagon",
+      "category": "geometric",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_132.json",
+      "title": "Pentagon",
+      "category": "geometric",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_135.json",
+      "title": "Right Trapezoid",
+      "category": "geometric",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_136.json",
+      "title": "Trapezoid",
+      "category": "geometric",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_137.json",
+      "title": "Isosceles Trapezoid",
+      "category": "geometric",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_138.json",
+      "title": "Wide Hexagon",
+      "category": "geometric",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_139.json",
+      "title": "Skew Hexagon",
+      "category": "geometric",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_142.json",
+      "title": "Duck",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_145.json",
+      "title": "Camel",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "camels_149.json",
+      "title": "Camels",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": [
+        "Camels"
+      ]
+    },
+    {
+      "file": "nevit_156.json",
+      "title": "Bird",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_158.json",
+      "title": "Runner",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_175.json",
+      "title": "Fish",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_178.json",
+      "title": "Fox",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_180.json",
+      "title": "Arrow",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_181.json",
+      "title": "Bridge",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_185.json",
+      "title": "Boat",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_187.json",
+      "title": "Arch",
+      "category": "abstract",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_188.json",
+      "title": "Hills",
+      "category": "abstract",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_191.json",
+      "title": "Hill",
+      "category": "abstract",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_194.json",
+      "title": "P",
+      "category": "letters",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_198.json",
+      "title": "Windmill",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_212.json",
+      "title": "Diamond",
+      "category": "abstract",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_213.json",
+      "title": "Bird",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_215.json",
+      "title": "Heron",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_217.json",
+      "title": "Mountains",
+      "category": "abstract",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_218.json",
+      "title": "Bird",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_220.json",
+      "title": "Steps",
+      "category": "abstract",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_223.json",
+      "title": "Butterfly",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_225.json",
+      "title": "Bowl",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_226.json",
+      "title": "Sailboat",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_229.json",
+      "title": "Arch",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_230.json",
+      "title": "Swan",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_231.json",
+      "title": "Goose",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_235.json",
+      "title": "Goblet",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_239.json",
+      "title": "Gate",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_240.json",
+      "title": "Column",
+      "category": "abstract",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_241.json",
+      "title": "Pillar",
+      "category": "abstract",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_246.json",
+      "title": "Double Peak",
+      "category": "abstract",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_249.json",
+      "title": "Crocodile",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_250.json",
+      "title": "Pinwheel",
+      "category": "abstract",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_251.json",
+      "title": "Sailboat",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    }
+  ]
+}
