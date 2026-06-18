@@ -18,7 +18,7 @@
     },
     {
       "file": "bird.json",
-      "title": "Bird",
+      "title": "Dove",
       "category": "animals",
       "source": "TangramGenerator",
       "tags": []
@@ -50,42 +50,42 @@
     },
     {
       "file": "abstract_1.json",
-      "title": "Abstract 1",
+      "title": "Windmill",
       "category": "abstract",
       "source": "TangramGenerator",
       "tags": []
     },
     {
       "file": "abstract_2.json",
-      "title": "Abstract 2",
+      "title": "Rocket",
       "category": "abstract",
       "source": "TangramGenerator",
       "tags": []
     },
     {
       "file": "abstract_3.json",
-      "title": "Abstract 3",
+      "title": "Ramp",
       "category": "abstract",
       "source": "TangramGenerator",
       "tags": []
     },
     {
       "file": "abstract_4.json",
-      "title": "Abstract 4",
+      "title": "Chevron",
       "category": "abstract",
       "source": "TangramGenerator",
       "tags": []
     },
     {
       "file": "abstract_5.json",
-      "title": "Abstract 5",
+      "title": "Dart",
       "category": "abstract",
       "source": "TangramGenerator",
       "tags": []
     },
     {
       "file": "abstract_6.json",
-      "title": "Abstract 6",
+      "title": "Gem",
       "category": "abstract",
       "source": "TangramGenerator",
       "tags": []
@@ -99,7 +99,7 @@
     },
     {
       "file": "nevit_041.json",
-      "title": "Bird",
+      "title": "Eagle",
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
@@ -169,7 +169,7 @@
     },
     {
       "file": "nevit_101.json",
-      "title": "Abstract",
+      "title": "Plane",
       "category": "abstract",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
@@ -329,7 +329,7 @@
     },
     {
       "file": "nevit_156.json",
-      "title": "Bird",
+      "title": "Hawk",
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
@@ -350,7 +350,7 @@
     },
     {
       "file": "nevit_178.json",
-      "title": "Bird",
+      "title": "Penguin",
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
@@ -420,7 +420,7 @@
     },
     {
       "file": "nevit_213.json",
-      "title": "Bird",
+      "title": "Swift",
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
@@ -441,7 +441,7 @@
     },
     {
       "file": "nevit_218.json",
-      "title": "Bird",
+      "title": "Swallow",
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
