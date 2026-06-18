@@ -119,13 +119,6 @@
       "tags": []
     },
     {
-      "file": "nevit_052.json",
-      "title": "Cat",
-      "category": "animals",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": []
-    },
-    {
       "file": "nevit_053.json",
       "title": "Cat",
       "category": "animals",
@@ -171,13 +164,6 @@
       "file": "nevit_101.json",
       "title": "Plane",
       "category": "abstract",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": []
-    },
-    {
-      "file": "nevit_103.json",
-      "title": "Jar",
-      "category": "objects",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
     },
@@ -429,13 +415,6 @@
       "file": "nevit_215.json",
       "title": "Heron",
       "category": "animals",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": []
-    },
-    {
-      "file": "nevit_217.json",
-      "title": "Mountains",
-      "category": "abstract",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
     },
