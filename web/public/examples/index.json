@@ -160,13 +160,6 @@
       "tags": []
     },
     {
-      "file": "abstract_4.json",
-      "title": "Chevron",
-      "category": "abstract",
-      "source": "TangramGenerator",
-      "tags": []
-    },
-    {
       "file": "nevit_212.json",
       "title": "Chevron",
       "category": "abstract",
@@ -222,13 +215,6 @@
       "title": "Crown",
       "category": "objects",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": []
-    },
-    {
-      "file": "abstract_5.json",
-      "title": "Dart",
-      "category": "abstract",
-      "source": "TangramGenerator",
       "tags": []
     },
     {
@@ -404,6 +390,13 @@
       ]
     },
     {
+      "file": "abstract_5.json",
+      "title": "Kite",
+      "category": "abstract",
+      "source": "TangramGenerator",
+      "tags": []
+    },
+    {
       "file": "nevit_098.json",
       "title": "Kite",
       "category": "objects",
@@ -447,6 +440,13 @@
     {
       "file": "nevit_241.json",
       "title": "Pillar",
+      "category": "abstract",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_220.json",
+      "title": "Pine",
       "category": "abstract",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
@@ -578,13 +578,6 @@
       ]
     },
     {
-      "file": "nevit_220.json",
-      "title": "Saw",
-      "category": "abstract",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": []
-    },
-    {
       "file": "people_097.json",
       "title": "Sculling",
       "category": "people",
@@ -643,6 +636,13 @@
       "file": "swan.json",
       "title": "Swan",
       "category": "animals",
+      "source": "TangramGenerator",
+      "tags": []
+    },
+    {
+      "file": "abstract_4.json",
+      "title": "Swift",
+      "category": "abstract",
       "source": "TangramGenerator",
       "tags": []
     },
