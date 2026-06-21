@@ -45,6 +45,8 @@ const state = {
   silhouetteColor: DEFAULT_SILHOUETTE_COLOR,
   fillMode: "fill" as FillMode,
   cornerRounding: 0, // 0 (sharp) to 1 (max rounding, capped per-corner)
+  shapeCategory: "all",
+  shapeQuery: "",
 };
 
 let dragStartScreen: [number, number] | null = null;
@@ -60,6 +62,8 @@ app.innerHTML = `
       <div id="sidebar-content">
         <section>
           <h2>Shapes</h2>
+          <input type="search" id="shape-search" placeholder="Search…" autocomplete="off" />
+          <div id="category-pills"></div>
           <div id="shape-list" class="button-list"></div>
         </section>
         <section>
@@ -122,6 +126,8 @@ app.innerHTML = `
 const solutionSvg = document.getElementById("canvas-solution") as unknown as SVGSVGElement;
 const silhouetteSvg = document.getElementById("canvas-silhouette") as unknown as SVGSVGElement;
 const statusEl = document.getElementById("status")!;
+const shapeSearchEl = document.getElementById("shape-search") as HTMLInputElement;
+const categoryPillsEl = document.getElementById("category-pills")!;
 const shapeListEl = document.getElementById("shape-list")!;
 const colorListEl = document.getElementById("color-list")!;
 const themeSelect = document.getElementById("theme-select") as HTMLSelectElement;
@@ -133,37 +139,78 @@ const downloadBtn = document.getElementById("download-btn")!;
 const sidebar = document.getElementById("sidebar")!;
 const sidebarToggle = document.getElementById("sidebar-toggle")!;
 
-function buildShapeList(): void {
-  const byCategory = new Map<string, IndexEntry[]>();
-  for (const entry of state.figures) {
-    const list = byCategory.get(entry.category) ?? [];
-    list.push(entry);
-    byCategory.set(entry.category, list);
-  }
-  shapeListEl.innerHTML = [...byCategory.entries()]
-    .map(([category, entries]) => {
-      const sorted = [...entries].sort((a, b) =>
-        (a.title ?? labelFor(a.file)).localeCompare(b.title ?? labelFor(b.file)),
-      );
-      // Count how many times each title appears
-      const counts = new Map<string, number>();
-      for (const e of sorted) counts.set(e.title ?? labelFor(e.file), (counts.get(e.title ?? labelFor(e.file)) ?? 0) + 1);
-      const seen = new Map<string, number>();
-      return `
-        <div class="shape-category">${category}</div>
-        ${sorted
-          .map((entry) => {
-            const base = entry.title ?? labelFor(entry.file);
-            const n = seen.get(base) ?? 0;
-            seen.set(base, n + 1);
-            const label = counts.get(base)! > 1 ? `${base} ${n + 1}` : base;
-            return `<button data-file="${entry.file}" class="${entry.file === state.exampleFile ? "active" : ""}">${label}</button>`;
-          })
-          .join("")}
-      `;
-    })
+function buildCategoryPills(): void {
+  const cats = [...new Set(state.figures.map((f) => f.category))].sort();
+  categoryPillsEl.innerHTML = ["all", ...cats]
+    .map(
+      (cat) =>
+        `<button class="cat-pill${state.shapeCategory === cat ? " active" : ""}" data-cat="${cat}">
+          ${cat === "all" ? "All" : capitalize(cat)}
+        </button>`,
+    )
     .join("");
-  shapeListEl.querySelectorAll<HTMLButtonElement>("button").forEach((btn) => {
+  categoryPillsEl.querySelectorAll<HTMLButtonElement>(".cat-pill").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      state.shapeCategory = btn.dataset.cat!;
+      buildCategoryPills();
+      buildShapeList();
+    });
+  });
+}
+
+function buildShapeList(): void {
+  const q = state.shapeQuery.toLowerCase().trim();
+  let filtered = state.figures;
+  if (state.shapeCategory !== "all") filtered = filtered.filter((f) => f.category === state.shapeCategory);
+  if (q) filtered = filtered.filter((f) => (f.title ?? labelFor(f.file)).toLowerCase().includes(q));
+
+  const showHeaders = state.shapeCategory === "all" && !q;
+
+  // Deduplicate titles within the visible set
+  const titleCount = new Map<string, number>();
+  for (const e of filtered) {
+    const t = e.title ?? labelFor(e.file);
+    titleCount.set(t, (titleCount.get(t) ?? 0) + 1);
+  }
+  const titleSeen = new Map<string, number>();
+  function entryLabel(e: IndexEntry): string {
+    const base = e.title ?? labelFor(e.file);
+    const n = titleSeen.get(base) ?? 0;
+    titleSeen.set(base, n + 1);
+    return titleCount.get(base)! > 1 ? `${base} ${n + 1}` : base;
+  }
+
+  if (showHeaders) {
+    const byCategory = new Map<string, IndexEntry[]>();
+    for (const e of filtered) {
+      const list = byCategory.get(e.category) ?? [];
+      list.push(e);
+      byCategory.set(e.category, list);
+    }
+    shapeListEl.innerHTML = [...byCategory.entries()]
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([cat, entries]) => {
+        const sorted = [...entries].sort((a, b) =>
+          (a.title ?? labelFor(a.file)).localeCompare(b.title ?? labelFor(b.file)),
+        );
+        return `<div class="shape-category">${capitalize(cat)}</div>
+          ${sorted.map((e) => `<button data-file="${e.file}" class="${e.file === state.exampleFile ? "active" : ""}">${entryLabel(e)}</button>`).join("")}`;
+      })
+      .join("");
+  } else {
+    const sorted = [...filtered].sort((a, b) =>
+      (a.title ?? labelFor(a.file)).localeCompare(b.title ?? labelFor(b.file)),
+    );
+    if (sorted.length === 0) {
+      shapeListEl.innerHTML = `<div class="shape-empty">No shapes found</div>`;
+    } else {
+      shapeListEl.innerHTML = sorted
+        .map((e) => `<button data-file="${e.file}" class="${e.file === state.exampleFile ? "active" : ""}">${entryLabel(e)}</button>`)
+        .join("");
+    }
+  }
+
+  shapeListEl.querySelectorAll<HTMLButtonElement>("button[data-file]").forEach((btn) => {
     btn.addEventListener("click", () => loadExample(btn.dataset.file!));
   });
 }
@@ -367,6 +414,11 @@ roundingSlider.addEventListener("input", () => {
   render();
 });
 
+shapeSearchEl.addEventListener("input", () => {
+  state.shapeQuery = shapeSearchEl.value;
+  buildShapeList();
+});
+
 sidebarToggle.addEventListener("click", () => {
   const collapsed = sidebar.classList.toggle("collapsed");
   sidebarToggle.innerHTML = collapsed ? "&raquo;" : "&laquo;";
@@ -381,6 +433,7 @@ window.addEventListener("keydown", onKeyDown);
 async function init(): Promise<void> {
   state.figures = await loadIndex("/examples/index.json");
   buildColorList();
+  buildCategoryPills();
   const hasCat = state.figures.some((f) => f.file === state.exampleFile);
   await loadExample(hasCat ? state.exampleFile : state.figures[0].file);
 }

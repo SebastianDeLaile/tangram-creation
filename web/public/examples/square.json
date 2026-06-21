@@ -1,6 +1,7 @@
 {
   "name": "square",
   "description": "The 7 pieces assembled into the original 4x4 square",
+  "source": "constructed",
   "pieces": [
     {
       "piece": "large_triangle",

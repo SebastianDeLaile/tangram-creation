@@ -1,0 +1,119 @@
+{
+  "name": "people_001",
+  "description": "Tangram figure (Marching)",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          15,
+          -6
+        ],
+        "y": [
+          37,
+          -10
+        ]
+      },
+      "orientation": 6,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          15,
+          -6
+        ],
+        "y": [
+          37,
+          -10
+        ]
+      },
+      "orientation": 0,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          9,
+          -6
+        ],
+        "y": [
+          31,
+          -22
+        ]
+      },
+      "orientation": 0,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          21,
+          -6
+        ],
+        "y": [
+          43,
+          2
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          9,
+          -6
+        ],
+        "y": [
+          43,
+          2
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          27,
+          -6
+        ],
+        "y": [
+          37,
+          -22
+        ]
+      },
+      "orientation": 3,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          15,
+          0
+        ],
+        "y": [
+          49,
+          -10
+        ]
+      },
+      "orientation": 3,
+      "flipped": true
+    }
+  ],
+  "source": "https://commons.wikimedia.org/wiki/File:Tangram_001_Nevit.svg"
+}

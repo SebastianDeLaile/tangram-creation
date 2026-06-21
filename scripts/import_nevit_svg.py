@@ -43,43 +43,97 @@ FIT_TOLERANCE = 3.5  # units, after scaling -- generous because some pieces are
 # kept well below the ~6.5 unit error a wrong 45-degree bucket would produce
 
 PATH_RE = re.compile(r'<path[^>]*\sd="([^"]+)"')
-TOKEN_RE = re.compile(r"([MmLlZz])|(-?\d*\.?\d+(?:[eE][-+]?\d+)?)")
+TOKEN_RE = re.compile(r"([MmLlHhVvZz])|(-?\d*\.?\d+(?:[eE][-+]?\d+)?)")
 
 
-def parse_path(d: str) -> list[tuple[float, float]]:
+def _close(pts: list[tuple[float, float]]) -> list[tuple[float, float]]:
+    if len(pts) > 1 and math.dist(pts[0], pts[-1]) < 1e-2:
+        pts = pts[:-1]
+    return pts
+
+
+def parse_path(d: str) -> list[list[tuple[float, float]]]:
+    """Parse SVG path data into a list of polygons (one per closed subpath).
+
+    Handles absolute and relative M/L/H/V and Z commands; ignores curves.
+    Supports both single-element-with-subpaths (Format A) and plain polygons.
+    """
     tokens: list = []
     for m in TOKEN_RE.finditer(d):
         tokens.append(m.group(1) if m.group(1) else float(m.group(2)))
 
-    points: list[tuple[float, float]] = []
+    subpaths: list[list[tuple[float, float]]] = []
+    cur_pts: list[tuple[float, float]] = []
     cur = (0.0, 0.0)
-    cmd = None
+    start = (0.0, 0.0)
+    cmd = ""
     i = 0
+
     while i < len(tokens):
         t = tokens[i]
         if isinstance(t, str):
             cmd = t
             i += 1
+            if cmd in ("Z", "z"):
+                if cur_pts:
+                    subpaths.append(_close(cur_pts))
+                cur_pts = []
+                cur = start
             continue
-        x, y = tokens[i], tokens[i + 1]
-        i += 2
-        if cmd in ("M", "L"):
-            cur = (x, y)
-        elif cmd in ("m", "l"):
-            cur = (cur[0] + x, cur[1] + y)
-        points.append(cur)
-        if cmd == "M":
-            cmd = "L"
-        elif cmd == "m":
-            cmd = "l"
 
-    if len(points) > 1 and math.dist(points[0], points[-1]) < 1e-2:
-        points.pop()
-    return points
+        if cmd in ("M", "L"):
+            x, y = float(tokens[i]), float(tokens[i + 1])
+            i += 2
+            cur = (x, y)
+            if cmd == "M":
+                if cur_pts:
+                    subpaths.append(_close(cur_pts))
+                cur_pts = []
+                start = cur
+                cmd = "L"
+            cur_pts.append(cur)
+        elif cmd in ("m", "l"):
+            x, y = float(tokens[i]), float(tokens[i + 1])
+            i += 2
+            cur = (cur[0] + x, cur[1] + y)
+            if cmd == "m":
+                if cur_pts:
+                    subpaths.append(_close(cur_pts))
+                cur_pts = []
+                start = cur
+                cmd = "l"
+            cur_pts.append(cur)
+        elif cmd == "H":
+            cur = (float(tokens[i]), cur[1])
+            i += 1
+            cur_pts.append(cur)
+        elif cmd == "h":
+            cur = (cur[0] + float(tokens[i]), cur[1])
+            i += 1
+            cur_pts.append(cur)
+        elif cmd == "V":
+            cur = (cur[0], float(tokens[i]))
+            i += 1
+            cur_pts.append(cur)
+        elif cmd == "v":
+            cur = (cur[0], cur[1] + float(tokens[i]))
+            i += 1
+            cur_pts.append(cur)
+        else:
+            i += 1  # unhandled command token (e.g. curves) — skip one value
+
+    if cur_pts:
+        subpaths.append(_close(cur_pts))
+    return subpaths
 
 
 def extract_polygons(svg_text: str) -> list[list[tuple[float, float]]]:
-    return [parse_path(d) for d in PATH_RE.findall(svg_text)]
+    """Extract all piece polygons from an SVG — works for both single-path
+    (all 7 pieces as subpaths of one <path>) and 7-separate-paths formats."""
+    polys = []
+    for d in PATH_RE.findall(svg_text):
+        polys.extend(parse_path(d))
+    return [p for p in polys if len(p) >= 3]
 
 
 def _side_lengths(poly: list[tuple[float, float]]) -> list[float]:
@@ -169,6 +223,36 @@ def _exact_dirs(piece_type: PieceType, orientation: int, flip: bool) -> list[Poi
     return [d.rotated_45(orientation) for d in dirs]
 
 
+def _total_overlap(placements: list[PiecePlacement]) -> float:
+    from tangram.validate import overlap_area
+    polys = [[v.to_float() for v in p.vertices()] for p in placements]
+    return sum(overlap_area(polys[i], polys[j])
+               for i in range(len(polys)) for j in range(i + 1, len(polys)))
+
+
+def _bfs_place(fits, adj, root, root_anchor: Point) -> dict[int, Point]:
+    placed: dict[int, Point] = {root: root_anchor}
+    queue = [root]
+    visited = {root}
+    while queue:
+        cur = queue.pop(0)
+        cur_anchor = placed[cur]
+        cur_ed = fits[cur][5]
+        for other, my_vi, their_vi in adj.get(cur, []):
+            if other in visited:
+                continue
+            visited.add(other)
+            shared = cur_anchor if my_vi == 0 else cur_anchor + cur_ed[my_vi - 1]
+            other_ed = fits[other][5]
+            placed[other] = shared if their_vi == 0 else shared - other_ed[their_vi - 1]
+            queue.append(other)
+    for fi in range(len(fits)):
+        if fi not in placed:
+            fa = fits[fi][2]
+            placed[fi] = Point(_snap(fa[0]), _snap(fa[1]))
+    return placed
+
+
 def build_tangram(name: str, polygons: list[list[tuple[float, float]]]) -> Tangram:
     grouped = classify(polygons)
     large_area = max(_area(p) for p in grouped[PieceType.LARGE_TRIANGLE])
@@ -185,59 +269,60 @@ def build_tangram(name: str, polygons: list[list[tuple[float, float]]]) -> Tangr
             fits.append((piece_type, piece_id, anchor, orientation, flip,
                          _exact_dirs(piece_type, orientation, flip), rmse))
 
-    # Float vertex table: vertex_owners[i] = (fit_index, vertex_index, float_point)
-    vertex_owners = []
+    n_pieces = len(fits)
+
+    # Float vertex table for BFS adjacency.
+    piece_verts: dict[int, list[tuple[int, tuple[float, float]]]] = {}
     for fit_index, (_, _, anchor, _, _, exact_dirs, _) in enumerate(fits):
-        vertex_owners.append((fit_index, 0, anchor))
+        piece_verts[fit_index] = [(0, anchor)]
         for k, d in enumerate(exact_dirs, start=1):
             dx, dy = d.to_float()
-            vertex_owners.append((fit_index, k, (anchor[0] + dx, anchor[1] + dy)))
+            piece_verts[fit_index].append((k, (anchor[0] + dx, anchor[1] + dy)))
 
-    # Cross-piece adjacency: pairs of vertices from different pieces within WELD_DISTANCE.
-    adj: dict[int, list[tuple[int, int, int]]] = {}  # fit_idx -> [(other, my_vi, other_vi)]
-    for i in range(len(vertex_owners)):
-        for j in range(i + 1, len(vertex_owners)):
-            fi, vi, pi = vertex_owners[i]
-            fj, vj, pj = vertex_owners[j]
-            if fi == fj:
-                continue
-            if math.dist(pi, pj) < WELD_DISTANCE:
+    # Cross-piece adjacency: for each piece-pair, keep only the CLOSEST vertex pair
+    # (within WELD_DISTANCE). Using a single best-match per pair avoids the false-weld
+    # problem where a too-large threshold picks the wrong vertex pair.
+    adj: dict[int, list[tuple[int, int, int]]] = {}
+    for fi in range(n_pieces):
+        for fj in range(fi + 1, n_pieces):
+            best_d = WELD_DISTANCE
+            best_pair: tuple[int, int] | None = None
+            for vi, pi in piece_verts[fi]:
+                for vj, pj in piece_verts[fj]:
+                    d = math.dist(pi, pj)
+                    if d < best_d:
+                        best_d = d
+                        best_pair = (vi, vj)
+            if best_pair is not None:
+                vi, vj = best_pair
                 adj.setdefault(fi, []).append((fj, vi, vj))
                 adj.setdefault(fj, []).append((fi, vj, vi))
 
-    # BFS anchor derivation: snap only the root (most accurately fit piece),
-    # then derive every other piece's anchor exactly from its parent's Z[sqrt(2)]
-    # vertex — no centroid averaging, so all shared corners are bit-exact consistent.
-    n_pieces = len(fits)
+    # BFS anchor derivation: snap the root piece (best-fit), derive all others exactly.
+    # Then try ±1 rational nudges of the root anchor to minimise pairwise overlap.
     root = min(range(n_pieces), key=lambda i: fits[i][6])
-    placed: dict[int, Point] = {}
     root_fa = fits[root][2]
-    placed[root] = Point(_snap(root_fa[0]), _snap(root_fa[1]))
+    base_anchor = Point(_snap(root_fa[0]), _snap(root_fa[1]))
 
-    queue = [root]
-    visited = {root}
-    while queue:
-        cur = queue.pop(0)
-        cur_anchor = placed[cur]
-        cur_ed = fits[cur][5]
-        for other, my_vi, their_vi in adj.get(cur, []):
-            if other in visited:
-                continue
-            visited.add(other)
-            shared = cur_anchor if my_vi == 0 else cur_anchor + cur_ed[my_vi - 1]
-            other_ed = fits[other][5]
-            placed[other] = shared if their_vi == 0 else shared - other_ed[their_vi - 1]
-            queue.append(other)
-
-    # Isolated pieces not reached by BFS: fall back to independent snap.
-    for fi in range(n_pieces):
-        if fi not in placed:
-            fa = fits[fi][2]
-            placed[fi] = Point(_snap(fa[0]), _snap(fa[1]))
+    best_placed = None
+    best_overlap = float("inf")
+    for da in (-1, 0, 1):
+        for db in (-1, 0, 1):
+            trial_anchor = Point(
+                Z2(base_anchor.x.a + Fraction(da), base_anchor.x.b),
+                Z2(base_anchor.y.a + Fraction(db), base_anchor.y.b),
+            )
+            placed = _bfs_place(fits, adj, root, trial_anchor)
+            pieces = [PiecePlacement(fits[fi][0], fits[fi][1], placed[fi],
+                                     fits[fi][3], fits[fi][4]) for fi in range(n_pieces)]
+            ov = _total_overlap(pieces)
+            if ov < best_overlap:
+                best_overlap = ov
+                best_placed = placed
 
     pieces = []
     for fi, (pt, pid, _, orient, flip, _, _) in enumerate(fits):
-        pieces.append(PiecePlacement(pt, pid, placed[fi], orient, flip))
+        pieces.append(PiecePlacement(pt, pid, best_placed[fi], orient, flip))
     return Tangram(name=name, pieces=pieces)
 
 

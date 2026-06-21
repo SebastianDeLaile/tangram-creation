@@ -1,6 +1,7 @@
 {
   "name": "cat",
   "description": "Classic sitting cat silhouette",
+  "source": "https://github.com/Wiebke/TangramGenerator/blob/master/Code/exampleTangrams.js",
   "pieces": [
     {
       "piece": "large_triangle",

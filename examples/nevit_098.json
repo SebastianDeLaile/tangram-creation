@@ -1,6 +1,7 @@
 {
   "name": "nevit_098",
   "description": "Tangram figure (Nevit Dilmen series)",
+  "source": "https://commons.wikimedia.org/wiki/File:Tangram_098_Nevit.svg",
   "pieces": [
     {
       "piece": "large_triangle",

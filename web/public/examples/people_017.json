@@ -1,0 +1,119 @@
+{
+  "name": "people_017",
+  "description": "Tangram figure (Reaching Up)",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          19,
+          -2
+        ],
+        "y": [
+          -3,
+          22
+        ]
+      },
+      "orientation": 4,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          31,
+          -2
+        ],
+        "y": [
+          9,
+          22
+        ]
+      },
+      "orientation": 3,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          19,
+          -2
+        ],
+        "y": [
+          9,
+          10
+        ]
+      },
+      "orientation": 6,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          13,
+          -2
+        ],
+        "y": [
+          3,
+          28
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          19,
+          -2
+        ],
+        "y": [
+          -3,
+          22
+        ]
+      },
+      "orientation": 2,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          13,
+          -2
+        ],
+        "y": [
+          -9,
+          10
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          25,
+          -2
+        ],
+        "y": [
+          27,
+          22
+        ]
+      },
+      "orientation": 6,
+      "flipped": false
+    }
+  ],
+  "source": "https://commons.wikimedia.org/wiki/File:Tangram_017_Nevit.svg"
+}

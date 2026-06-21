@@ -33,7 +33,7 @@ from pathlib import Path
 # ---------------------------------------------------------------------------
 
 API = "https://commons.wikimedia.org/w/api.php"
-CATEGORY = "Category:Nevit_Dilmen_Tangrams"
+DEFAULT_CATEGORY = "Category:Nevit_Dilmen_Tangrams"
 USER_AGENT = "tangram-creation/1.0 (https://github.com/sebastiandelaile/tangram-creation; claude@mail.delaile.com) fetch_nevit.py"
 
 API_DELAY = 1.0    # seconds between MediaWiki API calls
@@ -51,13 +51,13 @@ def _api_get(params: dict) -> dict:
         return json.loads(r.read())
 
 
-def list_category_files() -> list[str]:
-    """Return all file titles in CATEGORY (e.g. 'File:Tangram 031 Nevit.svg')."""
+def list_category_files(category: str = DEFAULT_CATEGORY) -> list[str]:
+    """Return all file titles in category (e.g. 'File:Tangram 031 Nevit.svg')."""
     titles: list[str] = []
     params: dict = {
         "action": "query",
         "list": "categorymembers",
-        "cmtitle": CATEGORY,
+        "cmtitle": category,
         "cmlimit": "500",
         "cmtype": "file",
     }
@@ -165,16 +165,17 @@ def _content_tags(cats: list[str]) -> list[str]:
 # Main
 # ---------------------------------------------------------------------------
 
-def main(svg_dir: str) -> None:
+def main(svg_dir: str, category: str = DEFAULT_CATEGORY) -> None:
     out_dir = Path(svg_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    meta_path = Path("/tmp/nevit_meta.json")
-    cat_path = Path("/tmp/nevit_categorized.json")
+    slug = re.sub(r"[^a-z0-9]+", "_", category.lower().replace("category:", "")).strip("_")
+    meta_path = Path(f"/tmp/{slug}_meta.json")
+    cat_path = Path(f"/tmp/{slug}_categorized.json")
 
     # --- Step 1: enumerate all files ----------------------------------------
-    print("Listing files in Category:Nevit_Dilmen_Tangrams …", flush=True)
-    all_titles = list_category_files()
+    print(f"Listing files in {category} …", flush=True)
+    all_titles = list_category_files(category)
     print(f"  found {len(all_titles)} files", flush=True)
     time.sleep(API_DELAY)
 
@@ -255,7 +256,8 @@ def main(svg_dir: str) -> None:
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print(f"Usage: python3 {sys.argv[0]} <output-svg-dir>")
+    if len(sys.argv) not in (2, 3):
+        print(f"Usage: python3 {sys.argv[0]} <output-svg-dir> [Category:Name]")
         sys.exit(1)
-    main(sys.argv[1])
+    cat = sys.argv[2] if len(sys.argv) == 3 else DEFAULT_CATEGORY
+    main(sys.argv[1], cat)

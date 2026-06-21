@@ -117,25 +117,35 @@ bug on legitimate pinch-point figures, caught the same way: render and look).
 
 ## Status and next steps
 
-78 figures committed (10 geometric, 26 animals, 19 objects, 6 letters,
-17 abstract). To reach 100+:
+92 figures committed (after deduplication). To reach 100+:
 
-1. Wikimedia Commons' Nevit Dilmen tangram series — **DONE** for the 66
-   well-drawn files (65 newly added; 1 was already present). The remaining
-   180 files fail because the SVG drawing has pieces genuinely isolated from
-   each other (no shared vertex within 0.5 units). The import pipeline
-   (`scripts/fetch_nevit.py` → `scripts/bulk_import_nevit.py`) is complete:
-   it uses a BFS anchor-derivation algorithm in `scripts/import_nevit_svg.py`
-   that snaps only the most accurately-fit piece (lowest RMSE) and derives
-   all other pieces' anchors exactly from shared vertices — no centroid
-   averaging, so connected figures have zero snapping inconsistency.
-   22 more figures are needed to reach 100.
-2. Derive and add the remaining convex tangrams (geometric category) — 9
-   of the 13 convex tangrams were imported from Nevit (they happen to be
-   in the CC-BY-SA series). 4 more are still missing. Consider deriving
-   them directly from the mathematical solution set.
-3. Pull figures from other Wikimedia Commons tangram series or Creative
-   Commons puzzle books (same import pipeline can be reused).
-4. Only once free structured sources are exhausted, consider digitizing
-   from `twpride/tangram`'s silhouette outlines (requires a solver) or from
-   Sam Loyd's book (requires manual coordinate work).
+1. **Nevit Dilmen main series** (`Category:Nevit_Dilmen_Tangrams`) — **DONE**.
+   66 well-drawn files imported; the remaining ~180 files fail because pieces
+   are genuinely isolated (no shared vertex within 0.5 units). Pipeline:
+   `scripts/fetch_nevit.py` → `scripts/bulk_import_nevit.py`.
+
+2. **Nevit Dilmen people series** (`Category:Tangrams_of_people`) — **18 IMPORTED** (partial).
+   64 SVGs in `sources/nevit_people/`. 18 pass validation with the improved parser
+   (`scripts/import_nevit_svg.py` — best-match weld + root-anchor search).
+   The remaining 41 fail: 13 have genuine piece disconnection (artistic gaps
+   between pieces, e.g. raised arms), 9 have small draw-error overlaps,
+   and 19 have larger issues. People figures saved as `people_NNN.json`.
+
+3. **Other Wikimedia Commons categories** — pending, same pipeline applies:
+   - `Category:Tangrams_of_Chinese_characters` — unique content, unknown count
+   - `Category:Tangrams_of_convex_geometrical_shapes` — more geometric shapes
+   - `Category:Tangrams_of_letters` — may overlap existing letters
+   - `Category:Tangrams_of_numbers` — may overlap existing numbers
+   - `Category:Tangrams_of_objects` — may have objects beyond Nevit main set
+   - `Category:Tangrams_of_animals` — may have animals beyond Nevit main set
+   Note: `Category:Tong%27s_Tangrams` (6 files) is not importable — complex
+   historical images (JPG/PNG), not machine-parseable SVGs.
+
+4. **Remaining convex tangrams** — 9 of 13 convex tangrams imported from Nevit.
+   4 still missing; consider deriving directly from the mathematical solution set.
+
+5. **Silhouette-only sources** (higher effort, only if above exhausted):
+   - `twpride/tangram` (GitHub): 179 silhouette outlines, no piece solutions —
+     requires writing a tangram solver.
+   - Sam Loyd's "The 8th Book of Tan" (1903, public domain): ~700 silhouettes
+     as images only — requires manual digitization or computer vision.

@@ -1,0 +1,119 @@
+{
+  "name": "people_093",
+  "description": "Tangram figure (Boat)",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          44,
+          -11
+        ],
+        "y": [
+          9,
+          4
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          56,
+          -11
+        ],
+        "y": [
+          21,
+          4
+        ]
+      },
+      "orientation": 5,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          32,
+          -11
+        ],
+        "y": [
+          9,
+          4
+        ]
+      },
+      "orientation": 0,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          38,
+          -11
+        ],
+        "y": [
+          3,
+          4
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          32,
+          -11
+        ],
+        "y": [
+          21,
+          -2
+        ]
+      },
+      "orientation": 2,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          38,
+          -11
+        ],
+        "y": [
+          -9,
+          4
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          32,
+          -23
+        ],
+        "y": [
+          21,
+          -2
+        ]
+      },
+      "orientation": 1,
+      "flipped": true
+    }
+  ],
+  "source": "https://commons.wikimedia.org/wiki/File:Tangram_093_Nevit.svg"
+}

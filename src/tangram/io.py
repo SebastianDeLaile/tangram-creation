@@ -53,17 +53,21 @@ def _piece_from_dict(data: dict) -> PiecePlacement:
 
 
 def tangram_to_dict(tangram: Tangram) -> dict:
-    return {
+    d: dict = {
         "name": tangram.name,
         "description": tangram.description,
         "pieces": [_piece_to_dict(p) for p in tangram.pieces],
     }
+    if tangram.source:
+        d["source"] = tangram.source
+    return d
 
 
 def tangram_from_dict(data: dict) -> Tangram:
     return Tangram(
         name=data["name"],
         description=data.get("description", ""),
+        source=data.get("source", ""),
         pieces=[_piece_from_dict(p) for p in data["pieces"]],
     )
 

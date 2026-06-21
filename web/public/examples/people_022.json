@@ -1,0 +1,119 @@
+{
+  "name": "people_022",
+  "description": "Tangram figure (Runner)",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          5,
+          10
+        ],
+        "y": [
+          34,
+          -9
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          17,
+          10
+        ],
+        "y": [
+          22,
+          -9
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          5,
+          10
+        ],
+        "y": [
+          34,
+          -9
+        ]
+      },
+      "orientation": 5,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          16,
+          -7
+        ],
+        "y": [
+          52,
+          -9
+        ]
+      },
+      "orientation": 5,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          5,
+          16
+        ],
+        "y": [
+          34,
+          -9
+        ]
+      },
+      "orientation": 2,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          17,
+          10
+        ],
+        "y": [
+          22,
+          -15
+        ]
+      },
+      "orientation": 2,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          17,
+          16
+        ],
+        "y": [
+          46,
+          -3
+        ]
+      },
+      "orientation": 5,
+      "flipped": true
+    }
+  ],
+  "source": "https://commons.wikimedia.org/wiki/File:Tangram_022_Nevit.svg"
+}

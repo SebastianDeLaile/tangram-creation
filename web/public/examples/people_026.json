@@ -1,0 +1,119 @@
+{
+  "name": "people_026",
+  "description": "Tangram figure (Pointing)",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          -3,
+          10
+        ],
+        "y": [
+          7,
+          1
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          -15,
+          10
+        ],
+        "y": [
+          19,
+          1
+        ]
+      },
+      "orientation": 0,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          -15,
+          10
+        ],
+        "y": [
+          19,
+          13
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          15,
+          10
+        ],
+        "y": [
+          25,
+          1
+        ]
+      },
+      "orientation": 5,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          -15,
+          10
+        ],
+        "y": [
+          31,
+          19
+        ]
+      },
+      "orientation": 6,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          -3,
+          10
+        ],
+        "y": [
+          7,
+          -5
+        ]
+      },
+      "orientation": 2,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          -9,
+          10
+        ],
+        "y": [
+          37,
+          13
+        ]
+      },
+      "orientation": 6,
+      "flipped": true
+    }
+  ],
+  "source": "https://commons.wikimedia.org/wiki/File:Tangram_026_Nevit.svg"
+}

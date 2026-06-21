@@ -149,8 +149,57 @@ select {
   cursor: pointer;
 }
 
+#shape-search {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+  outline: none;
+}
+
+#shape-search:focus {
+  border-color: #aaa;
+}
+
+#category-pills {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-bottom: 8px;
+}
+
+#category-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.cat-pill {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  padding: 3px 9px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.cat-pill:hover {
+  border-color: #aaa;
+}
+
+.cat-pill.active {
+  background: #1a1a1a;
+  color: #fff;
+  border-color: #1a1a1a;
+}
+
 #shape-list {
-  max-height: 360px;
+  max-height: 380px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -167,6 +216,12 @@ select {
 
 .shape-category:first-child {
   margin-top: 0;
+}
+
+.shape-empty {
+  font-size: 0.82rem;
+  color: #bbb;
+  padding: 6px 2px;
 }
 
 .button-list button.active {

@@ -1,6 +1,7 @@
 {
   "name": "mountain",
   "description": "Mountain range silhouette",
+  "source": "https://github.com/Wiebke/TangramGenerator/blob/master/Code/exampleTangrams.js",
   "pieces": [
     {
       "piece": "large_triangle",

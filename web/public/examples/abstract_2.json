@@ -1,6 +1,7 @@
 {
   "name": "abstract_2",
   "description": "Structurally interesting tangram placement (no specific silhouette)",
+  "source": "constructed",
   "pieces": [
     {
       "piece": "large_triangle",

@@ -21,6 +21,7 @@ interface PieceJson {
 interface TangramJson {
   name: string;
   description?: string;
+  source?: string;
   pieces: PieceJson[];
 }
 
@@ -54,15 +55,17 @@ function pieceToJson(piece: PiecePlacement): PieceJson {
 }
 
 export function tangramFromJson(data: TangramJson): Tangram {
-  return new Tangram(data.name, data.pieces.map(pieceFromJson), data.description ?? "");
+  return new Tangram(data.name, data.pieces.map(pieceFromJson), data.description ?? "", data.source ?? "");
 }
 
 export function tangramToJson(tangram: Tangram): TangramJson {
-  return {
+  const obj: TangramJson = {
     name: tangram.name,
     description: tangram.description,
     pieces: tangram.pieces.map(pieceToJson),
   };
+  if (tangram.source) obj.source = tangram.source;
+  return obj;
 }
 
 export async function loadTangram(url: string): Promise<Tangram> {

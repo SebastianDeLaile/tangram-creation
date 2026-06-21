@@ -46,6 +46,7 @@ class Tangram:
     name: str
     pieces: list[PiecePlacement] = field(default_factory=list)
     description: str = ""
+    source: str = ""  # URL or attribution string for provenance (round-trips through JSON)
 
     def bounding_box(self) -> tuple[float, float, float, float]:
         """(min_x, min_y, max_x, max_y) over all piece vertices."""

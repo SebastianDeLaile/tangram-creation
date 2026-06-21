@@ -1,0 +1,119 @@
+{
+  "name": "people_019",
+  "description": "Tangram figure (Walking)",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          21,
+          -1
+        ],
+        "y": [
+          16,
+          4
+        ]
+      },
+      "orientation": 3,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          9,
+          -1
+        ],
+        "y": [
+          28,
+          4
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          21,
+          -1
+        ],
+        "y": [
+          16,
+          4
+        ]
+      },
+      "orientation": 5,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          21,
+          -7
+        ],
+        "y": [
+          40,
+          4
+        ]
+      },
+      "orientation": 0,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          21,
+          -1
+        ],
+        "y": [
+          40,
+          10
+        ]
+      },
+      "orientation": 6,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          9,
+          -1
+        ],
+        "y": [
+          -8,
+          4
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          9,
+          -1
+        ],
+        "y": [
+          4,
+          4
+        ]
+      },
+      "orientation": 3,
+      "flipped": true
+    }
+  ],
+  "source": "https://commons.wikimedia.org/wiki/File:Tangram_019_Nevit.svg"
+}

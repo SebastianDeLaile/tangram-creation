@@ -51,6 +51,7 @@ export class Tangram {
     public name: string,
     public pieces: PiecePlacement[] = [],
     public description: string = "",
+    public source: string = "",
   ) {}
 
   /** [min_x, min_y, max_x, max_y] over all piece vertices. */

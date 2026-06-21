@@ -1,0 +1,119 @@
+{
+  "name": "people_095",
+  "description": "Tangram figure (Sailor)",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          18,
+          -2
+        ],
+        "y": [
+          -3,
+          16
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          30,
+          -2
+        ],
+        "y": [
+          9,
+          16
+        ]
+      },
+      "orientation": 5,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          6,
+          -2
+        ],
+        "y": [
+          9,
+          16
+        ]
+      },
+      "orientation": 5,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          36,
+          -2
+        ],
+        "y": [
+          3,
+          16
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          42,
+          -2
+        ],
+        "y": [
+          9,
+          16
+        ]
+      },
+      "orientation": 5,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          36,
+          -8
+        ],
+        "y": [
+          -9,
+          10
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          42,
+          -14
+        ],
+        "y": [
+          -3,
+          10
+        ]
+      },
+      "orientation": 1,
+      "flipped": true
+    }
+  ],
+  "source": "https://commons.wikimedia.org/wiki/File:Tangram_095_Nevit.svg"
+}

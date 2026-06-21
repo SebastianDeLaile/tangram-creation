@@ -1,0 +1,119 @@
+{
+  "name": "people_096",
+  "description": "Tangram figure (Paddler)",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          27,
+          -7
+        ],
+        "y": [
+          26,
+          3
+        ]
+      },
+      "orientation": 5,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          39,
+          -7
+        ],
+        "y": [
+          14,
+          3
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          15,
+          -1
+        ],
+        "y": [
+          14,
+          -3
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          51,
+          -7
+        ],
+        "y": [
+          26,
+          -3
+        ]
+      },
+      "orientation": 0,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          39,
+          -1
+        ],
+        "y": [
+          14,
+          3
+        ]
+      },
+      "orientation": 2,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          15,
+          -1
+        ],
+        "y": [
+          2,
+          -3
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          27,
+          -19
+        ],
+        "y": [
+          26,
+          -3
+        ]
+      },
+      "orientation": 1,
+      "flipped": true
+    }
+  ],
+  "source": "https://commons.wikimedia.org/wiki/File:Tangram_096_Nevit.svg"
+}
