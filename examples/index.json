@@ -40,13 +40,6 @@
       "tags": []
     },
     {
-      "file": "nevit_229.json",
-      "title": "Arch",
-      "category": "objects",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": []
-    },
-    {
       "file": "arrow.json",
       "title": "Arrow",
       "category": "objects",
@@ -59,6 +52,13 @@
       "file": "nevit_194.json",
       "title": "B",
       "category": "letters",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_251.json",
+      "title": "Boat",
+      "category": "objects",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
     },
@@ -201,6 +201,13 @@
       "title": "Crown",
       "category": "objects",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "abstract_5.json",
+      "title": "Dart",
+      "category": "abstract",
+      "source": "TangramGenerator",
       "tags": []
     },
     {
@@ -390,13 +397,6 @@
       ]
     },
     {
-      "file": "abstract_5.json",
-      "title": "Kite",
-      "category": "abstract",
-      "source": "TangramGenerator",
-      "tags": []
-    },
-    {
       "file": "nevit_098.json",
       "title": "Kite",
       "category": "objects",
@@ -555,20 +555,6 @@
       ]
     },
     {
-      "file": "nevit_226.json",
-      "title": "Sailboat",
-      "category": "objects",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": []
-    },
-    {
-      "file": "nevit_251.json",
-      "title": "Sailboat",
-      "category": "objects",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": []
-    },
-    {
       "file": "people_095.json",
       "title": "Sailing",
       "category": "people",
@@ -585,6 +571,13 @@
       "tags": [
         "people_series"
       ]
+    },
+    {
+      "file": "nevit_226.json",
+      "title": "Ship",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
     },
     {
       "file": "nevit_139.json",
@@ -657,6 +650,13 @@
       "file": "nevit_128.json",
       "title": "Triangle",
       "category": "geometric",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_229.json",
+      "title": "Viaduct",
+      "category": "objects",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
     },
