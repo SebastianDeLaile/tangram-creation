@@ -429,15 +429,6 @@
       "tags": []
     },
     {
-      "file": "people_012.json",
-      "title": "Person",
-      "category": "people",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": [
-        "people_series"
-      ]
-    },
-    {
       "file": "nevit_241.json",
       "title": "Pillar",
       "category": "abstract",
@@ -528,15 +519,6 @@
       ]
     },
     {
-      "file": "people_022.json",
-      "title": "Runner",
-      "category": "people",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": [
-        "people_series"
-      ]
-    },
-    {
       "file": "people_004.json",
       "title": "Running",
       "category": "people",
@@ -594,12 +576,39 @@
       "tags": []
     },
     {
+      "file": "people_022.json",
+      "title": "Sprinting",
+      "category": "people",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": [
+        "people_series"
+      ]
+    },
+    {
       "file": "square.json",
       "title": "Square",
       "category": "geometric",
       "source": "constructed",
       "tags": [
         "convex"
+      ]
+    },
+    {
+      "file": "people_012.json",
+      "title": "Standing",
+      "category": "people",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": [
+        "people_series"
+      ]
+    },
+    {
+      "file": "people_019.json",
+      "title": "Stepping",
+      "category": "people",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": [
+        "people_series"
       ]
     },
     {
@@ -662,15 +671,6 @@
     },
     {
       "file": "people_005.json",
-      "title": "Walking",
-      "category": "people",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": [
-        "people_series"
-      ]
-    },
-    {
-      "file": "people_019.json",
       "title": "Walking",
       "category": "people",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
