@@ -49,6 +49,13 @@
       ]
     },
     {
+      "file": "abstract_4.json",
+      "title": "Arrow",
+      "category": "abstract",
+      "source": "TangramGenerator",
+      "tags": []
+    },
+    {
       "file": "nevit_194.json",
       "title": "B",
       "category": "letters",
@@ -76,6 +83,13 @@
       "title": "Bridge",
       "category": "objects",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "abstract_2.json",
+      "title": "Bulldozer",
+      "category": "objects",
+      "source": "TangramGenerator",
       "tags": []
     },
     {
@@ -225,13 +239,6 @@
       "tags": []
     },
     {
-      "file": "nevit_246.json",
-      "title": "Double Peak",
-      "category": "abstract",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": []
-    },
-    {
       "file": "bird.json",
       "title": "Dove",
       "category": "animals",
@@ -295,13 +302,6 @@
       "tags": []
     },
     {
-      "file": "abstract_6.json",
-      "title": "Gem",
-      "category": "abstract",
-      "source": "TangramGenerator",
-      "tags": []
-    },
-    {
       "file": "nevit_235.json",
       "title": "Goblet",
       "category": "objects",
@@ -333,13 +333,6 @@
       "file": "nevit_130.json",
       "title": "Hexagon",
       "category": "geometric",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": []
-    },
-    {
-      "file": "nevit_191.json",
-      "title": "Hill",
-      "category": "abstract",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
     },
@@ -503,13 +496,6 @@
       "tags": []
     },
     {
-      "file": "abstract_2.json",
-      "title": "Rocket",
-      "category": "abstract",
-      "source": "TangramGenerator",
-      "tags": []
-    },
-    {
       "file": "people_091.json",
       "title": "Rowing",
       "category": "people",
@@ -649,6 +635,13 @@
       "tags": []
     },
     {
+      "file": "nevit_191.json",
+      "title": "Table",
+      "category": "abstract",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
       "file": "nevit_136.json",
       "title": "Trapezoid",
       "category": "geometric",
@@ -660,6 +653,20 @@
       "title": "Triangle",
       "category": "geometric",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_246.json",
+      "title": "Twin Peaks",
+      "category": "abstract",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "abstract_6.json",
+      "title": "Twist",
+      "category": "abstract",
+      "source": "TangramGenerator",
       "tags": []
     },
     {
@@ -683,13 +690,6 @@
       "title": "Wide Hexagon",
       "category": "geometric",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": []
-    },
-    {
-      "file": "abstract_4.json",
-      "title": "Wing",
-      "category": "abstract",
-      "source": "TangramGenerator",
       "tags": []
     }
   ]
