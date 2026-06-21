@@ -109,6 +109,15 @@
       "tags": []
     },
     {
+      "file": "people_096.json",
+      "title": "Canoeing",
+      "category": "people",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": [
+        "people_series"
+      ]
+    },
+    {
       "file": "cat.json",
       "title": "Cat",
       "category": "animals",
@@ -356,15 +365,6 @@
       "tags": []
     },
     {
-      "file": "people_031.json",
-      "title": "Horse",
-      "category": "people",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": [
-        "people_series"
-      ]
-    },
-    {
       "file": "nevit_223.json",
       "title": "Hourglass",
       "category": "objects",
@@ -386,17 +386,8 @@
       "tags": []
     },
     {
-      "file": "people_005.json",
-      "title": "Jogging",
-      "category": "people",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": [
-        "people_series"
-      ]
-    },
-    {
       "file": "people_094.json",
-      "title": "Kayaker",
+      "title": "Kayaking",
       "category": "people",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [
@@ -435,15 +426,6 @@
       "source": "TangramGenerator",
       "tags": [
         "nature"
-      ]
-    },
-    {
-      "file": "people_096.json",
-      "title": "Paddler",
-      "category": "people",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": [
-        "people_series"
       ]
     },
     {
@@ -514,6 +496,15 @@
       "tags": []
     },
     {
+      "file": "people_031.json",
+      "title": "Riding",
+      "category": "people",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": [
+        "people_series"
+      ]
+    },
+    {
       "file": "nevit_135.json",
       "title": "Right Trapezoid",
       "category": "geometric",
@@ -529,7 +520,7 @@
     },
     {
       "file": "people_091.json",
-      "title": "Rower",
+      "title": "Rowing",
       "category": "people",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [
@@ -579,7 +570,7 @@
     },
     {
       "file": "people_095.json",
-      "title": "Sailor",
+      "title": "Sailing",
       "category": "people",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [
@@ -595,7 +586,7 @@
     },
     {
       "file": "people_097.json",
-      "title": "Sculler",
+      "title": "Sculling",
       "category": "people",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [
@@ -675,6 +666,15 @@
       "category": "geometric",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
+    },
+    {
+      "file": "people_005.json",
+      "title": "Walking",
+      "category": "people",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": [
+        "people_series"
+      ]
     },
     {
       "file": "people_019.json",
