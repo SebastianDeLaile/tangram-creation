@@ -119,6 +119,7 @@ app.innerHTML = `
       </div>
       <div id="status"></div>
       <div id="help">Click a piece to select it. Drag to move. R = rotate 45&deg;. F = flip (parallelogram only).</div>
+      <div id="source-link"></div>
     </main>
   </div>
 `;
@@ -135,6 +136,7 @@ const fillToggle = document.getElementById("fill-toggle")!;
 const silhouetteColorInput = document.getElementById("silhouette-color") as HTMLInputElement;
 const roundingSlider = document.getElementById("rounding-slider") as HTMLInputElement;
 const roundingValue = document.getElementById("rounding-value")!;
+const sourceLinkEl = document.getElementById("source-link")!;
 const downloadBtn = document.getElementById("download-btn")!;
 const sidebar = document.getElementById("sidebar")!;
 const sidebarToggle = document.getElementById("sidebar-toggle")!;
@@ -384,6 +386,12 @@ async function loadExample(file: string): Promise<void> {
   state.selectedIndex = null;
   buildShapeList();
   render();
+  const src = state.tangram.source;
+  if (src && src.startsWith("http")) {
+    sourceLinkEl.innerHTML = `<a href="${src}" target="_blank" rel="noopener">View source ↗</a>`;
+  } else {
+    sourceLinkEl.innerHTML = "";
+  }
 }
 
 themeSelect.value = state.themeName;

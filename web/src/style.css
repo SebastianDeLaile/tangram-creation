@@ -272,6 +272,21 @@ select {
   color: #fff;
 }
 
+#source-link {
+  font-size: 0.78rem;
+  min-height: 1.2em;
+}
+
+#source-link a {
+  color: #888;
+  text-decoration: none;
+}
+
+#source-link a:hover {
+  color: #444;
+  text-decoration: underline;
+}
+
 #download-btn {
   background: #f4f4f4;
   border: 1px solid #ddd;
