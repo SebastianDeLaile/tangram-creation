@@ -33,6 +33,13 @@
       "tags": []
     },
     {
+      "file": "nevit_121.json",
+      "title": "6",
+      "category": "letters",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_121_Nevit.svg",
+      "tags": []
+    },
+    {
       "file": "nevit_187.json",
       "title": "Arch",
       "category": "abstract",
@@ -50,7 +57,7 @@
     },
     {
       "file": "abstract_4.json",
-      "title": "Arrow",
+      "title": "Arrowhead",
       "category": "abstract",
       "source": "TangramGenerator",
       "tags": []
@@ -169,7 +176,7 @@
     {
       "file": "abstract_1.json",
       "title": "Chick",
-      "category": "abstract",
+      "category": "animals",
       "source": "TangramGenerator",
       "tags": []
     },
