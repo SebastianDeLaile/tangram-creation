@@ -1,0 +1,119 @@
+{
+  "name": "wiebke_interesting1",
+  "description": "",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          30,
+          0
+        ],
+        "y": [
+          24,
+          0
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          30,
+          0
+        ],
+        "y": [
+          24,
+          0
+        ]
+      },
+      "orientation": 5,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          30,
+          0
+        ],
+        "y": [
+          48,
+          0
+        ]
+      },
+      "orientation": 6,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          42,
+          0
+        ],
+        "y": [
+          36,
+          0
+        ]
+      },
+      "orientation": 3,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          36,
+          0
+        ],
+        "y": [
+          42,
+          0
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          36,
+          0
+        ],
+        "y": [
+          30,
+          0
+        ]
+      },
+      "orientation": 3,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          24,
+          0
+        ],
+        "y": [
+          30,
+          0
+        ]
+      },
+      "orientation": 2,
+      "flipped": true
+    }
+  ],
+  "source": "https://github.com/Wiebke/TangramGenerator/blob/master/Code/exampleTangrams.js"
+}

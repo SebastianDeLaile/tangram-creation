@@ -86,6 +86,13 @@
       ]
     },
     {
+      "file": "nevit_103.json",
+      "title": "Bowl",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_103_Nevit.svg",
+      "tags": []
+    },
+    {
       "file": "nevit_181.json",
       "title": "Bridge",
       "category": "objects",
@@ -157,6 +164,20 @@
       "title": "Cat",
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_052.json",
+      "title": "Cat Curled",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_52_Nevit.svg",
+      "tags": []
+    },
+    {
+      "file": "nevit_066.json",
+      "title": "Cat Prowling",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_66_Nevit.svg",
       "tags": []
     },
     {
@@ -302,6 +323,20 @@
       "tags": []
     },
     {
+      "file": "nevit_082.json",
+      "title": "Fox Lying",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_82_Nevit.svg",
+      "tags": []
+    },
+    {
+      "file": "wiebke_interesting1.json",
+      "title": "Frame",
+      "category": "abstract",
+      "source": "https://github.com/Wiebke/TangramGenerator/blob/master/Code/exampleTangrams.js",
+      "tags": []
+    },
+    {
       "file": "nevit_239.json",
       "title": "Gate",
       "category": "objects",
@@ -327,6 +362,13 @@
       "title": "Hawk",
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_140.json",
+      "title": "Hen",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_140_Nevit.svg",
       "tags": []
     },
     {
@@ -646,6 +688,13 @@
       "title": "Table",
       "category": "abstract",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_112.json",
+      "title": "Torch",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_112_Nevit.svg",
       "tags": []
     },
     {

@@ -178,10 +178,12 @@ def classify(polygons: list[list[tuple[float, float]]]) -> dict[PieceType, list[
 
 
 def _snap(value: float) -> Z2:
-    """Find small integers a, b with a + b*sqrt(2) ~= value."""
+    """Find a + b*sqrt(2) ≈ value where b is a multiple of 6 (the only values
+    that appear in tangram edge direction vectors)."""
+    SQRT2 = math.sqrt(2)
     best = None
-    for b in range(-12, 13):
-        a = value - b * math.sqrt(2)
+    for b in range(-24, 25, 6):
+        a = value - b * SQRT2
         a_round = round(a)
         err = abs(a - a_round)
         if best is None or err < best[0]:
@@ -230,7 +232,8 @@ def _total_overlap(placements: list[PiecePlacement]) -> float:
                for i in range(len(polys)) for j in range(i + 1, len(polys)))
 
 
-def _bfs_place(fits, adj, root, root_anchor: Point) -> dict[int, Point]:
+def _bfs_place(fits, adj, root, root_anchor: Point) -> tuple[dict[int, Point], set[int]]:
+    """Returns (placed, bfs_reached) where bfs_reached are pieces derived from adjacency."""
     placed: dict[int, Point] = {root: root_anchor}
     queue = [root]
     visited = {root}
@@ -246,11 +249,12 @@ def _bfs_place(fits, adj, root, root_anchor: Point) -> dict[int, Point]:
             other_ed = fits[other][5]
             placed[other] = shared if their_vi == 0 else shared - other_ed[their_vi - 1]
             queue.append(other)
+    bfs_reached = set(visited)
     for fi in range(len(fits)):
         if fi not in placed:
             fa = fits[fi][2]
             placed[fi] = Point(_snap(fa[0]), _snap(fa[1]))
-    return placed
+    return placed, bfs_reached
 
 
 def build_tangram(name: str, polygons: list[list[tuple[float, float]]]) -> Tangram:
@@ -305,20 +309,75 @@ def build_tangram(name: str, polygons: list[list[tuple[float, float]]]) -> Tangr
     base_anchor = Point(_snap(root_fa[0]), _snap(root_fa[1]))
 
     best_placed = None
+    best_bfs_reached = None
     best_overlap = float("inf")
+    # Try ±1 on rational component and ±6 on irrational component (the grid step).
+    # 3 × 3 × 3 × 3 = 81 candidates.
     for da in (-1, 0, 1):
         for db in (-1, 0, 1):
-            trial_anchor = Point(
-                Z2(base_anchor.x.a + Fraction(da), base_anchor.x.b),
-                Z2(base_anchor.y.a + Fraction(db), base_anchor.y.b),
-            )
-            placed = _bfs_place(fits, adj, root, trial_anchor)
-            pieces = [PiecePlacement(fits[fi][0], fits[fi][1], placed[fi],
-                                     fits[fi][3], fits[fi][4]) for fi in range(n_pieces)]
-            ov = _total_overlap(pieces)
-            if ov < best_overlap:
-                best_overlap = ov
-                best_placed = placed
+            for da2 in (-6, 0, 6):
+                for db2 in (-6, 0, 6):
+                    trial_anchor = Point(
+                        Z2(base_anchor.x.a + Fraction(da), base_anchor.x.b + Fraction(da2)),
+                        Z2(base_anchor.y.a + Fraction(db), base_anchor.y.b + Fraction(db2)),
+                    )
+                    placed, bfs_reached = _bfs_place(fits, adj, root, trial_anchor)
+                    pieces = [PiecePlacement(fits[fi][0], fits[fi][1], placed[fi],
+                                             fits[fi][3], fits[fi][4]) for fi in range(n_pieces)]
+                    ov = _total_overlap(pieces)
+                    if ov < best_overlap:
+                        best_overlap = ov
+                        best_placed = placed
+                        best_bfs_reached = bfs_reached
+
+    # For pieces not reachable via BFS (genuinely disconnected in the SVG), use a
+    # vertex-matching heuristic: for each vertex of each placed piece, try anchors
+    # that place one vertex of the disconnected piece exactly on that vertex.  This
+    # is equivalent to "snap this piece so one corner touches a corner of its
+    # nearest already-placed neighbour", which is almost always the right answer for
+    # tangrams where the artist left a small gap between touching pieces.
+    OVERLAP_TOLERANCE = 0.05
+    disconnected = [fi for fi in range(n_pieces) if fi not in best_bfs_reached]
+    if disconnected:
+        for fi in disconnected:
+            fa_x, fa_y = fits[fi][2]  # float anchor
+            disc_ed = fits[fi][5]     # exact direction vectors from anchor
+            # Candidate anchors: place each vertex of this piece on each vertex of
+            # each already-placed piece and keep the one nearest the float position.
+            placed_verts: list[Point] = []
+            for fj, placed_anchor in best_placed.items():
+                if fj == fi:
+                    continue
+                fj_ed = fits[fj][5]
+                placed_verts.append(placed_anchor)
+                for d in fj_ed:
+                    placed_verts.append(placed_anchor + d)
+
+            candidates: list[tuple[float, Point]] = []
+            for target in placed_verts:
+                # vertex 0 of fi at target → anchor = target
+                candidates.append((math.dist((target.x.to_float(), target.y.to_float()), (fa_x, fa_y)), target))
+                for d in disc_ed:
+                    # vertex k of fi at target → anchor = target - d_k
+                    cand = target - d
+                    candidates.append((math.dist((cand.x.to_float(), cand.y.to_float()), (fa_x, fa_y)), cand))
+
+            # Sort by proximity to float anchor; try in order until we find zero overlap.
+            candidates.sort(key=lambda c: c[0])
+            best_fi_anchor = best_placed[fi]
+            best_fi_ov = _total_overlap([PiecePlacement(fits[k][0], fits[k][1], best_placed[k],
+                                                        fits[k][3], fits[k][4]) for k in range(n_pieces)])
+            for _, cand_anchor in candidates:
+                trial_placed = {**best_placed, fi: cand_anchor}
+                pieces_trial = [PiecePlacement(fits[k][0], fits[k][1], trial_placed[k],
+                                               fits[k][3], fits[k][4]) for k in range(n_pieces)]
+                ov = _total_overlap(pieces_trial)
+                if ov < best_fi_ov:
+                    best_fi_ov = ov
+                    best_fi_anchor = cand_anchor
+                if ov <= OVERLAP_TOLERANCE:
+                    break
+            best_placed[fi] = best_fi_anchor
 
     pieces = []
     for fi, (pt, pid, _, orient, flip, _, _) in enumerate(fits):
