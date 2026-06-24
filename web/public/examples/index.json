@@ -330,6 +330,13 @@
       "tags": []
     },
     {
+      "file": "nevit_072.json",
+      "title": "Fox Running",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_72_Nevit.svg",
+      "tags": []
+    },
+    {
       "file": "wiebke_interesting1.json",
       "title": "Frame",
       "category": "abstract",
@@ -355,6 +362,13 @@
       "title": "Goose",
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
+    },
+    {
+      "file": "nevit_206.json",
+      "title": "Goose",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_206_Nevit.svg",
       "tags": []
     },
     {
@@ -462,6 +476,13 @@
       "tags": [
         "nature"
       ]
+    },
+    {
+      "file": "nevit_217.json",
+      "title": "Mountains",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_217_Nevit.svg",
+      "tags": []
     },
     {
       "file": "nevit_132.json",

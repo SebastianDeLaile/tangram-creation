@@ -232,6 +232,199 @@ def _total_overlap(placements: list[PiecePlacement]) -> float:
                for i in range(len(polys)) for j in range(i + 1, len(polys)))
 
 
+# ---------------------------------------------------------------------------
+# Edge-based placement: extract edge lines, match collinear pairs across
+# pieces, average offsets for a better anchor snap than per-vertex snapping.
+# ---------------------------------------------------------------------------
+
+_EDGE_MATCH_DIST = 5.0   # max perpendicular gap between edges to try matching
+_SQRT2 = math.sqrt(2)
+
+def _edge_class_and_offset(x1: float, y1: float, x2: float, y2: float):
+    """Return (angle_class, perp_offset, param_min, param_max) for a float edge.
+
+    angle_class:  0=horizontal, 1=45°, 2=vertical, 3=135°
+    perp_offset:  signed perpendicular distance from origin to the edge's line
+    param_{min,max}: range along the edge's parallel axis (for overlap check)
+    """
+    dx, dy = x2 - x1, y2 - y1
+    ang = math.atan2(dy, dx) * 180.0 / math.pi % 180.0
+    cls = round(ang / 45.0) % 4
+    if cls == 0:      # horizontal: offset = y, param = x
+        off = (y1 + y2) / 2.0
+        lo, hi = min(x1, x2), max(x1, x2)
+    elif cls == 2:    # vertical: offset = x, param = y
+        off = (x1 + x2) / 2.0
+        lo, hi = min(y1, y2), max(y1, y2)
+    elif cls == 1:    # 45°: offset = (y-x)/√2, param = (y+x)/√2
+        off = ((y1 - x1) + (y2 - x2)) / 2.0 / _SQRT2
+        lo = min(x1 + y1, x2 + y2) / _SQRT2
+        hi = max(x1 + y1, x2 + y2) / _SQRT2
+    else:             # 135°: offset = (y+x)/√2, param = (y-x)/√2
+        off = ((y1 + x1) + (y2 + x2)) / 2.0 / _SQRT2
+        lo = min(y1 - x1, y2 - x2) / _SQRT2
+        hi = max(y1 - x1, y2 - x2) / _SQRT2
+    return cls, off, lo, hi
+
+
+def _snap_offset(raw_offset: float, angle_cls: int) -> Z2:
+    """Snap a float edge offset to Z[√2] with b as multiple of 6.
+
+    For horizontal/vertical offsets the value is a direct coordinate component.
+    For diagonal offsets the value is (coord1 ± coord2) / √2, so we multiply
+    back by √2 before snapping (which turns it into a + b√2 with integer a,b).
+    """
+    if angle_cls in (0, 2):   # offset is a plain coordinate
+        return _snap(raw_offset)
+    else:                      # offset is (coord)/√2; snap (offset * √2)
+        return _snap(raw_offset * _SQRT2)
+
+
+def _anchor_from_offset(snapped_coord: Z2, angle_cls: int,
+                        rel_x: Z2, rel_y: Z2) -> tuple[Z2 | None, Z2 | None]:
+    """Given a snapped edge-line position, return the implied (ax, ay) components.
+
+    rel_x, rel_y are the (x, y) offset from the anchor to one vertex ON that
+    edge (from exact_dirs), so: coord = anchor_component + rel_component.
+    Returns (ax, None) for constraints on ax only, (None, ay) for ay only, or
+    (ax, ay) for diagonal constraints expressed as a+b√2 equations.
+
+    For diagonal angle classes the result is the SUM or DIFFERENCE of ax and ay
+    encoded as a single Z2; the caller must handle this specially.
+    """
+    if angle_cls == 0:    # horizontal: snapped_coord = ay + rel_y
+        return None, snapped_coord - rel_y
+    elif angle_cls == 2:  # vertical:   snapped_coord = ax + rel_x
+        return snapped_coord - rel_x, None
+    else:
+        # For 45° and 135° we return None, None and let the caller use the raw
+        # constraint separately (handled in _solve_from_edges).
+        return None, None
+
+
+def _solve_from_edges(name: str, fits: list) -> list[PiecePlacement] | None:
+    """Try to place all 7 pieces using collinear-edge matching.
+
+    For every pair of edges (from different pieces) that share the same angle
+    class and whose perpendicular offsets are within _EDGE_MATCH_DIST, we
+    compute a consensus offset by averaging.  That consensus offset is snapped
+    to Z[√2], giving us a precise edge-line position.  From each snapped edge
+    we derive a constraint on the owning piece's anchor (one of ax, ay, ax±ay).
+
+    We accumulate constraints per piece and pick the snapped anchor that best
+    satisfies them, then check for zero overlap.  Returns a list of
+    PiecePlacement objects if a valid placement is found, else None.
+    """
+    n_pieces = len(fits)
+
+    # ---- Build float edge table ----------------------------------------
+    # edge_table[fi] = list of (cls, float_off, lo, hi, rel_x_float, rel_y_float)
+    #   rel_x_float, rel_y_float: midpoint of this edge RELATIVE to the float anchor
+    edge_table: list[list] = []
+    for fi, (pt, pid, fa, orient, flip, exact_dirs, _) in enumerate(fits):
+        ax_f, ay_f = fa
+        verts_f = [(ax_f, ay_f)]
+        for d in exact_dirs:
+            verts_f.append((ax_f + d.x.to_float(), ay_f + d.y.to_float()))
+        n_v = len(verts_f)
+        row = []
+        for k in range(n_v):
+            x1, y1 = verts_f[k]
+            x2, y2 = verts_f[(k + 1) % n_v]
+            cls, off, lo, hi = _edge_class_and_offset(x1, y1, x2, y2)
+            rel_x = ((x1 + x2) / 2.0) - ax_f
+            rel_y = ((y1 + y2) / 2.0) - ay_f
+            row.append((cls, off, lo, hi, rel_x, rel_y))
+        edge_table.append(row)
+
+    # ---- Collect consensus offsets per (piece, edge) --------------------
+    # consensus[fi][edge_idx] = list of float offsets from matched edges
+    consensus: list[list[list[float]]] = [[[] for _ in row] for row in edge_table]
+
+    for fi in range(n_pieces):
+        for ei, (cls_i, off_i, lo_i, hi_i, _, _) in enumerate(edge_table[fi]):
+            consensus[fi][ei].append(off_i)   # own estimate always included
+            for fj in range(n_pieces):
+                if fj == fi:
+                    continue
+                for ej, (cls_j, off_j, lo_j, hi_j, _, _) in enumerate(edge_table[fj]):
+                    if cls_j != cls_i:
+                        continue
+                    if abs(off_j - off_i) > _EDGE_MATCH_DIST:
+                        continue
+                    # Check parameter-range overlap (edges must actually overlap
+                    # in the direction parallel to the line)
+                    if min(hi_i, hi_j) > max(lo_i, lo_j):
+                        consensus[fi][ei].append(off_j)
+
+    # ---- Derive anchor constraints from consensus offsets ---------------
+    # For each piece, collect (ax_candidate, ay_candidate) estimates.
+    # We only use horizontal (→ ay) and vertical (→ ax) edge constraints here;
+    # diagonal constraints are harder to combine and rarely the binding ones.
+    anchor_candidates: list[list[tuple[Z2, Z2]]] = [[] for _ in range(n_pieces)]
+    for fi in range(n_pieces):
+        ax_f, ay_f = fits[fi][2]
+        ax_snapped = _snap(ax_f)
+        ay_snapped = _snap(ay_f)
+        # Build per-axis consensus snaps from horizontal/vertical edges
+        ax_votes: list[Z2] = []
+        ay_votes: list[Z2] = []
+        for ei, (cls, off, lo, hi, rel_x, rel_y) in enumerate(edge_table[fi]):
+            avg_off = sum(consensus[fi][ei]) / len(consensus[fi][ei])
+            if cls == 0:     # horizontal → ay = snapped_avg - rel_y
+                snapped = _snap(avg_off)
+                ay_est = Z2(snapped.a - round(rel_y), snapped.b)
+                ay_votes.append(ay_est)
+            elif cls == 2:   # vertical → ax = snapped_avg - rel_x
+                snapped = _snap(avg_off)
+                ax_est = Z2(snapped.a - round(rel_x), snapped.b)
+                ax_votes.append(ax_est)
+
+        # Most-common ax and ay vote; fall back to per-vertex snap
+        def _majority(votes: list[Z2], default: Z2) -> Z2:
+            if not votes:
+                return default
+            from collections import Counter
+            return Counter(str(v) for v in votes).most_common(1)[0][0]   # type: ignore[return-value]
+
+        best_ax_str = _majority(ax_votes, ax_snapped)
+        best_ay_str = _majority(ay_votes, ay_snapped)
+        # Re-parse the string representation to a Z2 (Counter key is the str)
+        best_ax = next((v for v in ax_votes if str(v) == best_ax_str), ax_snapped)
+        best_ay = next((v for v in ay_votes if str(v) == best_ay_str), ay_snapped)
+        anchor_candidates[fi].append((best_ax, best_ay))
+        # Also include base snaps as fallback candidates
+        anchor_candidates[fi].append((ax_snapped, ay_snapped))
+
+    # ---- Try candidate anchors, return first with zero overlap ----------
+    OVERLAP_TOLERANCE = 0.05
+
+    def _make_pieces(anchors):
+        return [PiecePlacement(fits[fi][0], fits[fi][1],
+                               Point(anchors[fi][0], anchors[fi][1]),
+                               fits[fi][3], fits[fi][4])
+                for fi in range(n_pieces)]
+
+    best_pieces = None
+    best_ov = float("inf")
+    # Enumerate candidates: each piece can use its consensus or fallback anchor
+    for mask in range(1 << n_pieces):  # 2^7 = 128 combos: bit=0→consensus, bit=1→fallback
+        anchors = []
+        for fi in range(n_pieces):
+            idx = (mask >> fi) & 1
+            idx = min(idx, len(anchor_candidates[fi]) - 1)
+            anchors.append(anchor_candidates[fi][idx])
+        pieces = _make_pieces(anchors)
+        ov = _total_overlap(pieces)
+        if ov < best_ov:
+            best_ov = ov
+            best_pieces = pieces
+        if ov <= OVERLAP_TOLERANCE:
+            return pieces
+
+    return best_pieces if best_ov <= OVERLAP_TOLERANCE else None
+
+
 def _bfs_place(fits, adj, root, root_anchor: Point) -> tuple[dict[int, Point], set[int]]:
     """Returns (placed, bfs_reached) where bfs_reached are pieces derived from adjacency."""
     placed: dict[int, Point] = {root: root_anchor}
@@ -379,10 +572,22 @@ def build_tangram(name: str, polygons: list[list[tuple[float, float]]]) -> Tangr
                     break
             best_placed[fi] = best_fi_anchor
 
-    pieces = []
-    for fi, (pt, pid, _, orient, flip, _, _) in enumerate(fits):
-        pieces.append(PiecePlacement(pt, pid, best_placed[fi], orient, flip))
-    return Tangram(name=name, pieces=pieces)
+    # Check if BFS+vertex-match gave a valid result.
+    bfs_pieces = [PiecePlacement(fits[fi][0], fits[fi][1], best_placed[fi],
+                                 fits[fi][3], fits[fi][4]) for fi in range(n_pieces)]
+    if _total_overlap(bfs_pieces) <= OVERLAP_TOLERANCE:
+        return Tangram(name=name, pieces=bfs_pieces)
+
+    # BFS failed (disconnected pieces with real gaps).  Try the edge-based solver:
+    # match collinear edges across all pieces, average their perpendicular offsets
+    # for a better anchor snap, then enumerate anchor combinations.
+    edge_pieces = _solve_from_edges(name, fits)
+    if edge_pieces is not None and _total_overlap(edge_pieces) <= OVERLAP_TOLERANCE:
+        return Tangram(name=name, pieces=edge_pieces)
+
+    # Return the best result we found (may still have small overlaps for caller to report).
+    candidate = edge_pieces if (edge_pieces and _total_overlap(edge_pieces) < _total_overlap(bfs_pieces)) else bfs_pieces
+    return Tangram(name=name, pieces=candidate)
 
 
 if __name__ == "__main__":
