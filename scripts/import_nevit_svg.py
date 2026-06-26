@@ -232,6 +232,33 @@ def _total_overlap(placements: list[PiecePlacement]) -> float:
                for i in range(len(polys)) for j in range(i + 1, len(polys)))
 
 
+def _point_segment_dist(px: float, py: float, ax: float, ay: float,
+                        bx: float, by: float) -> float:
+    """Distance from point (px,py) to segment (ax,ay)-(bx,by)."""
+    dx, dy = bx - ax, by - ay
+    if dx == 0 and dy == 0:
+        return math.hypot(px - ax, py - ay)
+    t = ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy)
+    t = max(0.0, min(1.0, t))
+    return math.hypot(px - (ax + t * dx), py - (ay + t * dy))
+
+
+def _poly_gap(poly_a: list[tuple[float, float]], poly_b: list[tuple[float, float]]) -> float:
+    """Minimum gap between two polygons, counting vertex-to-edge distance (so a
+    corner landing in the middle of an edge -- a T-junction -- registers as touching)."""
+    best = float("inf")
+    for poly, other in ((poly_a, poly_b), (poly_b, poly_a)):
+        m = len(other)
+        for px, py in poly:
+            for k in range(m):
+                ax, ay = other[k]
+                bx, by = other[(k + 1) % m]
+                d = _point_segment_dist(px, py, ax, ay, bx, by)
+                if d < best:
+                    best = d
+    return best
+
+
 # ---------------------------------------------------------------------------
 # Edge-based placement: extract edge lines, match collinear pairs across
 # pieces, average offsets for a better anchor snap than per-vertex snapping.
@@ -425,6 +452,218 @@ def _solve_from_edges(name: str, fits: list) -> list[PiecePlacement] | None:
     return best_pieces if best_ov <= OVERLAP_TOLERANCE else None
 
 
+# ---------------------------------------------------------------------------
+# Backtracking solver.  We already know each piece's TYPE, ORIENTATION and FLIP
+# (the fit is high-confidence even when the drawn position is off) plus an
+# approximate float anchor.  So this is not general tangram solving -- it's a
+# bounded search for the exact Z[sqrt(2)] anchor of each piece such that the 7
+# known, oriented pieces tile without overlap and stay connected.
+#
+# Z[sqrt(2)] is dense, so a + b*sqrt(2) can approximate any float for unboundedly
+# many (a, b).  Two facts make the search finite and small:
+#   1. All edge direction vectors have b-components that are multiples of 6, so
+#      within a single connected figure every vertex shares the same b mod 6 on
+#      each axis (verified empirically).  We therefore search residues, not all
+#      integers.
+#   2. |b| is bounded by the figure's extent (~24 units => |b| <~ 24).
+# ---------------------------------------------------------------------------
+
+_B_MAX = 24          # bound on |b|-component during the search
+_SOLVE_RADIUS = 2.5  # how far (in units) a candidate anchor may sit from the float fit
+_MAX_CANDS = 80      # cap on candidate anchors per piece (nearest-first)
+_NODE_CAP = 300_000  # bail out of the backtracking search after this many nodes
+_ADJ_GAP = 2.5       # max float gap for two pieces to count as adjacent (search order).
+# Kept tight on purpose: a larger gap is almost always a deliberate artistic
+# separation (e.g. a candle flame floating above the body), and closing it would
+# fabricate a figure the source never drew.  Raising it trades faithfulness for count.
+
+# Relative piece areas (small triangle = 1), used only to order the search so the
+# most space-constraining pieces are placed first.
+_PIECE_AREA = {
+    PieceType.LARGE_TRIANGLE: 4,
+    PieceType.MEDIUM_TRIANGLE: 2,
+    PieceType.SMALL_TRIANGLE: 1,
+    PieceType.SQUARE: 2,
+    PieceType.PARALLELOGRAM: 2,
+}
+
+
+def _piece_area(piece_type: PieceType) -> int:
+    return _PIECE_AREA[piece_type]
+
+
+def _coord_candidates(value: float, radius: float, residue: int | None) -> list[Z2]:
+    """Z[sqrt(2)] values within `radius` of `value`, restricted to b ≡ residue
+    (mod 6).  Returned nearest-first.
+
+    The residue restriction is essential: Z[sqrt(2)] is dense, so without it the
+    nearest values to any float are exotic large-|b| lattice points (e.g. a=-25,
+    b=22) that approximate well numerically but never occur as real tangram
+    anchors.  Every vertex in a connected figure shares one b residue per axis,
+    so fixing it removes those spurious candidates."""
+    out: list[tuple[float, Z2]] = []
+    seen: set[tuple[int, int]] = set()
+    b_values = range(-_B_MAX, _B_MAX + 1) if residue is None \
+        else range(residue % 6 - _B_MAX // 6 * 6, _B_MAX + 1, 6)
+    for b in b_values:
+        base_a = round(value - b * _SQRT2)
+        for a in (base_a - 1, base_a, base_a + 1):
+            val = a + b * _SQRT2
+            d = abs(val - value)
+            if d <= radius and (a, b) not in seen:
+                seen.add((a, b))
+                out.append((d, Z2.of(Fraction(a), Fraction(b))))
+    out.sort(key=lambda t: t[0])
+    return [z for _, z in out]
+
+
+def _axis_residue(values: list[float]) -> int:
+    """Infer the shared b-residue (mod 6) for one axis from float coordinates.
+
+    For each value, find the smallest-|b| lattice point that lands within a tight
+    tolerance (real tangram anchors have small |b|), then take a majority vote of
+    b mod 6.  This pins the figure's lattice class without knowing the answer."""
+    from collections import Counter
+    votes: Counter[int] = Counter()
+    for v in values:
+        best: tuple[int, float] | None = None  # (|b|, distance) for argmin
+        best_res = 0
+        for b in range(-14, 15):
+            a = round(v - b * _SQRT2)
+            d = abs(a + b * _SQRT2 - v)
+            if d <= 0.35:
+                key = (abs(b), d)
+                if best is None or key < best:
+                    best = key
+                    best_res = b % 6
+        votes[best_res] += 1
+    return votes.most_common(1)[0][0] if votes else 0
+
+
+def _candidate_anchors(fx: float, fy: float, rx: int | None, ry: int | None,
+                       radius: float) -> list[Point]:
+    """Candidate anchor Points within `radius` of (fx, fy), nearest-first."""
+    xs = _coord_candidates(fx, radius, rx)
+    ys = _coord_candidates(fy, radius, ry)
+    cands: list[tuple[float, Point]] = []
+    for xz in xs:
+        xv = xz.to_float()
+        for yz in ys:
+            yv = yz.to_float()
+            d = math.hypot(xv - fx, yv - fy)
+            if d <= radius:
+                cands.append((d, Point(xz, yz)))
+    cands.sort(key=lambda t: t[0])
+    return [p for _, p in cands[:_MAX_CANDS]]
+
+
+def _solve_by_backtracking(name: str, fits: list) -> list[PiecePlacement] | None:
+    """Place all pieces by backtracking over candidate anchors.
+
+    Pieces are ordered largest-first (they constrain the most space).  Each piece
+    is placed at a candidate anchor that does not overlap any already-placed piece;
+    when all are placed we accept the first arrangement that is fully connected.
+    Returns a list of PiecePlacement or None if no valid tiling is found.
+    """
+    from tangram.validate import overlap_area, _touches, OVERLAP_TOLERANCE
+    n = len(fits)
+
+    # Determine the figure's shared b-residue per axis (mod 6) -- without this the
+    # candidate sets fill with spurious dense-lattice approximations (see
+    # _coord_candidates).  Use every vertex, not just anchors, for a robust vote.
+    all_x: list[float] = []
+    all_y: list[float] = []
+    for fi in range(n):
+        fx, fy = fits[fi][2]
+        all_x.append(fx); all_y.append(fy)
+        for d in fits[fi][5]:
+            all_x.append(fx + d.x.to_float()); all_y.append(fy + d.y.to_float())
+    rx = _axis_residue(all_x)
+    ry = _axis_residue(all_y)
+
+    def poly_of(fi: int, anchor: Point) -> list[tuple[float, float]]:
+        pts = [anchor] + [anchor + d for d in fits[fi][5]]
+        return [(p.x.to_float(), p.y.to_float()) for p in pts]
+
+    # Float polygons (for adjacency ordering) and the float-touch graph: two
+    # pieces are "adjacent" if their drawn polygons nearly touch.  We order the
+    # search as a BFS over this graph from the largest piece, so every piece
+    # after the first is adjacent to an already-placed one -- which lets us prune
+    # on connectivity *incrementally* instead of only at the end.  (A genuinely
+    # disconnected figure -- e.g. a candle flame floating above the body -- yields
+    # a graph with >1 component, the deferred component never touches, and the
+    # search correctly fails rather than forcing a false join.)
+    ADJ_GAP = _ADJ_GAP
+    # Use the RAW float anchor (the actual drawn position), not a snapped one --
+    # snapping can pick a wrong-residue lattice representation and displace a piece.
+    float_polys = []
+    for fi in range(n):
+        fx, fy = fits[fi][2]
+        pts = [(fx, fy)] + [(fx + d.x.to_float(), fy + d.y.to_float()) for d in fits[fi][5]]
+        float_polys.append(pts)
+    fadj: dict[int, set[int]] = {i: set() for i in range(n)}
+    for i in range(n):
+        for j in range(i + 1, n):
+            # Point-to-EDGE distance (both directions), not just vertex-to-vertex:
+            # tangram pieces often meet at a T-junction where a corner lands in the
+            # middle of an edge, so the nearest vertices can be an edge-length apart.
+            if _poly_gap(float_polys[i], float_polys[j]) <= ADJ_GAP:
+                fadj[i].add(j); fadj[j].add(i)
+
+    root = max(range(n), key=lambda i: _piece_area(fits[i][0]))
+    order: list[int] = [root]
+    seen_order = {root}
+    qi = 0
+    while qi < len(order):
+        cur = order[qi]; qi += 1
+        for nb in sorted(fadj[cur], key=lambda k: -_piece_area(fits[k][0])):
+            if nb not in seen_order:
+                seen_order.add(nb); order.append(nb)
+    # Any pieces not reached share no float-adjacency with the main body -> the
+    # figure is drawn disconnected and cannot be a single connected tangram.
+    if len(order) != n:
+        return None
+
+    cand: dict[int, list[Point]] = {}
+    for fi in order:
+        fx, fy = fits[fi][2]
+        cand[fi] = _candidate_anchors(fx, fy, rx, ry, _SOLVE_RADIUS)
+        if not cand[fi]:
+            return None
+
+    placed: dict[int, tuple[Point, list]] = {}
+    nodes = 0
+
+    def backtrack(depth: int) -> dict[int, Point] | None:
+        nonlocal nodes
+        if depth == n:
+            return {fi: placed[fi][0] for fi in range(n)}
+        fi = order[depth]
+        for anchor in cand[fi]:
+            nodes += 1
+            if nodes > _NODE_CAP:
+                return None
+            poly = poly_of(fi, anchor)
+            # No overlap with any placed piece...
+            if any(overlap_area(poly, pj[1]) > OVERLAP_TOLERANCE for pj in placed.values()):
+                continue
+            # ...and (after the root) must touch at least one already-placed piece.
+            if depth > 0 and not any(_touches(poly, pj[1]) for pj in placed.values()):
+                continue
+            placed[fi] = (anchor, poly)
+            result = backtrack(depth + 1)
+            if result is not None:
+                return result
+            del placed[fi]
+        return None
+
+    solution = backtrack(0)
+    if solution is None:
+        return None
+    return [PiecePlacement(fits[fi][0], fits[fi][1], solution[fi], fits[fi][3], fits[fi][4])
+            for fi in range(n)]
+
+
 def _bfs_place(fits, adj, root, root_anchor: Point) -> tuple[dict[int, Point], set[int]]:
     """Returns (placed, bfs_reached) where bfs_reached are pieces derived from adjacency."""
     placed: dict[int, Point] = {root: root_anchor}
@@ -584,6 +823,14 @@ def build_tangram(name: str, polygons: list[list[tuple[float, float]]]) -> Tangr
     edge_pieces = _solve_from_edges(name, fits)
     if edge_pieces is not None and _total_overlap(edge_pieces) <= OVERLAP_TOLERANCE:
         return Tangram(name=name, pieces=edge_pieces)
+
+    # Last resort: full backtracking search over candidate anchors (orientations
+    # are fixed from the fit, so this is a bounded snap-to-grid search, not a
+    # general tangram solve).  Catches figures whose pieces are drawn too far
+    # apart for edge/vertex welding.
+    solved = _solve_by_backtracking(name, fits)
+    if solved is not None:
+        return Tangram(name=name, pieces=solved)
 
     # Return the best result we found (may still have small overlaps for caller to report).
     candidate = edge_pieces if (edge_pieces and _total_overlap(edge_pieces) < _total_overlap(bfs_pieces)) else bfs_pieces
