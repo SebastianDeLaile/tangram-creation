@@ -1,0 +1,120 @@
+{
+  "name": "nevit_160",
+  "description": "",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          46,
+          -12
+        ],
+        "y": [
+          46,
+          -24
+        ]
+      },
+      "orientation": 2,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          16,
+          18
+        ],
+        "y": [
+          26,
+          -6
+        ]
+      },
+      "orientation": 3,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          10,
+          18
+        ],
+        "y": [
+          32,
+          -6
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          -26,
+          24
+        ],
+        "y": [
+          -19,
+          12
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          -26,
+          24
+        ],
+        "y": [
+          -19,
+          12
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          10,
+          18
+        ],
+        "y": [
+          32,
+          -6
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          52,
+          -24
+        ],
+        "y": [
+          52,
+          -24
+        ]
+      },
+      "orientation": 4,
+      "flipped": false
+    }
+  ],
+  "source": "https://commons.wikimedia.org/wiki/File:Tangram_160_Nevit.svg",
+  "allow_disconnected": true
+}

@@ -117,6 +117,28 @@ bug on legitimate pinch-point figures, caught the same way: render and look).
 
 ## Status and next steps
 
+**216 figures committed** (target of 100+ exceeded). The big jump from ~103 came
+from two solver upgrades in `scripts/import_nevit_svg.py`:
+
+- A **backtracking placement solver** (`_solve_by_backtracking`) that, since piece
+  type/orientation/flip are already known from the SVG fit, searches only for each
+  piece's exact ℤ[√2] anchor. Key tricks: infer the figure's shared b-residue mod 6
+  (Z[√2] is dense, so this prunes spurious lattice approximations), order the search
+  by float-adjacency with incremental connectivity pruning, and use point-to-edge
+  distance so T-junctions register as touching. This recovered ~75 figures that the
+  greedy BFS/edge methods left disconnected.
+- **Per-figure `allow_disconnected`** support: some real figures are drawn as
+  several intentionally-separated parts (a candle flame above the body, a saddle
+  above a horse). `_solve_faithful` snaps every piece to the grid with no-overlap
+  but no connectivity requirement, and `validate()` skips the connectivity check for
+  figures that set the flag (38 such figures). The flag round-trips through the JSON
+  schema on both the Python and TS sides.
+
+The ~38 still-unimported Nevit files have non-standard piece angles (fit RMSE too
+high) and would need a different fitting approach.
+
+### Earlier milestone (historical)
+
 92 figures committed (after deduplication). To reach 100+:
 
 1. **Nevit Dilmen main series** (`Category:Nevit_Dilmen_Tangrams`) — **DONE**.
