@@ -60,6 +60,8 @@ def tangram_to_dict(tangram: Tangram) -> dict:
     }
     if tangram.source:
         d["source"] = tangram.source
+    if tangram.allow_disconnected:
+        d["allow_disconnected"] = True
     return d
 
 
@@ -68,6 +70,7 @@ def tangram_from_dict(data: dict) -> Tangram:
         name=data["name"],
         description=data.get("description", ""),
         source=data.get("source", ""),
+        allow_disconnected=data.get("allow_disconnected", False),
         pieces=[_piece_from_dict(p) for p in data["pieces"]],
     )
 

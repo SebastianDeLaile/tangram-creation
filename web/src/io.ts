@@ -22,6 +22,7 @@ interface TangramJson {
   name: string;
   description?: string;
   source?: string;
+  allow_disconnected?: boolean;
   pieces: PieceJson[];
 }
 
@@ -55,7 +56,13 @@ function pieceToJson(piece: PiecePlacement): PieceJson {
 }
 
 export function tangramFromJson(data: TangramJson): Tangram {
-  return new Tangram(data.name, data.pieces.map(pieceFromJson), data.description ?? "", data.source ?? "");
+  return new Tangram(
+    data.name,
+    data.pieces.map(pieceFromJson),
+    data.description ?? "",
+    data.source ?? "",
+    data.allow_disconnected ?? false,
+  );
 }
 
 export function tangramToJson(tangram: Tangram): TangramJson {
@@ -65,6 +72,7 @@ export function tangramToJson(tangram: Tangram): TangramJson {
     pieces: tangram.pieces.map(pieceToJson),
   };
   if (tangram.source) obj.source = tangram.source;
+  if (tangram.allowDisconnected) obj.allow_disconnected = true;
   return obj;
 }
 

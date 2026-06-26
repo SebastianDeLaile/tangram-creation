@@ -52,6 +52,9 @@ export class Tangram {
     public pieces: PiecePlacement[] = [],
     public description: string = "",
     public source: string = "",
+    // Some real figures are drawn as several intentionally-separated parts (e.g. a
+    // candle flame above the body); such figures set this and skip the connectivity check.
+    public allowDisconnected: boolean = false,
   ) {}
 
   /** [min_x, min_y, max_x, max_y] over all piece vertices. */

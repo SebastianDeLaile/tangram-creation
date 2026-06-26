@@ -557,71 +557,73 @@ def _candidate_anchors(fx: float, fy: float, rx: int | None, ry: int | None,
     return [p for _, p in cands[:_MAX_CANDS]]
 
 
-def _solve_by_backtracking(name: str, fits: list) -> list[PiecePlacement] | None:
-    """Place all pieces by backtracking over candidate anchors.
+def _float_components(fits: list, indices: list[int]) -> list[list[int]]:
+    """Group the given piece indices into connected components by float-adjacency.
 
-    Pieces are ordered largest-first (they constrain the most space).  Each piece
-    is placed at a candidate anchor that does not overlap any already-placed piece;
-    when all are placed we accept the first arrangement that is fully connected.
-    Returns a list of PiecePlacement or None if no valid tiling is found.
-    """
-    from tangram.validate import overlap_area, _touches, OVERLAP_TOLERANCE
-    n = len(fits)
-
-    # Determine the figure's shared b-residue per axis (mod 6) -- without this the
-    # candidate sets fill with spurious dense-lattice approximations (see
-    # _coord_candidates).  Use every vertex, not just anchors, for a robust vote.
-    all_x: list[float] = []
-    all_y: list[float] = []
-    for fi in range(n):
+    Two pieces are adjacent when their drawn polygons come within _ADJ_GAP, using
+    point-to-edge distance so a corner landing mid-edge (a T-junction) counts as
+    touching.  A figure drawn as one block has a single component; artistic figures
+    with deliberate gaps (a candle flame above the body) yield several."""
+    float_polys: dict[int, list[tuple[float, float]]] = {}
+    for fi in indices:
         fx, fy = fits[fi][2]
-        all_x.append(fx); all_y.append(fy)
-        for d in fits[fi][5]:
-            all_x.append(fx + d.x.to_float()); all_y.append(fy + d.y.to_float())
-    rx = _axis_residue(all_x)
-    ry = _axis_residue(all_y)
+        float_polys[fi] = [(fx, fy)] + [(fx + d.x.to_float(), fy + d.y.to_float())
+                                        for d in fits[fi][5]]
+    adj: dict[int, set[int]] = {i: set() for i in indices}
+    for a in range(len(indices)):
+        for b in range(a + 1, len(indices)):
+            i, j = indices[a], indices[b]
+            if _poly_gap(float_polys[i], float_polys[j]) <= _ADJ_GAP:
+                adj[i].add(j); adj[j].add(i)
+    comps: list[list[int]] = []
+    seen: set[int] = set()
+    for start in indices:
+        if start in seen:
+            continue
+        comp = [start]; seen.add(start); qi = 0
+        while qi < len(comp):
+            cur = comp[qi]; qi += 1
+            for nb in adj[cur]:
+                if nb not in seen:
+                    seen.add(nb); comp.append(nb)
+        comps.append(comp)
+    return comps
+
+
+def _place_component(fits: list, indices: list[int], rx: int, ry: int,
+                     external_polys: list[list[tuple[float, float]]],
+                     ) -> dict[int, Point] | None:
+    """Backtracking-place one connected component (the pieces in `indices`).
+
+    Pieces are placed at candidate anchors that (a) don't overlap each other or any
+    `external_polys` (pieces of already-placed components) and (b) -- after the
+    first -- touch a sibling already placed in this component, which keeps the
+    component internally connected and prunes the search hard.  `rx`, `ry` are the
+    figure-wide b-residues.  Returns {index: anchor} or None."""
+    from tangram.validate import overlap_area, _touches, OVERLAP_TOLERANCE
 
     def poly_of(fi: int, anchor: Point) -> list[tuple[float, float]]:
-        pts = [anchor] + [anchor + d for d in fits[fi][5]]
-        return [(p.x.to_float(), p.y.to_float()) for p in pts]
+        return [(p.x.to_float(), p.y.to_float())
+                for p in [anchor] + [anchor + d for d in fits[fi][5]]]
 
-    # Float polygons (for adjacency ordering) and the float-touch graph: two
-    # pieces are "adjacent" if their drawn polygons nearly touch.  We order the
-    # search as a BFS over this graph from the largest piece, so every piece
-    # after the first is adjacent to an already-placed one -- which lets us prune
-    # on connectivity *incrementally* instead of only at the end.  (A genuinely
-    # disconnected figure -- e.g. a candle flame floating above the body -- yields
-    # a graph with >1 component, the deferred component never touches, and the
-    # search correctly fails rather than forcing a false join.)
-    ADJ_GAP = _ADJ_GAP
-    # Use the RAW float anchor (the actual drawn position), not a snapped one --
-    # snapping can pick a wrong-residue lattice representation and displace a piece.
-    float_polys = []
-    for fi in range(n):
-        fx, fy = fits[fi][2]
-        pts = [(fx, fy)] + [(fx + d.x.to_float(), fy + d.y.to_float()) for d in fits[fi][5]]
-        float_polys.append(pts)
-    fadj: dict[int, set[int]] = {i: set() for i in range(n)}
-    for i in range(n):
-        for j in range(i + 1, n):
-            # Point-to-EDGE distance (both directions), not just vertex-to-vertex:
-            # tangram pieces often meet at a T-junction where a corner lands in the
-            # middle of an edge, so the nearest vertices can be an edge-length apart.
-            if _poly_gap(float_polys[i], float_polys[j]) <= ADJ_GAP:
-                fadj[i].add(j); fadj[j].add(i)
-
-    root = max(range(n), key=lambda i: _piece_area(fits[i][0]))
-    order: list[int] = [root]
-    seen_order = {root}
-    qi = 0
+    # BFS order within the component from its largest piece.
+    fpoly = {fi: [(fits[fi][2][0], fits[fi][2][1])]
+             + [(fits[fi][2][0] + d.x.to_float(), fits[fi][2][1] + d.y.to_float())
+                for d in fits[fi][5]] for fi in indices}
+    adj: dict[int, set[int]] = {i: set() for i in indices}
+    for a in range(len(indices)):
+        for b in range(a + 1, len(indices)):
+            i, j = indices[a], indices[b]
+            if _poly_gap(fpoly[i], fpoly[j]) <= _ADJ_GAP:
+                adj[i].add(j); adj[j].add(i)
+    root = max(indices, key=lambda i: _piece_area(fits[i][0]))
+    order = [root]; seen = {root}; qi = 0
     while qi < len(order):
         cur = order[qi]; qi += 1
-        for nb in sorted(fadj[cur], key=lambda k: -_piece_area(fits[k][0])):
-            if nb not in seen_order:
-                seen_order.add(nb); order.append(nb)
-    # Any pieces not reached share no float-adjacency with the main body -> the
-    # figure is drawn disconnected and cannot be a single connected tangram.
-    if len(order) != n:
+        for nb in sorted(adj[cur], key=lambda k: -_piece_area(fits[k][0])):
+            if nb not in seen:
+                seen.add(nb); order.append(nb)
+    if len(order) != len(indices):     # not actually one component
         return None
 
     cand: dict[int, list[Point]] = {}
@@ -636,19 +638,101 @@ def _solve_by_backtracking(name: str, fits: list) -> list[PiecePlacement] | None
 
     def backtrack(depth: int) -> dict[int, Point] | None:
         nonlocal nodes
-        if depth == n:
-            return {fi: placed[fi][0] for fi in range(n)}
+        if depth == len(order):
+            return {fi: placed[fi][0] for fi in order}
         fi = order[depth]
         for anchor in cand[fi]:
             nodes += 1
             if nodes > _NODE_CAP:
                 return None
             poly = poly_of(fi, anchor)
-            # No overlap with any placed piece...
+            if any(overlap_area(poly, ep) > OVERLAP_TOLERANCE for ep in external_polys):
+                continue
             if any(overlap_area(poly, pj[1]) > OVERLAP_TOLERANCE for pj in placed.values()):
                 continue
-            # ...and (after the root) must touch at least one already-placed piece.
             if depth > 0 and not any(_touches(poly, pj[1]) for pj in placed.values()):
+                continue
+            placed[fi] = (anchor, poly)
+            result = backtrack(depth + 1)
+            if result is not None:
+                return result
+            del placed[fi]
+        return None
+
+    return backtrack(0)
+
+
+def _figure_residues(fits: list) -> tuple[int, int]:
+    """Figure-wide b-residues (mod 6) per axis, voted over every vertex."""
+    all_x: list[float] = []
+    all_y: list[float] = []
+    for fi in range(len(fits)):
+        fx, fy = fits[fi][2]
+        all_x.append(fx); all_y.append(fy)
+        for d in fits[fi][5]:
+            all_x.append(fx + d.x.to_float()); all_y.append(fy + d.y.to_float())
+    return _axis_residue(all_x), _axis_residue(all_y)
+
+
+def _solve_by_backtracking(name: str, fits: list) -> list[PiecePlacement] | None:
+    """Place all pieces as a SINGLE connected component (the strict importer path).
+
+    Returns None if the pieces are drawn as more than one float-adjacency
+    component -- those are handled by _solve_components when disconnection is
+    explicitly allowed.
+    """
+    n = len(fits)
+    comps = _float_components(fits, list(range(n)))
+    if len(comps) != 1:
+        return None
+    rx, ry = _figure_residues(fits)
+    solution = _place_component(fits, comps[0], rx, ry, [])
+    if solution is None:
+        return None
+    return [PiecePlacement(fits[fi][0], fits[fi][1], solution[fi], fits[fi][3], fits[fi][4])
+            for fi in range(n)]
+
+
+def _solve_faithful(name: str, fits: list) -> list[PiecePlacement] | None:
+    """Snap each piece to the grid faithful to its drawn position, requiring only
+    that pieces don't overlap -- no connectivity or touching constraint at all.
+
+    This is the most permissive importer path, for figures that are loosely
+    assembled with gaps throughout (not one block, not even a few clean blocks).
+    Pieces are placed largest-first at the residue-restricted lattice point nearest
+    their drawn anchor that doesn't overlap an already-placed piece; we backtrack
+    only to resolve overlaps.  The result reproduces the source faithfully because
+    every piece stays at (essentially) where it was drawn."""
+    from tangram.validate import overlap_area, OVERLAP_TOLERANCE
+    n = len(fits)
+    rx, ry = _figure_residues(fits)
+
+    def poly_of(fi: int, anchor: Point) -> list[tuple[float, float]]:
+        return [(p.x.to_float(), p.y.to_float())
+                for p in [anchor] + [anchor + d for d in fits[fi][5]]]
+
+    order = sorted(range(n), key=lambda i: -_piece_area(fits[i][0]))
+    cand: dict[int, list[Point]] = {}
+    for fi in order:
+        fx, fy = fits[fi][2]
+        cand[fi] = _candidate_anchors(fx, fy, rx, ry, _SOLVE_RADIUS)
+        if not cand[fi]:
+            return None
+
+    placed: dict[int, tuple[Point, list]] = {}
+    nodes = 0
+
+    def backtrack(depth: int) -> dict[int, Point] | None:
+        nonlocal nodes
+        if depth == n:
+            return {fi: placed[fi][0] for fi in order}
+        fi = order[depth]
+        for anchor in cand[fi]:
+            nodes += 1
+            if nodes > _NODE_CAP:
+                return None
+            poly = poly_of(fi, anchor)
+            if any(overlap_area(poly, pj[1]) > OVERLAP_TOLERANCE for pj in placed.values()):
                 continue
             placed[fi] = (anchor, poly)
             result = backtrack(depth + 1)
@@ -661,6 +745,30 @@ def _solve_by_backtracking(name: str, fits: list) -> list[PiecePlacement] | None
     if solution is None:
         return None
     return [PiecePlacement(fits[fi][0], fits[fi][1], solution[fi], fits[fi][3], fits[fi][4])
+            for fi in range(n)]
+
+
+def _solve_components(name: str, fits: list) -> list[PiecePlacement] | None:
+    """Place pieces allowing MULTIPLE connected components (artistic figures with
+    deliberate gaps).  Each component is solved exactly in the shared coordinate
+    frame -- internally connected, not overlapping other components -- so the
+    assembled result reproduces the drawn figure including its gaps.  Returns
+    placements for all 7 pieces, or None if any component can't be placed."""
+    n = len(fits)
+    rx, ry = _figure_residues(fits)
+    comps = _float_components(fits, list(range(n)))
+    comps.sort(key=lambda c: -sum(_piece_area(fits[i][0]) for i in c))  # largest first
+    anchors: dict[int, Point] = {}
+    external: list[list[tuple[float, float]]] = []
+    for comp in comps:
+        placed = _place_component(fits, comp, rx, ry, external)
+        if placed is None:
+            return None
+        for fi, anchor in placed.items():
+            anchors[fi] = anchor
+            external.append([(p.x.to_float(), p.y.to_float())
+                             for p in [anchor] + [anchor + d for d in fits[fi][5]]])
+    return [PiecePlacement(fits[fi][0], fits[fi][1], anchors[fi], fits[fi][3], fits[fi][4])
             for fi in range(n)]
 
 
@@ -689,7 +797,8 @@ def _bfs_place(fits, adj, root, root_anchor: Point) -> tuple[dict[int, Point], s
     return placed, bfs_reached
 
 
-def build_tangram(name: str, polygons: list[list[tuple[float, float]]]) -> Tangram:
+def build_tangram(name: str, polygons: list[list[tuple[float, float]]],
+                  allow_disconnected: bool = False) -> Tangram:
     grouped = classify(polygons)
     large_area = max(_area(p) for p in grouped[PieceType.LARGE_TRIANGLE])
     scale = math.sqrt(144.0 / large_area)  # our large-triangle area is 144
@@ -811,17 +920,23 @@ def build_tangram(name: str, polygons: list[list[tuple[float, float]]]) -> Tangr
                     break
             best_placed[fi] = best_fi_anchor
 
-    # Check if BFS+vertex-match gave a valid result.
+    from tangram.validate import is_connected
+
+    def _ok(pieces) -> bool:
+        return (_total_overlap(pieces) <= OVERLAP_TOLERANCE
+                and is_connected(Tangram(name=name, pieces=pieces)))
+
+    # Check if BFS+vertex-match gave a valid (non-overlapping, connected) result.
     bfs_pieces = [PiecePlacement(fits[fi][0], fits[fi][1], best_placed[fi],
                                  fits[fi][3], fits[fi][4]) for fi in range(n_pieces)]
-    if _total_overlap(bfs_pieces) <= OVERLAP_TOLERANCE:
+    if _ok(bfs_pieces):
         return Tangram(name=name, pieces=bfs_pieces)
 
     # BFS failed (disconnected pieces with real gaps).  Try the edge-based solver:
     # match collinear edges across all pieces, average their perpendicular offsets
     # for a better anchor snap, then enumerate anchor combinations.
     edge_pieces = _solve_from_edges(name, fits)
-    if edge_pieces is not None and _total_overlap(edge_pieces) <= OVERLAP_TOLERANCE:
+    if edge_pieces is not None and _ok(edge_pieces):
         return Tangram(name=name, pieces=edge_pieces)
 
     # Last resort: full backtracking search over candidate anchors (orientations
@@ -831,6 +946,17 @@ def build_tangram(name: str, polygons: list[list[tuple[float, float]]]) -> Tangr
     solved = _solve_by_backtracking(name, fits)
     if solved is not None:
         return Tangram(name=name, pieces=solved)
+
+    # When the caller permits it, fall back to faithful snapping: place every piece
+    # at the grid point nearest its drawn position with no overlap, dropping the
+    # connectivity requirement.  This reproduces figures drawn as several
+    # intentionally-separated parts (a candle flame above the body, a saddle above
+    # a horse).  The resulting Tangram carries allow_disconnected=True so validate()
+    # skips its connectivity check -- only ever set after visual review.
+    if allow_disconnected:
+        faithful = _solve_faithful(name, fits)
+        if faithful is not None and _total_overlap(faithful) <= OVERLAP_TOLERANCE:
+            return Tangram(name=name, pieces=faithful, allow_disconnected=True)
 
     # Return the best result we found (may still have small overlaps for caller to report).
     candidate = edge_pieces if (edge_pieces and _total_overlap(edge_pieces) < _total_overlap(bfs_pieces)) else bfs_pieces

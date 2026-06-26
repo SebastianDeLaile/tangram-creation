@@ -47,6 +47,10 @@ class Tangram:
     pieces: list[PiecePlacement] = field(default_factory=list)
     description: str = ""
     source: str = ""  # URL or attribution string for provenance (round-trips through JSON)
+    allow_disconnected: bool = False  # opt out of the connectivity check: some real
+    # tangram figures are drawn as several intentionally-separated parts (e.g. a candle
+    # flame floating above the body). Set per figure, only after visual review, so the
+    # connectivity check still guards normal figures against scattered-piece defects.
 
     def bounding_box(self) -> tuple[float, float, float, float]:
         """(min_x, min_y, max_x, max_y) over all piece vertices."""

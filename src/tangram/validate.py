@@ -158,7 +158,7 @@ def validate(tangram: Tangram) -> list[str]:
                     f"{pb.piece_type.value}#{pb.piece_id} (area={area:.4f})"
                 )
 
-    if not is_connected(tangram):
+    if not tangram.allow_disconnected and not is_connected(tangram):
         issues.append("pieces are not all connected -- some are isolated with a real gap")
 
     return issues
