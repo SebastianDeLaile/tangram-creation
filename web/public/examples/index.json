@@ -1,16 +1,6 @@
 {
   "figures": [
     {
-      "file": "nevit_133.json",
-      "title": "Abstract",
-      "category": "abstract",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_133_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
       "file": "nevit_190.json",
       "title": "Abstract",
       "category": "abstract",
@@ -41,6 +31,36 @@
       ]
     },
     {
+      "file": "nevit_204.json",
+      "title": "Abstract",
+      "category": "abstract",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_204_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
+      "file": "nevit_200.json",
+      "title": "Abstract",
+      "category": "abstract",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_200_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
+      "file": "nevit_245.json",
+      "title": "Abstract",
+      "category": "abstract",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_245_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
       "file": "nevit_187.json",
       "title": "Arch",
       "category": "abstract",
@@ -53,15 +73,6 @@
       "category": "abstract",
       "source": "TangramGenerator",
       "tags": []
-    },
-    {
-      "file": "nevit_208.json",
-      "title": "Arrowhead",
-      "category": "abstract",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_208_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
     },
     {
       "file": "nevit_212.json",
@@ -83,15 +94,6 @@
       "category": "abstract",
       "source": "TangramGenerator",
       "tags": []
-    },
-    {
-      "file": "nevit_243.json",
-      "title": "Diamond",
-      "category": "abstract",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_243_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
     },
     {
       "file": "wiebke_interesting1.json",
@@ -173,47 +175,19 @@
       ]
     },
     {
+      "file": "nevit_122.json",
+      "title": "Bat",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_122_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
       "file": "nevit_039.json",
       "title": "Bird",
       "category": "animals",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_39_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_044.json",
-      "title": "Bird",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_44_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_046.json",
-      "title": "Bird",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_46_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_048.json",
-      "title": "Bird",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_48_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
-      "file": "nevit_080.json",
-      "title": "Bird",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_80_Nevit.svg",
       "tags": [
         "nevit_series"
       ]
@@ -228,43 +202,6 @@
       ]
     },
     {
-      "file": "nevit_106.json",
-      "title": "Bird",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_106_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_115.json",
-      "title": "Bird",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_115_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
-      "file": "nevit_146.json",
-      "title": "Bird",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_146_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_159.json",
-      "title": "Bird",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_159_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
       "file": "nevit_186.json",
       "title": "Bird",
       "category": "animals",
@@ -274,13 +211,51 @@
       ]
     },
     {
-      "file": "nevit_204.json",
+      "file": "nevit_034.json",
       "title": "Bird",
       "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_204_Nevit.svg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_34_Nevit.svg",
       "tags": [
         "nevit_series",
         "disconnected"
+      ]
+    },
+    {
+      "file": "nevit_211.json",
+      "title": "Bird",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_211_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
+      "file": "nevit_033.json",
+      "title": "Bird",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_33_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
+      "file": "nevit_038.json",
+      "title": "Bird",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_38_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
+      "file": "nevit_106.json",
+      "title": "Butterfly",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_106_Nevit.svg",
+      "tags": [
+        "nevit_series"
       ]
     },
     {
@@ -297,6 +272,15 @@
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [
         "Camels"
+      ]
+    },
+    {
+      "file": "nevit_080.json",
+      "title": "Cat",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_80_Nevit.svg",
+      "tags": [
+        "nevit_series"
       ]
     },
     {
@@ -330,25 +314,6 @@
       ]
     },
     {
-      "file": "nevit_058.json",
-      "title": "Cat",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_58_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
-      "file": "nevit_059.json",
-      "title": "Cat",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_59_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
       "file": "nevit_151.json",
       "title": "Cat",
       "category": "animals",
@@ -358,13 +323,30 @@
       ]
     },
     {
-      "file": "nevit_154.json",
+      "file": "nevit_054.json",
       "title": "Cat",
       "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_154_Nevit.svg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_54_Nevit.svg",
       "tags": [
-        "nevit_series",
-        "disconnected"
+        "nevit_series"
+      ]
+    },
+    {
+      "file": "nevit_051.json",
+      "title": "Cat",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_51_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
+      "file": "nevit_177.json",
+      "title": "Cat",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_177_Nevit.svg",
+      "tags": [
+        "nevit_series"
       ]
     },
     {
@@ -403,6 +385,62 @@
       "tags": []
     },
     {
+      "file": "nevit_044.json",
+      "title": "Dog",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_44_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
+      "file": "nevit_146.json",
+      "title": "Dog",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_146_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
+      "file": "nevit_159.json",
+      "title": "Dog",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_159_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
+      "file": "nevit_058.json",
+      "title": "Dog",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_58_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
+      "file": "nevit_059.json",
+      "title": "Dog",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_59_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
+      "file": "nevit_154.json",
+      "title": "Dog",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_154_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
       "file": "nevit_158.json",
       "title": "Dog",
       "category": "animals",
@@ -428,34 +466,6 @@
       ]
     },
     {
-      "file": "nevit_060.json",
-      "title": "Dog",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_60_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_070.json",
-      "title": "Dog",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_70_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_104.json",
-      "title": "Dog",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_104_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
       "file": "nevit_143.json",
       "title": "Dog",
       "category": "animals",
@@ -469,25 +479,6 @@
       "title": "Dog",
       "category": "animals",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_147_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_148.json",
-      "title": "Dog",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_148_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
-      "file": "nevit_155.json",
-      "title": "Dog",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_155_Nevit.svg",
       "tags": [
         "nevit_series"
       ]
@@ -512,6 +503,15 @@
       ]
     },
     {
+      "file": "nevit_144.json",
+      "title": "Dog",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_144_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
       "file": "bird.json",
       "title": "Dove",
       "category": "animals",
@@ -519,21 +519,21 @@
       "tags": []
     },
     {
+      "file": "nevit_048.json",
+      "title": "Duck",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_48_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
       "file": "nevit_142.json",
       "title": "Duck",
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
-    },
-    {
-      "file": "nevit_034.json",
-      "title": "Duck",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_34_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
     },
     {
       "file": "nevit_045.json",
@@ -545,21 +545,21 @@
       ]
     },
     {
-      "file": "nevit_211.json",
-      "title": "Duck",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_211_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
       "file": "nevit_041.json",
       "title": "Eagle",
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
+    },
+    {
+      "file": "nevit_040.json",
+      "title": "Eagle",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_40_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
     },
     {
       "file": "nevit_085.json",
@@ -583,6 +583,25 @@
       "tags": []
     },
     {
+      "file": "nevit_088.json",
+      "title": "Fish",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_88_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
+      "file": "nevit_070.json",
+      "title": "Fox",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_70_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
       "file": "nevit_053.json",
       "title": "Fox",
       "category": "animals",
@@ -597,19 +616,20 @@
       "tags": []
     },
     {
-      "file": "nevit_054.json",
-      "title": "Fox",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_54_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
       "file": "nevit_084.json",
       "title": "Fox",
       "category": "animals",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_84_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
+      "file": "nevit_062.json",
+      "title": "Fox",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_62_Nevit.svg",
       "tags": [
         "nevit_series",
         "disconnected"
@@ -630,20 +650,20 @@
       "tags": []
     },
     {
-      "file": "nevit_061.json",
-      "title": "Goat",
+      "file": "nevit_148.json",
+      "title": "Giraffe",
       "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_61_Nevit.svg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_148_Nevit.svg",
       "tags": [
         "nevit_series",
         "disconnected"
       ]
     },
     {
-      "file": "nevit_068.json",
-      "title": "Goat",
+      "file": "nevit_046.json",
+      "title": "Goose",
       "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_68_Nevit.svg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_46_Nevit.svg",
       "tags": [
         "nevit_series"
       ]
@@ -663,16 +683,6 @@
       "tags": []
     },
     {
-      "file": "nevit_033.json",
-      "title": "Goose",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_33_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
       "file": "nevit_156.json",
       "title": "Hawk",
       "category": "animals",
@@ -687,12 +697,13 @@
       "tags": []
     },
     {
-      "file": "nevit_038.json",
-      "title": "Hen",
+      "file": "nevit_133.json",
+      "title": "Heron",
       "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_38_Nevit.svg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_133_Nevit.svg",
       "tags": [
-        "nevit_series"
+        "nevit_series",
+        "disconnected"
       ]
     },
     {
@@ -701,6 +712,24 @@
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
+    },
+    {
+      "file": "nevit_060.json",
+      "title": "Horse",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_60_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
+      "file": "nevit_155.json",
+      "title": "Horse",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_155_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
     },
     {
       "file": "nevit_035.json",
@@ -713,48 +742,20 @@
       ]
     },
     {
-      "file": "nevit_062.json",
-      "title": "Horse",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_62_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
-      "file": "nevit_144.json",
-      "title": "Horse",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_144_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_173.json",
-      "title": "Horse",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_173_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
-      "file": "nevit_047.json",
-      "title": "Pelican",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_47_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_051.json",
+      "file": "nevit_061.json",
       "title": "Rabbit",
       "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_51_Nevit.svg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_61_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
+      "file": "nevit_068.json",
+      "title": "Rabbit",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_68_Nevit.svg",
       "tags": [
         "nevit_series"
       ]
@@ -770,10 +771,10 @@
       ]
     },
     {
-      "file": "nevit_177.json",
+      "file": "nevit_090.json",
       "title": "Rabbit",
       "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_177_Nevit.svg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_90_Nevit.svg",
       "tags": [
         "nevit_series"
       ]
@@ -785,16 +786,6 @@
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_37_Nevit.svg",
       "tags": [
         "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_040.json",
-      "title": "Rooster",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_40_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
       ]
     },
     {
@@ -817,7 +808,7 @@
     },
     {
       "file": "nevit_042.json",
-      "title": "Running Dog",
+      "title": "Rooster",
       "category": "animals",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_42_Nevit.svg",
       "tags": [
@@ -838,6 +829,15 @@
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
+    },
+    {
+      "file": "nevit_047.json",
+      "title": "Swan",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_47_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
     },
     {
       "file": "swan.json",
@@ -861,16 +861,6 @@
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
-    },
-    {
-      "file": "nevit_088.json",
-      "title": "Whale",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_88_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
     },
     {
       "file": "nevit_130.json",
@@ -913,6 +903,15 @@
       "category": "geometric",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
+    },
+    {
+      "file": "nevit_243.json",
+      "title": "Square",
+      "category": "geometric",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_243_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
     },
     {
       "file": "square.json",
@@ -991,10 +990,10 @@
       "tags": []
     },
     {
-      "file": "nevit_122.json",
+      "file": "nevit_123.json",
       "title": "B",
       "category": "letters",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_122_Nevit.svg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_123_Nevit.svg",
       "tags": [
         "nevit_series"
       ]
@@ -1007,10 +1006,10 @@
       "tags": []
     },
     {
-      "file": "nevit_123.json",
+      "file": "nevit_125.json",
       "title": "D",
       "category": "letters",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_123_Nevit.svg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_125_Nevit.svg",
       "tags": [
         "nevit_series"
       ]
@@ -1034,10 +1033,10 @@
       ]
     },
     {
-      "file": "nevit_125.json",
-      "title": "P",
-      "category": "letters",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_125_Nevit.svg",
+      "file": "nevit_208.json",
+      "title": "Arrow",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_208_Nevit.svg",
       "tags": [
         "nevit_series"
       ]
@@ -1049,34 +1048,6 @@
       "source": "TangramGenerator",
       "tags": [
         "symbol"
-      ]
-    },
-    {
-      "file": "nevit_179.json",
-      "title": "Arrow",
-      "category": "objects",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_179_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_200.json",
-      "title": "Arrow",
-      "category": "objects",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_200_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
-      "file": "nevit_205.json",
-      "title": "Arrow",
-      "category": "objects",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_205_Nevit.svg",
-      "tags": [
-        "nevit_series"
       ]
     },
     {
@@ -1208,19 +1179,19 @@
       "tags": []
     },
     {
-      "file": "nevit_182.json",
+      "file": "nevit_179.json",
       "title": "House",
       "category": "objects",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_182_Nevit.svg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_179_Nevit.svg",
       "tags": [
         "nevit_series"
       ]
     },
     {
-      "file": "nevit_202.json",
+      "file": "nevit_182.json",
       "title": "House",
       "category": "objects",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_202_Nevit.svg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_182_Nevit.svg",
       "tags": [
         "nevit_series"
       ]
@@ -1232,16 +1203,6 @@
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_203_Nevit.svg",
       "tags": [
         "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_245.json",
-      "title": "House",
-      "category": "objects",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_245_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
       ]
     },
     {
@@ -1257,6 +1218,15 @@
       "category": "objects",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
+    },
+    {
+      "file": "nevit_202.json",
+      "title": "Mountain",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_202_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
     },
     {
       "file": "mountain.json",
@@ -1305,6 +1275,16 @@
       "tags": []
     },
     {
+      "file": "nevit_115.json",
+      "title": "Torch",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_115_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
       "file": "nevit_112.json",
       "title": "Torch",
       "category": "objects",
@@ -1312,11 +1292,58 @@
       "tags": []
     },
     {
+      "file": "nevit_104.json",
+      "title": "Tree",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_104_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
+      "file": "nevit_236.json",
+      "title": "Tree",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_236_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
+      "file": "nevit_205.json",
+      "title": "Vase",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_205_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
       "file": "nevit_229.json",
       "title": "Viaduct",
       "category": "objects",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
+    },
+    {
+      "file": "nevit_014.json",
+      "title": "Bending",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_14_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
+      "file": "nevit_173.json",
+      "title": "Bowing",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_173_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
     },
     {
       "file": "people_026.json",
@@ -1337,13 +1364,21 @@
       ]
     },
     {
-      "file": "nevit_021.json",
+      "file": "nevit_015.json",
       "title": "Bowing",
       "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_21_Nevit.svg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_15_Nevit.svg",
       "tags": [
-        "nevit_series",
-        "disconnected"
+        "nevit_series"
+      ]
+    },
+    {
+      "file": "nevit_028.json",
+      "title": "Bowing",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_28_Nevit.svg",
+      "tags": [
+        "nevit_series"
       ]
     },
     {
@@ -1366,12 +1401,23 @@
       ]
     },
     {
-      "file": "nevit_236.json",
+      "file": "nevit_234.json",
       "title": "Cheering",
       "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_236_Nevit.svg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_234_Nevit.svg",
       "tags": [
-        "nevit_series"
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
+      "file": "nevit_021.json",
+      "title": "Crouching",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_21_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
       ]
     },
     {
@@ -1384,15 +1430,6 @@
       ]
     },
     {
-      "file": "nevit_015.json",
-      "title": "Dancing",
-      "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_15_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
       "file": "nevit_032.json",
       "title": "Dancing",
       "category": "people",
@@ -1402,31 +1439,12 @@
       ]
     },
     {
-      "file": "nevit_164.json",
+      "file": "nevit_025.json",
       "title": "Dancing",
       "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_164_Nevit.svg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_25_Nevit.svg",
       "tags": [
         "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_176.json",
-      "title": "Dancing",
-      "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_176_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_192.json",
-      "title": "Dancing",
-      "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_192_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
       ]
     },
     {
@@ -1436,6 +1454,15 @@
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [
         "people_series"
+      ]
+    },
+    {
+      "file": "nevit_176.json",
+      "title": "Kicking",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_176_Nevit.svg",
+      "tags": [
+        "nevit_series"
       ]
     },
     {
@@ -1452,15 +1479,6 @@
       "title": "Kicking",
       "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_210_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_014.json",
-      "title": "Kneeling",
-      "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_14_Nevit.svg",
       "tags": [
         "nevit_series"
       ]
@@ -1494,37 +1512,10 @@
       ]
     },
     {
-      "file": "nevit_010.json",
-      "title": "Marching",
-      "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_10_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
       "file": "nevit_027.json",
-      "title": "Pointing",
+      "title": "Reaching",
       "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_27_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_025.json",
-      "title": "Reaching",
-      "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_25_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_113.json",
-      "title": "Reaching",
-      "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_113_Nevit.svg",
       "tags": [
         "nevit_series"
       ]
@@ -1557,21 +1548,21 @@
       ]
     },
     {
+      "file": "nevit_164.json",
+      "title": "Running",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_164_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
       "file": "people_004.json",
       "title": "Running",
       "category": "people",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [
         "people_series"
-      ]
-    },
-    {
-      "file": "nevit_023.json",
-      "title": "Running",
-      "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_23_Nevit.svg",
-      "tags": [
-        "nevit_series"
       ]
     },
     {
@@ -1649,6 +1640,15 @@
       ]
     },
     {
+      "file": "nevit_169.json",
+      "title": "Sitting",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_169_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
       "file": "people_022.json",
       "title": "Sprinting",
       "category": "people",
@@ -1658,30 +1658,30 @@
       ]
     },
     {
+      "file": "nevit_010.json",
+      "title": "Standing",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_10_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
+      "file": "nevit_113.json",
+      "title": "Standing",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_113_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
       "file": "people_012.json",
       "title": "Standing",
       "category": "people",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [
         "people_series"
-      ]
-    },
-    {
-      "file": "nevit_028.json",
-      "title": "Standing",
-      "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_28_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_090.json",
-      "title": "Standing",
-      "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_90_Nevit.svg",
-      "tags": [
-        "nevit_series"
       ]
     },
     {
@@ -1695,15 +1695,6 @@
       ]
     },
     {
-      "file": "nevit_169.json",
-      "title": "Standing",
-      "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_169_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
       "file": "nevit_219.json",
       "title": "Standing",
       "category": "people",
@@ -1711,6 +1702,35 @@
       "tags": [
         "nevit_series",
         "disconnected"
+      ]
+    },
+    {
+      "file": "nevit_030.json",
+      "title": "Standing",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_30_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
+      "file": "nevit_209.json",
+      "title": "Standing",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_209_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
+      "file": "nevit_237.json",
+      "title": "Standing",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_237_Nevit.svg",
+      "tags": [
+        "nevit_series"
       ]
     },
     {
@@ -1732,22 +1752,40 @@
       ]
     },
     {
-      "file": "nevit_008.json",
+      "file": "nevit_029.json",
       "title": "Striding",
       "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_8_Nevit.svg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_29_Nevit.svg",
       "tags": [
         "nevit_series"
       ]
     },
     {
-      "file": "nevit_030.json",
-      "title": "Striding",
+      "file": "nevit_192.json",
+      "title": "Walking",
       "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_30_Nevit.svg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_192_Nevit.svg",
       "tags": [
         "nevit_series",
         "disconnected"
+      ]
+    },
+    {
+      "file": "nevit_023.json",
+      "title": "Walking",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_23_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
+      "file": "nevit_008.json",
+      "title": "Walking",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_8_Nevit.svg",
+      "tags": [
+        "nevit_series"
       ]
     },
     {
@@ -1778,48 +1816,10 @@
       ]
     },
     {
-      "file": "nevit_029.json",
-      "title": "Walking",
-      "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_29_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
       "file": "nevit_172.json",
       "title": "Walking",
       "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_172_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_209.json",
-      "title": "Walking",
-      "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_209_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
-      "file": "nevit_234.json",
-      "title": "Waving",
-      "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_234_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
-      "file": "nevit_237.json",
-      "title": "Waving",
-      "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_237_Nevit.svg",
       "tags": [
         "nevit_series"
       ]
