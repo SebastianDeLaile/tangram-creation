@@ -905,15 +905,6 @@
       "tags": []
     },
     {
-      "file": "nevit_243.json",
-      "title": "Square",
-      "category": "geometric",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_243_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
       "file": "square.json",
       "title": "Square",
       "category": "geometric",

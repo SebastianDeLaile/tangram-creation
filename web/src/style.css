@@ -206,6 +206,33 @@ select {
   gap: 4px;
 }
 
+.shape-featured {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.shape-featured .featured-square {
+  width: 100%;
+  text-align: left;
+  background: #1a1a1a;
+  color: #fff;
+  border: 1px solid #1a1a1a;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.shape-featured .featured-square:hover {
+  background: #000;
+}
+
+.featured-note {
+  font-size: 0.68rem;
+  color: #aaa;
+  margin: 3px 2px 0;
+}
+
 .shape-category {
   font-size: 0.7rem;
   text-transform: uppercase;

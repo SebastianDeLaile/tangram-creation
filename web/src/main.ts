@@ -160,11 +160,26 @@ function buildCategoryPills(): void {
   });
 }
 
+// The base square is the shape all seven pieces are cut from -- the canonical
+// starting point -- so we pin it to the top of the list rather than burying it
+// among the other geometric figures.
+const SQUARE_FILE = "square.json";
+
 function buildShapeList(): void {
   const q = state.shapeQuery.toLowerCase().trim();
   let filtered = state.figures;
   if (state.shapeCategory !== "all") filtered = filtered.filter((f) => f.category === state.shapeCategory);
   if (q) filtered = filtered.filter((f) => (f.title ?? labelFor(f.file)).toLowerCase().includes(q));
+
+  // Pull the base square out so it can be featured at the very top.
+  const squareEntry = filtered.find((f) => f.file === SQUARE_FILE);
+  filtered = filtered.filter((f) => f.file !== SQUARE_FILE);
+  const featuredHtml = squareEntry
+    ? `<div class="shape-featured">
+        <button data-file="${SQUARE_FILE}" class="featured-square${SQUARE_FILE === state.exampleFile ? " active" : ""}">◇ The Square</button>
+        <div class="featured-note">the shape all 7 pieces come from</div>
+      </div>`
+    : "";
 
   const showHeaders = state.shapeCategory === "all" && !q;
 
@@ -189,7 +204,7 @@ function buildShapeList(): void {
       list.push(e);
       byCategory.set(e.category, list);
     }
-    shapeListEl.innerHTML = [...byCategory.entries()]
+    shapeListEl.innerHTML = featuredHtml + [...byCategory.entries()]
       .sort(([a], [b]) => a.localeCompare(b))
       .map(([cat, entries]) => {
         const sorted = [...entries].sort((a, b) =>
@@ -203,10 +218,10 @@ function buildShapeList(): void {
     const sorted = [...filtered].sort((a, b) =>
       (a.title ?? labelFor(a.file)).localeCompare(b.title ?? labelFor(b.file)),
     );
-    if (sorted.length === 0) {
+    if (sorted.length === 0 && !featuredHtml) {
       shapeListEl.innerHTML = `<div class="shape-empty">No shapes found</div>`;
     } else {
-      shapeListEl.innerHTML = sorted
+      shapeListEl.innerHTML = featuredHtml + sorted
         .map((e) => `<button data-file="${e.file}" class="${e.file === state.exampleFile ? "active" : ""}">${entryLabel(e)}</button>`)
         .join("");
     }
