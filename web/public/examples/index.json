@@ -1,66 +1,6 @@
 {
   "figures": [
     {
-      "file": "nevit_190.json",
-      "title": "Abstract",
-      "category": "abstract",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_190_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
-      "file": "nevit_207.json",
-      "title": "Abstract",
-      "category": "abstract",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_207_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
-      "file": "nevit_244.json",
-      "title": "Abstract",
-      "category": "abstract",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_244_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
-      "file": "nevit_204.json",
-      "title": "Abstract",
-      "category": "abstract",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_204_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
-      "file": "nevit_200.json",
-      "title": "Abstract",
-      "category": "abstract",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_200_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
-      "file": "nevit_245.json",
-      "title": "Abstract",
-      "category": "abstract",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_245_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
       "file": "nevit_187.json",
       "title": "Arch",
       "category": "abstract",
@@ -736,6 +676,16 @@
       "title": "Horse",
       "category": "animals",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_35_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
+      "file": "nevit_245.json",
+      "title": "Moose",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_245_Nevit.svg",
       "tags": [
         "nevit_series",
         "disconnected"
