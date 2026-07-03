@@ -1,0 +1,119 @@
+{
+  "name": "nine",
+  "description": "digit 9",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          2,
+          16
+        ],
+        "y": [
+          28,
+          -1
+        ]
+      },
+      "orientation": 3,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          2,
+          16
+        ],
+        "y": [
+          28,
+          -13
+        ]
+      },
+      "orientation": 2,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          2,
+          10
+        ],
+        "y": [
+          28,
+          -19
+        ]
+      },
+      "orientation": 1,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          8,
+          -2
+        ],
+        "y": [
+          34,
+          -7
+        ]
+      },
+      "orientation": 5,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          -10,
+          16
+        ],
+        "y": [
+          40,
+          -1
+        ]
+      },
+      "orientation": 4,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          2,
+          4
+        ],
+        "y": [
+          28,
+          -13
+        ]
+      },
+      "orientation": 2,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          2,
+          -2
+        ],
+        "y": [
+          28,
+          -13
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    }
+  ],
+  "source": "constructed (Nevit Tangram 121 'six' rotated 180 degrees)"
+}
