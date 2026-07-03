@@ -190,6 +190,16 @@
       ]
     },
     {
+      "file": "nevit_061.json",
+      "title": "Bird",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_61_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
       "file": "nevit_106.json",
       "title": "Butterfly",
       "category": "animals",
@@ -452,6 +462,15 @@
       ]
     },
     {
+      "file": "nevit_060.json",
+      "title": "Dog",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_60_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
       "file": "bird.json",
       "title": "Dove",
       "category": "animals",
@@ -576,6 +595,16 @@
       ]
     },
     {
+      "file": "nevit_083.json",
+      "title": "Fox",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_83_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
       "file": "nevit_082.json",
       "title": "Fox Lying",
       "category": "animals",
@@ -637,30 +666,11 @@
       "tags": []
     },
     {
-      "file": "nevit_133.json",
-      "title": "Heron",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_133_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
       "file": "nevit_215.json",
       "title": "Heron",
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
-    },
-    {
-      "file": "nevit_060.json",
-      "title": "Horse",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_60_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
     },
     {
       "file": "nevit_155.json",
@@ -669,16 +679,6 @@
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_155_Nevit.svg",
       "tags": [
         "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_035.json",
-      "title": "Horse",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_35_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
       ]
     },
     {
@@ -692,39 +692,10 @@
       ]
     },
     {
-      "file": "nevit_061.json",
-      "title": "Rabbit",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_61_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
       "file": "nevit_068.json",
       "title": "Rabbit",
       "category": "animals",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_68_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_083.json",
-      "title": "Rabbit",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_83_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
-      "file": "nevit_090.json",
-      "title": "Rabbit",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_90_Nevit.svg",
       "tags": [
         "nevit_series"
       ]
@@ -996,6 +967,15 @@
       "title": "Arrow",
       "category": "objects",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_227_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
+      "file": "nevit_090.json",
+      "title": "Boat",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_90_Nevit.svg",
       "tags": [
         "nevit_series"
       ]
