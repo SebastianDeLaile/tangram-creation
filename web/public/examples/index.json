@@ -883,6 +883,15 @@
       ]
     },
     {
+      "file": "4_number.json",
+      "title": "4",
+      "category": "letters",
+      "source": "constructed",
+      "tags": [
+        "constructed"
+      ]
+    },
+    {
       "file": "nevit_120.json",
       "title": "5",
       "category": "letters",
@@ -895,6 +904,15 @@
       "category": "letters",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_121_Nevit.svg",
       "tags": []
+    },
+    {
+      "file": "7_number.json",
+      "title": "7",
+      "category": "letters",
+      "source": "constructed",
+      "tags": [
+        "constructed"
+      ]
     },
     {
       "file": "9_number.json",
