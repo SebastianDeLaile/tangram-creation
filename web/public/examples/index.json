@@ -200,6 +200,15 @@
       ]
     },
     {
+      "file": "nevit_179.json",
+      "title": "Bird",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_179_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
+    },
+    {
       "file": "nevit_106.json",
       "title": "Butterfly",
       "category": "animals",
@@ -298,13 +307,6 @@
       "tags": [
         "nevit_series"
       ]
-    },
-    {
-      "file": "nevit_052.json",
-      "title": "Cat Curled",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_52_Nevit.svg",
-      "tags": []
     },
     {
       "file": "nevit_066.json",
@@ -612,13 +614,6 @@
       "tags": []
     },
     {
-      "file": "nevit_072.json",
-      "title": "Fox Running",
-      "category": "animals",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_72_Nevit.svg",
-      "tags": []
-    },
-    {
       "file": "nevit_148.json",
       "title": "Giraffe",
       "category": "animals",
@@ -775,6 +770,13 @@
       "tags": [
         "nevit_series"
       ]
+    },
+    {
+      "file": "nevit_098.json",
+      "title": "Swan",
+      "category": "animals",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
     },
     {
       "file": "nevit_213.json",
@@ -972,15 +974,6 @@
       ]
     },
     {
-      "file": "nevit_227.json",
-      "title": "Arrow",
-      "category": "objects",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_227_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
       "file": "nevit_090.json",
       "title": "Boat",
       "category": "objects",
@@ -1025,16 +1018,6 @@
       "tags": []
     },
     {
-      "file": "nevit_111.json",
-      "title": "Candle",
-      "category": "objects",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_111_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
       "file": "nevit_114.json",
       "title": "Candle",
       "category": "objects",
@@ -1044,8 +1027,15 @@
       ]
     },
     {
-      "file": "nevit_225.json",
-      "title": "Chalice",
+      "file": "nevit_112.json",
+      "title": "Candle",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_112_Nevit.svg",
+      "tags": []
+    },
+    {
+      "file": "nevit_107.json",
+      "title": "Chair",
       "category": "objects",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
@@ -1088,11 +1078,23 @@
       "tags": []
     },
     {
-      "file": "nevit_235.json",
+      "file": "nevit_104.json",
       "title": "Goblet",
       "category": "objects",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": []
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_104_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ]
+    },
+    {
+      "file": "nevit_227.json",
+      "title": "Hammer",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_227_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
     },
     {
       "file": "nevit_230.json",
@@ -1109,24 +1111,6 @@
       "tags": []
     },
     {
-      "file": "nevit_179.json",
-      "title": "House",
-      "category": "objects",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_179_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
-      "file": "nevit_182.json",
-      "title": "House",
-      "category": "objects",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_182_Nevit.svg",
-      "tags": [
-        "nevit_series"
-      ]
-    },
-    {
       "file": "nevit_203.json",
       "title": "House",
       "category": "objects",
@@ -1138,13 +1122,6 @@
     {
       "file": "nevit_185.json",
       "title": "Iron",
-      "category": "objects",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": []
-    },
-    {
-      "file": "nevit_098.json",
-      "title": "Kite",
       "category": "objects",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": []
@@ -1166,13 +1143,6 @@
       "tags": [
         "nature"
       ]
-    },
-    {
-      "file": "nevit_217.json",
-      "title": "Mountains",
-      "category": "objects",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_217_Nevit.svg",
-      "tags": []
     },
     {
       "file": "nevit_180.json",
@@ -1198,11 +1168,13 @@
       "tags": []
     },
     {
-      "file": "nevit_107.json",
-      "title": "Stool",
+      "file": "nevit_182.json",
+      "title": "Teapot",
       "category": "objects",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": []
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_182_Nevit.svg",
+      "tags": [
+        "nevit_series"
+      ]
     },
     {
       "file": "nevit_115.json",
@@ -1215,30 +1187,20 @@
       ]
     },
     {
-      "file": "nevit_112.json",
-      "title": "Torch",
-      "category": "objects",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_112_Nevit.svg",
-      "tags": []
-    },
-    {
-      "file": "nevit_104.json",
-      "title": "Tree",
-      "category": "objects",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_104_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
       "file": "nevit_236.json",
-      "title": "Tree",
+      "title": "Trophy",
       "category": "objects",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_236_Nevit.svg",
       "tags": [
         "nevit_series"
       ]
+    },
+    {
+      "file": "nevit_235.json",
+      "title": "Vase",
+      "category": "objects",
+      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
+      "tags": []
     },
     {
       "file": "nevit_205.json",
@@ -1248,13 +1210,6 @@
       "tags": [
         "nevit_series"
       ]
-    },
-    {
-      "file": "nevit_229.json",
-      "title": "Viaduct",
-      "category": "objects",
-      "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
-      "tags": []
     },
     {
       "file": "nevit_014.json",
@@ -1325,16 +1280,6 @@
       "title": "Cheering",
       "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_233_Nevit.svg",
-      "tags": [
-        "nevit_series",
-        "disconnected"
-      ]
-    },
-    {
-      "file": "nevit_234.json",
-      "title": "Cheering",
-      "category": "people",
-      "source": "https://commons.wikimedia.org/wiki/File:Tangram_234_Nevit.svg",
       "tags": [
         "nevit_series",
         "disconnected"
