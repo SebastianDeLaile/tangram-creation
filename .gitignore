@@ -9,3 +9,9 @@ __pycache__/
 
 # Accidental dir from a `--help` typo capturing downloaded SVGs
 --help/
+
+# Agent git worktrees
+worktrees/
+
+# Downloaded source SVGs (regenerable via scripts/fetch_nevit.py)
+sources/
