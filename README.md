@@ -90,9 +90,27 @@ Polygon vertices aren't stored — they're derived from `anchor` + `orientation`
 from the open-source [TangramGenerator](https://github.com/Wiebke/TangramGenerator)
 project and converted to this exact format (see `scripts/import_tangram_generator.py`).
 `examples/index.json` is the manifest — every file is listed there with a
-category (`geometric`, `animals`, `objects`, `letters`, `abstract`) and source.
-The sourcing strategy, category taxonomy, and roadmap to 100+ figures are
-documented in [`docs/LIBRARY_PLAN.md`](docs/LIBRARY_PLAN.md).
+category (`geometric`, `animals`, `objects`, `letters`, `abstract`), a source,
+and an auto-computed `difficulty` (1–5 stars). The sourcing strategy, category
+taxonomy, and roadmap to 100+ figures are documented in
+[`docs/LIBRARY_PLAN.md`](docs/LIBRARY_PLAN.md).
+
+### Difficulty scoring
+
+`difficulty` is derived from the exact geometry model, not hand-labeled
+(`src/tangram/difficulty.py`): it combines silhouette convexity, compactness
+(fill ratio — the 7 tans always total area 576), silhouette perimeter, and
+orientation variety into a 1–5 rating. Regenerate the field for the whole
+library with:
+
+```bash
+PYTHONPATH=src python3 scripts/score_difficulty.py          # write index.json
+PYTHONPATH=src python3 scripts/score_difficulty.py --stats  # preview scores, no write
+```
+
+Then re-copy `examples/` → `web/public/examples/` so the web app sees it. The
+roadmap for print/PDF output that consumes this field is in
+[`docs/PRINT_PLAN.md`](docs/PRINT_PLAN.md).
 
 Every figure in `examples/` is required to pass `tangram.validate.validate()`
 (correct piece counts, no overlaps) — enforced by `tests/test_validate.py`.
@@ -134,7 +152,7 @@ npm run dev
 
 Then open the printed `localhost` URL. Same piece interactions as the Tkinter editor: click to select, drag to translate (grid-snapped), `R` to rotate, `F` to flip. Around that:
 
-- **Collapsible left sidebar** — shapes grouped by category (reads `examples/index.json` directly, so any figure added there shows up automatically), a theme picker, a color swatch per piece type, fill/outline toggle, corner rounding slider, and a "Download JSON" button (browsers can't write back to a local file directly, so this downloads the edited config instead of overwriting it in place). Collapse it with the `«`/`»` button at the top to give the canvases more room.
+- **Collapsible left sidebar** — shapes grouped by category (reads `examples/index.json` directly, so any figure added there shows up automatically), each row showing its auto-computed difficulty as a star rating, an **A–Z / Difficulty sort toggle** (difficulty sorts easiest-first as a flat list), a theme picker, a color swatch per piece type, fill/outline toggle, corner rounding slider, and "Download JSON" / "Print card" buttons. Collapse it with the `«`/`»` button at the top to give the canvases more room.
 - **Themes** (`web/src/themes.ts`) — grouped palettes that set all 5 piece colors at once; individual color pickers can still override on top.
   - *Classics*: `classic`, `pastel`, `mono`
   - *Designer*: `bauhaus` (De Stijl primaries), `nord` (Arctic Ice Studio's aurora accents), `dracula`, `solarized` (Ethan Schoonover), `memphis` (1980s Memphis Group), `terracotta` (muted earth tones)
@@ -142,6 +160,7 @@ Then open the printed `localhost` URL. Same piece interactions as the Tkinter ed
 - **Fill / Outline** (Solution panel only) — solid pieces, or bold 4px rounded-join strokes with no fill.
 - **Corner rounding** (Solution panel only) — a slider (0-100%) that rounds every piece's corners. Implemented as a quadratic-curve cut at each vertex (`web/src/roundedPath.ts::roundedPolygonPath`), capped at half the shorter adjacent edge so corners never overlap — at 100% a square becomes a circle and triangles become lens shapes, predictably. Pieces render as `<path>` elements (not `<polygon>`) to support this.
 - **Stable canvas size** — both panels are always drawn inside a fixed box matching A-series paper proportions (1 : √2, e.g. A5), landscape or portrait depending on whichever a given figure's own bounding box fits better. The box itself only ever takes one of those two fixed pixel sizes, and each shape is scaled to fit and centered inside it — so switching between figures of very different sizes doesn't make the page jump around. Comes at the cost of true relative scale between figures (a single piece and a sprawling 7-piece figure both get scaled to fill the same box).
+- **Print card** — the "Print card" button builds a print-only, two-page layout for the current figure and opens the browser print dialog (→ "Save as PDF"): page 1 is the solid-black silhouette plus title, category, and difficulty stars; page 2 is the solution, **mirrored horizontally** so a double-sided print (flip on long edge) lands the answer directly behind its own silhouette. A dashed border marks where to cut. This is the v0 print path (print CSS, no PDF library yet) — see [`docs/PRINT_PLAN.md`](docs/PRINT_PLAN.md) for the full roadmap.
 
 This currently runs locally only — no public deployment yet.
 

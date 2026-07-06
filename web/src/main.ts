@@ -47,6 +47,7 @@ const state = {
   cornerRounding: 0, // 0 (sharp) to 1 (max rounding, capped per-corner)
   shapeCategory: "all",
   shapeQuery: "",
+  sortBy: "name" as "name" | "difficulty",
 };
 
 let dragStartScreen: [number, number] | null = null;
@@ -64,6 +65,10 @@ app.innerHTML = `
           <h2>Shapes</h2>
           <input type="search" id="shape-search" placeholder="Search…" autocomplete="off" />
           <div id="category-pills"></div>
+          <div class="toggle-group" id="sort-toggle">
+            <button data-value="name" class="active">A–Z</button>
+            <button data-value="difficulty">Difficulty</button>
+          </div>
           <div id="shape-list" class="button-list"></div>
         </section>
         <section>
@@ -103,6 +108,7 @@ app.innerHTML = `
         <section>
           <h2>File</h2>
           <button id="download-btn">Download JSON</button>
+          <button id="print-btn" title="Print a double-sided puzzle card: silhouette on the front, solution on the back">Print card</button>
         </section>
       </div>
     </aside>
@@ -133,13 +139,22 @@ const shapeListEl = document.getElementById("shape-list")!;
 const colorListEl = document.getElementById("color-list")!;
 const themeSelect = document.getElementById("theme-select") as HTMLSelectElement;
 const fillToggle = document.getElementById("fill-toggle")!;
+const sortToggle = document.getElementById("sort-toggle")!;
 const silhouetteColorInput = document.getElementById("silhouette-color") as HTMLInputElement;
 const roundingSlider = document.getElementById("rounding-slider") as HTMLInputElement;
 const roundingValue = document.getElementById("rounding-value")!;
 const sourceLinkEl = document.getElementById("source-link")!;
 const downloadBtn = document.getElementById("download-btn")!;
+const printBtn = document.getElementById("print-btn")!;
 const sidebar = document.getElementById("sidebar")!;
 const sidebarToggle = document.getElementById("sidebar-toggle")!;
+
+// A hidden container that only becomes visible under @media print. We fill it
+// on demand (printCard) with a two-page card -- silhouette front, mirrored
+// solution back -- so a duplex print produces one puzzle card.
+const printRoot = document.createElement("div");
+printRoot.id = "print-root";
+document.body.appendChild(printRoot);
 
 function buildCategoryPills(): void {
   const cats = [...new Set(state.figures.map((f) => f.category))].sort();
@@ -165,6 +180,17 @@ function buildCategoryPills(): void {
 // among the other geometric figures.
 const SQUARE_FILE = "square.json";
 
+// Compact 5-star rating shown on each shape row (filled = difficulty).
+function shapeStars(difficulty: number | undefined): string {
+  if (!difficulty) return "";
+  const stars = "★".repeat(difficulty) + "☆".repeat(5 - difficulty);
+  return `<span class="shape-stars" title="difficulty ${difficulty} of 5">${stars}</span>`;
+}
+
+function byName(a: IndexEntry, b: IndexEntry): number {
+  return (a.title ?? labelFor(a.file)).localeCompare(b.title ?? labelFor(b.file));
+}
+
 function buildShapeList(): void {
   const q = state.shapeQuery.toLowerCase().trim();
   let filtered = state.figures;
@@ -181,7 +207,9 @@ function buildShapeList(): void {
       </div>`
     : "";
 
-  const showHeaders = state.shapeCategory === "all" && !q;
+  // Category headers only make sense for the default A-Z browse; difficulty
+  // sort and search both flatten the list.
+  const showHeaders = state.shapeCategory === "all" && !q && state.sortBy === "name";
 
   // Deduplicate titles within the visible set
   const titleCount = new Map<string, number>();
@@ -196,6 +224,10 @@ function buildShapeList(): void {
     titleSeen.set(base, n + 1);
     return titleCount.get(base)! > 1 ? `${base} ${n + 1}` : base;
   }
+  function entryButton(e: IndexEntry): string {
+    const active = e.file === state.exampleFile ? " active" : "";
+    return `<button data-file="${e.file}" class="shape-row${active}"><span class="shape-name">${entryLabel(e)}</span>${shapeStars(e.difficulty)}</button>`;
+  }
 
   if (showHeaders) {
     const byCategory = new Map<string, IndexEntry[]>();
@@ -207,23 +239,22 @@ function buildShapeList(): void {
     shapeListEl.innerHTML = featuredHtml + [...byCategory.entries()]
       .sort(([a], [b]) => a.localeCompare(b))
       .map(([cat, entries]) => {
-        const sorted = [...entries].sort((a, b) =>
-          (a.title ?? labelFor(a.file)).localeCompare(b.title ?? labelFor(b.file)),
-        );
+        const sorted = [...entries].sort(byName);
         return `<div class="shape-category">${capitalize(cat)}</div>
-          ${sorted.map((e) => `<button data-file="${e.file}" class="${e.file === state.exampleFile ? "active" : ""}">${entryLabel(e)}</button>`).join("")}`;
+          ${sorted.map(entryButton).join("")}`;
       })
       .join("");
   } else {
+    // Difficulty sort: easiest first, ties broken by name.
     const sorted = [...filtered].sort((a, b) =>
-      (a.title ?? labelFor(a.file)).localeCompare(b.title ?? labelFor(b.file)),
+      state.sortBy === "difficulty"
+        ? (a.difficulty ?? 0) - (b.difficulty ?? 0) || byName(a, b)
+        : byName(a, b),
     );
     if (sorted.length === 0 && !featuredHtml) {
       shapeListEl.innerHTML = `<div class="shape-empty">No shapes found</div>`;
     } else {
-      shapeListEl.innerHTML = featuredHtml + sorted
-        .map((e) => `<button data-file="${e.file}" class="${e.file === state.exampleFile ? "active" : ""}">${entryLabel(e)}</button>`)
-        .join("");
+      shapeListEl.innerHTML = featuredHtml + sorted.map(entryButton).join("");
     }
   }
 
@@ -395,6 +426,77 @@ function downloadJson(): void {
   URL.revokeObjectURL(url);
 }
 
+function currentEntry(): IndexEntry | undefined {
+  return state.figures.find((f) => f.file === state.exampleFile);
+}
+
+function starsMarkup(difficulty: number | undefined): string {
+  if (!difficulty) return "";
+  const filled = "★".repeat(difficulty);
+  const empty = "☆".repeat(5 - difficulty);
+  return `<span class="card-stars" aria-label="difficulty ${difficulty} of 5">${filled}${empty}</span>`;
+}
+
+// Clone one of the live panel SVGs into a self-scaling copy: the on-screen SVGs
+// are drawn at fixed pixel sizes with no viewBox, so we add a viewBox matching
+// those dimensions and let width/height:100% (from print CSS) fit it to the card.
+function cloneScalableSvg(source: SVGSVGElement, forceBlack: boolean): SVGSVGElement {
+  const clone = source.cloneNode(true) as SVGSVGElement;
+  const w = source.getAttribute("width") ?? "0";
+  const h = source.getAttribute("height") ?? "0";
+  clone.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  clone.setAttribute("preserveAspectRatio", "xMidYMid meet");
+  clone.removeAttribute("width");
+  clone.removeAttribute("height");
+  if (forceBlack) {
+    // Silhouette prints as solid black on white -- cheapest, highest contrast.
+    clone.querySelectorAll("path").forEach((p) => {
+      p.setAttribute("fill", "#000");
+      p.setAttribute("stroke", "#000");
+    });
+  }
+  return clone;
+}
+
+// Build a print-only, two-page puzzle card for the current figure. Page 1 is the
+// silhouette + label (the puzzle to solve); page 2 is the solution, mirrored
+// horizontally so that a duplex print (flip on long edge) lands the answer
+// directly behind its own silhouette.
+function printCard(): void {
+  if (!state.tangram) return;
+  const entry = currentEntry();
+  const title = entry?.title ?? labelFor(state.exampleFile);
+  const category = entry ? capitalize(entry.category) : "";
+  const stars = starsMarkup(entry?.difficulty);
+
+  const front = document.createElement("section");
+  front.className = "print-page print-front";
+  front.innerHTML = `
+    <div class="card">
+      <div class="card-art"></div>
+      <div class="card-caption">
+        <span class="card-title">${title}</span>
+        <span class="card-meta">${category}${category && stars ? " · " : ""}${stars}</span>
+      </div>
+    </div>`;
+  front.querySelector(".card-art")!.appendChild(cloneScalableSvg(silhouetteSvg, true));
+
+  const back = document.createElement("section");
+  back.className = "print-page print-back";
+  back.innerHTML = `
+    <div class="card">
+      <div class="card-art card-art-mirrored"></div>
+      <div class="card-caption card-caption-back">
+        <span class="card-title">${title}</span>
+        <span class="card-meta">Solution</span>
+      </div>
+    </div>`;
+  back.querySelector(".card-art")!.appendChild(cloneScalableSvg(solutionSvg, false));
+
+  printRoot.replaceChildren(front, back);
+  window.print();
+}
+
 async function loadExample(file: string): Promise<void> {
   state.tangram = await loadTangram(`/examples/${file}`);
   state.exampleFile = file;
@@ -425,6 +527,14 @@ fillToggle.addEventListener("click", (e) => {
   render();
 });
 
+sortToggle.addEventListener("click", (e) => {
+  const btn = (e.target as HTMLElement).closest("button");
+  if (!btn) return;
+  state.sortBy = btn.dataset.value as "name" | "difficulty";
+  setActiveToggle(sortToggle, state.sortBy);
+  buildShapeList();
+});
+
 silhouetteColorInput.addEventListener("input", () => {
   state.silhouetteColor = silhouetteColorInput.value;
   render();
@@ -449,6 +559,7 @@ sidebarToggle.addEventListener("click", () => {
 });
 
 downloadBtn.addEventListener("click", downloadJson);
+printBtn.addEventListener("click", printCard);
 solutionSvg.addEventListener("pointermove", onPointerMove);
 solutionSvg.addEventListener("pointerup", onPointerUp);
 window.addEventListener("keydown", onKeyDown);

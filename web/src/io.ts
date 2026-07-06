@@ -88,6 +88,7 @@ export interface IndexEntry {
   category: string;
   source: string;
   tags: string[];
+  difficulty?: number; // 1-5 stars, auto-scored (see scripts/score_difficulty.py)
 }
 
 export async function loadIndex(url: string): Promise<IndexEntry[]> {
