@@ -335,15 +335,31 @@ select {
 }
 
 #download-btn,
-#print-btn {
+#pdf-btn,
+#pdf-all-btn {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
   background: #f4f4f4;
   border: 1px solid #ddd;
   border-radius: 4px;
   cursor: pointer;
+  margin-bottom: 6px;
 }
 
-#print-btn {
-  margin-top: 6px;
+#pdf-btn:disabled,
+#pdf-all-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.pdf-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: #666;
+  cursor: pointer;
 }
 
 .slider-row {
@@ -370,101 +386,5 @@ select {
   font-size: 0.75rem;
 }
 
-/* ---- Print: double-sided puzzle card ------------------------------------ *
- * #print-root is hidden on screen and filled on demand (main.ts::printCard).
- * Under @media print we hide the editor UI and show a two-page card:
- * page 1 = silhouette + label, page 2 = mirrored solution. Printed duplex
- * (flip on long edge) the solution lands behind its own silhouette. Both
- * pages size and center the card identically so the two faces register. */
-#print-root {
-  display: none;
-}
-
-@media print {
-  @page {
-    size: A4;
-    margin: 12mm;
-  }
-
-  #app {
-    display: none !important;
-  }
-
-  #print-root {
-    display: block;
-  }
-
-  .print-page {
-    /* Fill the printable area and center the card so front/back register. */
-    height: 100%;
-    min-height: 250mm;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    break-inside: avoid;
-  }
-
-  .print-front {
-    break-after: page;
-  }
-
-  .card {
-    /* Fixed size on both faces -> the silhouette and solution line up when
-       the sheet is flipped and the card is cut out along the dashed border. */
-    box-sizing: border-box;
-    width: 150mm;
-    padding: 8mm;
-    border: 1px dashed #999; /* cut line */
-    display: flex;
-    flex-direction: column;
-    gap: 6mm;
-  }
-
-  .card-art {
-    width: 100%;
-    height: 150mm;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .card-art svg {
-    width: 100%;
-    height: 100%;
-  }
-
-  /* Mirror the solution so double-sided printing aligns it under the front. */
-  .card-art-mirrored svg {
-    transform: scaleX(-1);
-  }
-
-  .card-caption {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 8mm;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
-
-  .card-caption-back {
-    /* Keep the back caption readable (not mirrored) and right-aligned so it
-       sits under the flipped art tidily. */
-    flex-direction: row-reverse;
-  }
-
-  .card-title {
-    font-size: 20pt;
-    font-weight: 600;
-    color: #111;
-  }
-
-  .card-meta {
-    font-size: 12pt;
-    color: #555;
-  }
-
-  .card-stars {
-    letter-spacing: 1px;
-    color: #111;
-  }
-}
+/* Print-ready cards are now generated as a downloadable vector PDF
+ * (web/src/pdf.ts) rather than via an @media print stylesheet. */

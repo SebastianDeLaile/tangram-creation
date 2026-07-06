@@ -56,19 +56,25 @@ layout the browser turns into a PDF via "Save as PDF" in the print dialog.
 Acceptance for v0: open a figure → Print → Save as PDF → the PDF has a silhouette
 face and a mirrored solution face that line up when printed double-sided.
 
-### v1: Real client-side PDF library
+### v1: Real client-side PDF library  ✅ implemented
 
-Once the layout is proven, replace `window.print()` with programmatic PDF
-generation for pixel control, reliable duplex, and multi-card sheets:
+`web/src/pdf.ts` replaces `window.print()` with programmatic PDF via `jsPDF` +
+`svg2pdf.js` (lazy-loaded on click so it stays out of the initial bundle):
 
-- Library options: `jsPDF` + `svg2pdf.js`, or `pdf-lib`. Feed the existing
-  per-panel SVG straight in.
-- **True A-series page sizes** with margins/bleed.
-- **Crop marks + cut border** drawn into the PDF.
-- **Back-side mirroring** handled in the transform.
-- **Print calibration square** ("this square should measure X cm") so users
-  verify printer scale before cutting.
-- **Multi-select tray:** pick many figures → one multi-page, N-up PDF.
+- **A5 pages**, each auto-oriented **portrait or landscape** to fit the tangram
+  — sized for lamination and ring-binder storage rather than A4 cards.
+- **Back-side mirroring** in the SVG transform for duplex registration.
+- **Optional binding gutter** (`gutter` toggle): a blank hole-punch strip on the
+  left of the front and, mirrored, the right of the back, so punched holes align
+  through the flipped sheet. Off by default-able via the sidebar checkbox.
+- **Card outline + corner crop marks** for trimming/laminating.
+- **Difficulty dots** drawn as jsPDF vector circles (PDF core fonts lack ★).
+- **Batch export:** "Download all shown" emits every currently-listed figure as
+  duplex cards in one file (front/back interleaved for auto-duplex printing).
+
+Not yet done from the original v1 wish-list: a dedicated print-scale calibration
+square (crop marks + known A5 size cover scale verification for now) and a
+multi-**select** tray (batch currently follows the sidebar filter instead).
 
 ### v2: Themed packs & worksheets
 
@@ -124,16 +130,16 @@ and spot-checked against known easy/hard figures.
 ## Suggested order of work
 
 1. ~~**Difficulty scorer**~~ (done — unblocks card + sidebar labels).
-2. **Print-CSS v0** (web) — silhouette front / mirrored solution back, 4-up A4,
-   cut marks, Print button.
-3. **Sidebar difficulty sort/filter** (small win, reuses the new field).
-4. **PDF library v1** (web) — real duplex, multi-select, calibration square.
+2. ~~**Print-CSS v0**~~ (superseded by the vector PDF in step 4).
+3. ~~**Sidebar difficulty sort/filter**~~ (done — star ratings + A–Z/Difficulty toggle).
+4. ~~**PDF library v1**~~ (done — A5 duplex cards, auto orientation, optional gutter).
 5. **Python booklet** + optional CI artifact.
 6. **Packs, worksheet mode, QR codes** (v2 polish).
 
 ## Open questions
 
-- Card size preference (A6 4-up vs A5 2-up) and default page size (A4 assumed).
+- ~~Card size / orientation~~ — resolved: **A5**, auto portrait/landscape per
+  tangram, optional binding gutter for hole-punching.
 - Whether the booklet should be a product (cover art, attribution page) or an
   internal artifact.
 - Difficulty weighting: which metrics matter most, calibrated against a few

@@ -5,6 +5,7 @@ import { loadIndex, loadTangram, tangramToJson } from "./io";
 import type { IndexEntry } from "./io";
 import { PiecePlacement, Tangram } from "./model";
 import { PieceType } from "./pieces";
+import type { Card, CardRenderOptions } from "./pdf";
 import { roundedPolygonPath } from "./roundedPath";
 import { DEFAULT_SILHOUETTE_COLOR, DEFAULT_THEME, PIECE_LABELS, THEME_GROUPS, THEMES } from "./themes";
 import type { Theme } from "./themes";
@@ -108,7 +109,9 @@ app.innerHTML = `
         <section>
           <h2>File</h2>
           <button id="download-btn">Download JSON</button>
-          <button id="print-btn" title="Print a double-sided puzzle card: silhouette on the front, solution on the back">Print card</button>
+          <button id="pdf-btn" title="Download a double-sided A5 puzzle card (silhouette front, solution back) ready to print, laminate and hole-punch">Download card PDF</button>
+          <button id="pdf-all-btn" title="Download every currently-listed shape as duplex A5 cards in one PDF">Download all shown (PDF)</button>
+          <label class="pdf-option"><input type="checkbox" id="gutter-toggle" checked /> Binding gutter (hole punch)</label>
         </section>
       </div>
     </aside>
@@ -145,16 +148,11 @@ const roundingSlider = document.getElementById("rounding-slider") as HTMLInputEl
 const roundingValue = document.getElementById("rounding-value")!;
 const sourceLinkEl = document.getElementById("source-link")!;
 const downloadBtn = document.getElementById("download-btn")!;
-const printBtn = document.getElementById("print-btn")!;
+const pdfBtn = document.getElementById("pdf-btn") as HTMLButtonElement;
+const pdfAllBtn = document.getElementById("pdf-all-btn") as HTMLButtonElement;
+const gutterToggle = document.getElementById("gutter-toggle") as HTMLInputElement;
 const sidebar = document.getElementById("sidebar")!;
 const sidebarToggle = document.getElementById("sidebar-toggle")!;
-
-// A hidden container that only becomes visible under @media print. We fill it
-// on demand (printCard) with a two-page card -- silhouette front, mirrored
-// solution back -- so a duplex print produces one puzzle card.
-const printRoot = document.createElement("div");
-printRoot.id = "print-root";
-document.body.appendChild(printRoot);
 
 function buildCategoryPills(): void {
   const cats = [...new Set(state.figures.map((f) => f.category))].sort();
@@ -430,71 +428,63 @@ function currentEntry(): IndexEntry | undefined {
   return state.figures.find((f) => f.file === state.exampleFile);
 }
 
-function starsMarkup(difficulty: number | undefined): string {
-  if (!difficulty) return "";
-  const filled = "★".repeat(difficulty);
-  const empty = "☆".repeat(5 - difficulty);
-  return `<span class="card-stars" aria-label="difficulty ${difficulty} of 5">${filled}${empty}</span>`;
+function pdfOptions(): CardRenderOptions {
+  return {
+    pieceColors: state.pieceColors,
+    cornerRounding: state.cornerRounding,
+    fillMode: state.fillMode,
+    gutter: gutterToggle.checked,
+  };
 }
 
-// Clone one of the live panel SVGs into a self-scaling copy: the on-screen SVGs
-// are drawn at fixed pixel sizes with no viewBox, so we add a viewBox matching
-// those dimensions and let width/height:100% (from print CSS) fit it to the card.
-function cloneScalableSvg(source: SVGSVGElement, forceBlack: boolean): SVGSVGElement {
-  const clone = source.cloneNode(true) as SVGSVGElement;
-  const w = source.getAttribute("width") ?? "0";
-  const h = source.getAttribute("height") ?? "0";
-  clone.setAttribute("viewBox", `0 0 ${w} ${h}`);
-  clone.setAttribute("preserveAspectRatio", "xMidYMid meet");
-  clone.removeAttribute("width");
-  clone.removeAttribute("height");
-  if (forceBlack) {
-    // Silhouette prints as solid black on white -- cheapest, highest contrast.
-    clone.querySelectorAll("path").forEach((p) => {
-      p.setAttribute("fill", "#000");
-      p.setAttribute("stroke", "#000");
-    });
-  }
-  return clone;
+// The figures currently listed in the sidebar (same category/search filter and
+// sort order), used for the "download all shown" batch export.
+function filteredFigures(): IndexEntry[] {
+  const q = state.shapeQuery.toLowerCase().trim();
+  let f = state.figures;
+  if (state.shapeCategory !== "all") f = f.filter((e) => e.category === state.shapeCategory);
+  if (q) f = f.filter((e) => (e.title ?? labelFor(e.file)).toLowerCase().includes(q));
+  return [...f].sort((a, b) =>
+    state.sortBy === "difficulty" ? (a.difficulty ?? 0) - (b.difficulty ?? 0) || byName(a, b) : byName(a, b),
+  );
 }
 
-// Build a print-only, two-page puzzle card for the current figure. Page 1 is the
-// silhouette + label (the puzzle to solve); page 2 is the solution, mirrored
-// horizontally so that a duplex print (flip on long edge) lands the answer
-// directly behind its own silhouette.
-function printCard(): void {
+function cardFromEntry(entry: IndexEntry, tangram: Tangram): Card {
+  return {
+    tangram,
+    title: entry.title ?? labelFor(entry.file),
+    category: entry.category,
+    difficulty: entry.difficulty,
+  };
+}
+
+async function downloadCurrentCardPdf(): Promise<void> {
   if (!state.tangram) return;
   const entry = currentEntry();
-  const title = entry?.title ?? labelFor(state.exampleFile);
-  const category = entry ? capitalize(entry.category) : "";
-  const stars = starsMarkup(entry?.difficulty);
+  const card: Card = entry
+    ? cardFromEntry(entry, state.tangram)
+    : { tangram: state.tangram, title: labelFor(state.exampleFile), category: "" };
+  // jsPDF is heavy, so it's loaded on demand rather than in the initial bundle.
+  const { downloadCardsPdf } = await import("./pdf");
+  await downloadCardsPdf([card], pdfOptions(), `${state.tangram.name}-card.pdf`);
+}
 
-  const front = document.createElement("section");
-  front.className = "print-page print-front";
-  front.innerHTML = `
-    <div class="card">
-      <div class="card-art"></div>
-      <div class="card-caption">
-        <span class="card-title">${title}</span>
-        <span class="card-meta">${category}${category && stars ? " · " : ""}${stars}</span>
-      </div>
-    </div>`;
-  front.querySelector(".card-art")!.appendChild(cloneScalableSvg(silhouetteSvg, true));
-
-  const back = document.createElement("section");
-  back.className = "print-page print-back";
-  back.innerHTML = `
-    <div class="card">
-      <div class="card-art card-art-mirrored"></div>
-      <div class="card-caption card-caption-back">
-        <span class="card-title">${title}</span>
-        <span class="card-meta">Solution</span>
-      </div>
-    </div>`;
-  back.querySelector(".card-art")!.appendChild(cloneScalableSvg(solutionSvg, false));
-
-  printRoot.replaceChildren(front, back);
-  window.print();
+async function downloadAllShownPdf(): Promise<void> {
+  const entries = filteredFigures();
+  if (entries.length === 0) return;
+  const original = pdfAllBtn.textContent;
+  pdfAllBtn.disabled = true;
+  pdfAllBtn.textContent = "Building…";
+  try {
+    const { downloadCardsPdf } = await import("./pdf");
+    const cards = await Promise.all(
+      entries.map(async (e) => cardFromEntry(e, await loadTangram(`/examples/${e.file}`))),
+    );
+    await downloadCardsPdf(cards, pdfOptions(), "tangram-cards.pdf");
+  } finally {
+    pdfAllBtn.disabled = false;
+    pdfAllBtn.textContent = original;
+  }
 }
 
 async function loadExample(file: string): Promise<void> {
@@ -559,7 +549,8 @@ sidebarToggle.addEventListener("click", () => {
 });
 
 downloadBtn.addEventListener("click", downloadJson);
-printBtn.addEventListener("click", printCard);
+pdfBtn.addEventListener("click", downloadCurrentCardPdf);
+pdfAllBtn.addEventListener("click", downloadAllShownPdf);
 solutionSvg.addEventListener("pointermove", onPointerMove);
 solutionSvg.addEventListener("pointerup", onPointerUp);
 window.addEventListener("keydown", onKeyDown);
