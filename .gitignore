@@ -15,3 +15,6 @@ worktrees/
 
 # Downloaded source SVGs (regenerable via scripts/fetch_nevit.py)
 sources/
+
+# macOS
+.DS_Store

@@ -1,0 +1,421 @@
+{
+  "note": "Figures set aside from the main library: pieces do not tile edge-to-edge (real whitespace gaps). 'gap' is the minimum distance between disconnected parts in the 24-unit coordinate system; 'quality' flags substantial separation (>=0.9) vs small hairline gaps. Restore by moving the file back to examples/ and re-adding its entry to examples/index.json.",
+  "figures": [
+    {
+      "file": "nevit_104.json",
+      "title": "Goblet",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_104_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 1,
+      "gap": 17.74,
+      "parts": 2,
+      "quality": "substantial_separation"
+    },
+    {
+      "file": "nevit_115.json",
+      "title": "Torch",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_115_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 14.289,
+      "parts": 2,
+      "quality": "substantial_separation"
+    },
+    {
+      "file": "nevit_219.json",
+      "title": "Standing",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_219_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 3,
+      "gap": 8.476,
+      "parts": 2,
+      "quality": "substantial_separation"
+    },
+    {
+      "file": "nevit_233.json",
+      "title": "Cheering",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_233_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 1,
+      "gap": 3.213,
+      "parts": 3,
+      "quality": "substantial_separation"
+    },
+    {
+      "file": "nevit_108.json",
+      "title": "Standing",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_108_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 3,
+      "gap": 2.205,
+      "parts": 2,
+      "quality": "substantial_separation"
+    },
+    {
+      "file": "nevit_030.json",
+      "title": "Standing",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_30_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 0.971,
+      "parts": 2,
+      "quality": "substantial_separation"
+    },
+    {
+      "file": "nevit_160.json",
+      "title": "Dog",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_160_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 1,
+      "gap": 0.426,
+      "parts": 3,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_034.json",
+      "title": "Bird",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_34_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 0.397,
+      "parts": 3,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_195.json",
+      "title": "Running",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_195_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 0.397,
+      "parts": 3,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_154.json",
+      "title": "Dog",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_154_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 0.302,
+      "parts": 3,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_192.json",
+      "title": "Walking",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_192_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 1,
+      "gap": 0.281,
+      "parts": 3,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_173.json",
+      "title": "Bowing",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_173_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 0.118,
+      "parts": 4,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_033.json",
+      "title": "Bird",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_33_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 1,
+      "gap": 0.104,
+      "parts": 6,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_084.json",
+      "title": "Fox",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_84_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 0.088,
+      "parts": 3,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_209.json",
+      "title": "Standing",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_209_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 0.062,
+      "parts": 5,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_211.json",
+      "title": "Bird",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_211_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 3,
+      "gap": 0.042,
+      "parts": 5,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_009.json",
+      "title": "Marching",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_9_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 0.029,
+      "parts": 2,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_061.json",
+      "title": "Bird",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_61_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 0.021,
+      "parts": 4,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_058.json",
+      "title": "Dog",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_58_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 3,
+      "gap": 0.021,
+      "parts": 3,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_048.json",
+      "title": "Duck",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_48_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 0.021,
+      "parts": 3,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_040.json",
+      "title": "Eagle",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_40_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 4,
+      "gap": 0.021,
+      "parts": 5,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_088.json",
+      "title": "Fish",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_88_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 1,
+      "gap": 0.021,
+      "parts": 4,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_062.json",
+      "title": "Fox",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_62_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 0.021,
+      "parts": 4,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_083.json",
+      "title": "Fox",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_83_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 0.021,
+      "parts": 4,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_148.json",
+      "title": "Giraffe",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_148_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 1,
+      "gap": 0.021,
+      "parts": 2,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_245.json",
+      "title": "Moose",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_245_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 3,
+      "gap": 0.021,
+      "parts": 4,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_042.json",
+      "title": "Rooster",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_42_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 0.021,
+      "parts": 3,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_021.json",
+      "title": "Crouching",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_21_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 1,
+      "gap": 0.021,
+      "parts": 6,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_216.json",
+      "title": "Sitting",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_216_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 3,
+      "gap": 0.021,
+      "parts": 5,
+      "quality": "small_gap"
+    },
+    {
+      "file": "abstract_2.json",
+      "title": "Bulldozer",
+      "category": "objects",
+      "source": "TangramGenerator",
+      "tags": [],
+      "difficulty": 4,
+      "quality": "duplicate",
+      "duplicate_of": "wiebke_interesting1.json"
+    }
+  ]
+}
