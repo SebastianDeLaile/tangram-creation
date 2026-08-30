@@ -49,6 +49,9 @@ const state = {
   shapeCategory: "all",
   shapeQuery: "",
   sortBy: "name" as "name" | "difficulty",
+  // Titles with more than one figure (e.g. "Cat") collapse into a single
+  // group in the sidebar; this tracks which ones the user has expanded.
+  expandedShapeGroups: new Set<string>(),
 };
 
 let dragStartScreen: [number, number] | null = null;
@@ -209,22 +212,68 @@ function buildShapeList(): void {
   // sort and search both flatten the list.
   const showHeaders = state.shapeCategory === "all" && !q && state.sortBy === "name";
 
-  // Deduplicate titles within the visible set
-  const titleCount = new Map<string, number>();
-  for (const e of filtered) {
-    const t = e.title ?? labelFor(e.file);
-    titleCount.set(t, (titleCount.get(t) ?? 0) + 1);
-  }
-  const titleSeen = new Map<string, number>();
-  function entryLabel(e: IndexEntry): string {
-    const base = e.title ?? labelFor(e.file);
-    const n = titleSeen.get(base) ?? 0;
-    titleSeen.set(base, n + 1);
-    return titleCount.get(base)! > 1 ? `${base} ${n + 1}` : base;
-  }
-  function entryButton(e: IndexEntry): string {
+  // Grouping same-titled figures (e.g. eight "Cat" variants) under one
+  // collapsible row only makes sense alongside alphabetical name order --
+  // difficulty sort and search both need every matching figure visible flat.
+  const groupingEnabled = !q && state.sortBy === "name";
+
+  function entryButton(e: IndexEntry, label: string, indented = false): string {
     const active = e.file === state.exampleFile ? " active" : "";
-    return `<button data-file="${e.file}" class="shape-row${active}"><span class="shape-name">${entryLabel(e)}</span>${shapeStars(e.difficulty)}</button>`;
+    const cls = indented ? "shape-row shape-row-child" : "shape-row";
+    return `<button data-file="${e.file}" class="${cls}${active}"><span class="shape-name">${label}</span>${shapeStars(e.difficulty)}</button>`;
+  }
+
+  // Flat rendering (search / difficulty sort): every entry visible, with
+  // "Title N" disambiguation when a title repeats in the visible set.
+  function renderFlat(entries: IndexEntry[]): string {
+    const titleCount = new Map<string, number>();
+    for (const e of entries) {
+      const t = e.title ?? labelFor(e.file);
+      titleCount.set(t, (titleCount.get(t) ?? 0) + 1);
+    }
+    const titleSeen = new Map<string, number>();
+    return entries
+      .map((e) => {
+        const base = e.title ?? labelFor(e.file);
+        const n = titleSeen.get(base) ?? 0;
+        titleSeen.set(base, n + 1);
+        const label = titleCount.get(base)! > 1 ? `${base} ${n + 1}` : base;
+        return entryButton(e, label);
+      })
+      .join("");
+  }
+
+  // Grouped rendering: consecutive same-titled entries (the list is already
+  // name-sorted, so they're adjacent) collapse into one header row that
+  // expands to show each variant. A group auto-expands while it contains the
+  // active shape, via loadExample() adding its title to expandedShapeGroups.
+  function renderGrouped(entries: IndexEntry[]): string {
+    const groups: { title: string; items: IndexEntry[] }[] = [];
+    for (const e of entries) {
+      const t = e.title ?? labelFor(e.file);
+      const last = groups[groups.length - 1];
+      if (last && last.title === t) last.items.push(e);
+      else groups.push({ title: t, items: [e] });
+    }
+    return groups
+      .map((g) => {
+        if (g.items.length === 1) return entryButton(g.items[0], g.title);
+        const expanded = state.expandedShapeGroups.has(g.title);
+        const hasActive = g.items.some((e) => e.file === state.exampleFile);
+        const header = `<button type="button" class="shape-group-header${hasActive ? " active" : ""}" data-group="${g.title}">
+          <span class="shape-name">${expanded ? "▾" : "▸"} ${g.title}</span>
+          <span class="shape-group-count">${g.items.length}</span>
+        </button>`;
+        const children = expanded
+          ? g.items.map((e, i) => entryButton(e, `${g.title} ${i + 1}`, true)).join("")
+          : "";
+        return header + children;
+      })
+      .join("");
+  }
+
+  function renderEntries(entries: IndexEntry[]): string {
+    return groupingEnabled ? renderGrouped(entries) : renderFlat(entries);
   }
 
   if (showHeaders) {
@@ -239,7 +288,7 @@ function buildShapeList(): void {
       .map(([cat, entries]) => {
         const sorted = [...entries].sort(byName);
         return `<div class="shape-category">${capitalize(cat)}</div>
-          ${sorted.map(entryButton).join("")}`;
+          ${renderEntries(sorted)}`;
       })
       .join("");
   } else {
@@ -252,12 +301,20 @@ function buildShapeList(): void {
     if (sorted.length === 0 && !featuredHtml) {
       shapeListEl.innerHTML = `<div class="shape-empty">No shapes found</div>`;
     } else {
-      shapeListEl.innerHTML = featuredHtml + sorted.map(entryButton).join("");
+      shapeListEl.innerHTML = featuredHtml + renderEntries(sorted);
     }
   }
 
   shapeListEl.querySelectorAll<HTMLButtonElement>("button[data-file]").forEach((btn) => {
     btn.addEventListener("click", () => loadExample(btn.dataset.file!));
+  });
+  shapeListEl.querySelectorAll<HTMLButtonElement>("button[data-group]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const title = btn.dataset.group!;
+      if (state.expandedShapeGroups.has(title)) state.expandedShapeGroups.delete(title);
+      else state.expandedShapeGroups.add(title);
+      buildShapeList();
+    });
   });
 }
 
@@ -491,6 +548,8 @@ async function loadExample(file: string): Promise<void> {
   state.tangram = await loadTangram(`/examples/${file}`);
   state.exampleFile = file;
   state.selectedIndex = null;
+  const entry = state.figures.find((f) => f.file === file);
+  if (entry) state.expandedShapeGroups.add(entry.title ?? labelFor(entry.file));
   buildShapeList();
   render();
   const src = state.tangram.source;

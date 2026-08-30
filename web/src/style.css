@@ -276,6 +276,24 @@ select {
   color: #c8963e;
 }
 
+.shape-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.shape-group-count {
+  flex-shrink: 0;
+  font-size: 0.68rem;
+  color: #aaa;
+}
+
+.shape-row-child {
+  padding-left: 18px;
+}
+
 .color-row {
   display: flex;
   align-items: center;
