@@ -152,8 +152,8 @@
     },
     {
       "file": "nevit_102.json",
-      "title": "Bird",
-      "category": "animals",
+      "title": "Goblet",
+      "category": "objects",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_102_Nevit.svg",
       "tags": [
         "nevit_series"
@@ -182,8 +182,8 @@
     },
     {
       "file": "nevit_179.json",
-      "title": "Bird",
-      "category": "animals",
+      "title": "Praying",
+      "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_179_Nevit.svg",
       "tags": [
         "nevit_series"
@@ -220,7 +220,7 @@
     },
     {
       "file": "nevit_080.json",
-      "title": "Cat",
+      "title": "Bird",
       "category": "animals",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_80_Nevit.svg",
       "tags": [
