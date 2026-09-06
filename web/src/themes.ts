@@ -35,8 +35,8 @@ export const THEME_GROUPS: ThemeGroup[] = [
       // Classic's red/yellow/blue/green/purple roles, in Dulux Australia tones:
       // Persimmon, Red Ochre, Danube, Silent Sage, Purple Wildflower.
       classic_premium: theme("#c97168", "#bc8743", "#497690", "#729986", "#383e6c"),
-      // Dulux Australia: Symphony Red, Dandelion Yellow, Wing Commander, Picturebook Green, Champion.
-      dulux_classic: theme("#aa3030", "#fcd33b", "#006bac", "#007f48", "#7a5986"),
+      // Dulux Australia: Symphony Red, Dandelion Yellow, Water Raceway, Picturebook Green, Champion.
+      dulux_classic: theme("#aa3030", "#fcd33b", "#0089c7", "#007f48", "#7a5986"),
     },
   },
   {
