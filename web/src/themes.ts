@@ -58,8 +58,8 @@ export const THEME_GROUPS: ThemeGroup[] = [
       japanese_stationery: theme("#f5d5ba", "#729986", "#c97168", "#bc8743", "#497690"),
       // Dulux Australia: Deep Aqua, Terracotta Chip, Unbleached Calico, Red Ochre, Banksia Leaf.
       mid_century: theme("#274b50", "#c4795d", "#f5d5ba", "#bc8743", "#4b5439"),
-      // Dulux Australia: Splendid Coral, Softsun, Crystal Blue, Blade Green, Bright Zenith.
-      adult_rainbow: theme("#c9706a", "#f3c440", "#4793a8", "#6b9265", "#757ead"),
+      // Dulux Australia: Splendid Coral, Softsun, Crystal Blue, Blade Green, Purple Wisdom.
+      adult_rainbow: theme("#c9706a", "#f3c440", "#4793a8", "#6b9265", "#634073"),
     },
   },
 ];
