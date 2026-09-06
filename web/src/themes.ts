@@ -32,6 +32,9 @@ export const THEME_GROUPS: ThemeGroup[] = [
       classic: theme("#e74c3c", "#f1c40f", "#3498db", "#2ecc71", "#9b59b6"),
       pastel: theme("#ffb3ba", "#ffe0ba", "#bae1ff", "#baffc9", "#d7baff"),
       mono: theme("#2b2b2b", "#5c5c5c", "#8c8c8c", "#b3b3b3", "#444444"),
+      // Classic's red/yellow/blue/green/purple roles, in Dulux Australia tones:
+      // Persimmon, Red Ochre, Danube, Silent Sage, Purple Wildflower.
+      classic_premium: theme("#c97168", "#bc8743", "#497690", "#729986", "#383e6c"),
     },
   },
   {
