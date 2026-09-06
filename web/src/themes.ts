@@ -51,6 +51,10 @@ export const THEME_GROUPS: ThemeGroup[] = [
       terracotta: theme("#c1666b", "#d9a05b", "#e3c16f", "#8a9b68", "#8b5e3c"),
       // Dulux Australia: Banksia Leaf, Terracotta Chip, Unbleached Calico, Red Ochre, Danube.
       outback: theme("#4b5439", "#c4795d", "#f5d5ba", "#bc8743", "#497690"),
+      // Dulux Australia: Unbleached Calico, Silent Sage, Persimmon, Red Ochre, Danube.
+      japanese_stationery: theme("#f5d5ba", "#729986", "#c97168", "#bc8743", "#497690"),
+      // Dulux Australia: Deep Aqua, Terracotta Chip, Unbleached Calico, Red Ochre, Banksia Leaf.
+      mid_century: theme("#274b50", "#c4795d", "#f5d5ba", "#bc8743", "#4b5439"),
     },
   },
 ];

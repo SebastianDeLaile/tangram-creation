@@ -36,6 +36,13 @@ function capitalize(word: string): string {
   return word[0].toUpperCase() + word.slice(1);
 }
 
+function formatThemeName(name: string): string {
+  return name
+    .split("_")
+    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
 const state = {
   tangram: null as Tangram | null,
   figures: [] as IndexEntry[],
@@ -82,7 +89,7 @@ app.innerHTML = `
               (group) => `
                 <optgroup label="${group.label}">
                   ${Object.keys(group.themes)
-                    .map((name) => `<option value="${name}">${capitalize(name)}</option>`)
+                    .map((name) => `<option value="${name}">${formatThemeName(name)}</option>`)
                     .join("")}
                 </optgroup>
               `,
