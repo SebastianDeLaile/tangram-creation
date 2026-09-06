@@ -1,0 +1,330 @@
+<title>Bush to Harbour</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbf3ea;
+    --surface: #ffffff;
+    --text: #262b1e;
+    --text-muted: #756f5c;
+    --accent: #3f6b83;
+    --border: rgba(38,43,30,0.12);
+    --chip-plate: #ffffff;
+    --pill-bg: rgba(255,255,255,0.86);
+    --pill-text: #262b1e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1a1c15;
+      --surface: #24261d;
+      --text: #ece2d1;
+      --text-muted: #a89f8a;
+      --accent: #8fbdd2;
+      --border: rgba(236,226,209,0.14);
+      --chip-plate: #24261d;
+      --pill-bg: rgba(20,22,16,0.72);
+      --pill-text: #ece2d1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1a1c15;
+    --surface: #24261d;
+    --text: #ece2d1;
+    --text-muted: #a89f8a;
+    --accent: #8fbdd2;
+    --border: rgba(236,226,209,0.14);
+    --chip-plate: #24261d;
+    --pill-bg: rgba(20,22,16,0.72);
+    --pill-text: #ece2d1;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Work Sans', system-ui, sans-serif;
+    padding: 56px 24px 72px;
+  }
+  main {
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: clamp(2.4rem, 5vw, 3.4rem);
+    line-height: 1.05;
+    margin: 0 0 18px;
+    text-wrap: balance;
+  }
+  .lede {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 62ch;
+    margin: 0 0 48px;
+  }
+  .lede strong { color: var(--text); font-weight: 500; }
+
+  .deck {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 44px;
+  }
+  .chip {
+    flex: 1 1 168px;
+    max-width: 200px;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 12px 28px -18px rgba(0,0,0,0.35);
+    display: flex;
+    flex-direction: column;
+  }
+  .chip-color {
+    height: 232px;
+    position: relative;
+  }
+  .chip-role {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--pill-bg);
+    color: var(--pill-text);
+    padding: 3px 7px;
+    border-radius: 2px;
+  }
+  .chip-info {
+    background: var(--chip-plate);
+    padding: 13px 14px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .chip-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .chip-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+  }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.4rem;
+    margin: 0 0 6px;
+  }
+  .section-note {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin: 0 0 20px;
+    max-width: 60ch;
+    line-height: 1.55;
+  }
+
+  .strip {
+    display: flex;
+    height: 64px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-bottom: 56px;
+  }
+  .strip div { flex: 1; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  td.swatch-cell {
+    width: 28px;
+    padding: 10px 0 10px 12px;
+  }
+  .swatch-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+  }
+  td.mono, th.mono { font-family: 'IBM Plex Mono', monospace; }
+
+  .table-wrap { overflow-x: auto; margin-bottom: 40px; }
+
+  footer {
+    margin-top: 48px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+</style>
+
+<main>
+  <p class="eyebrow">Five-colour palette · Dulux Australia</p>
+  <h1>Bush to Harbour</h1>
+  <p class="lede">
+    A native-garden green, a raw-linen cream, two clay-warm earths, and one cool
+    river blue for contrast. Built from <strong>Banksia Leaf</strong>,
+    <strong>Unbleached Calico</strong>, <strong>Terracotta Chip</strong>,
+    <strong>Red Ochre</strong>, and <strong>Danube</strong> — five named shades
+    from the Dulux Australia colour range.
+  </p>
+
+  <div class="deck">
+    <div class="chip">
+      <div class="chip-color" style="background:#F5D5BA;">
+        <span class="chip-role">Ground</span>
+      </div>
+      <div class="chip-info">
+        <div class="chip-name">Unbleached Calico</div>
+        <div class="chip-meta"><span>#F5D5BA</span><span>S10F1</span></div>
+      </div>
+    </div>
+    <div class="chip">
+      <div class="chip-color" style="background:#C4795D;">
+        <span class="chip-role">Warm primary</span>
+      </div>
+      <div class="chip-info">
+        <div class="chip-name">Terracotta Chip</div>
+        <div class="chip-meta"><span>#C4795D</span><span>S08F7</span></div>
+      </div>
+    </div>
+    <div class="chip">
+      <div class="chip-color" style="background:#BC8743;">
+        <span class="chip-role">Warm secondary</span>
+      </div>
+      <div class="chip-info">
+        <div class="chip-name">Red Ochre</div>
+        <div class="chip-meta"><span>#BC8743</span><span>S13F8</span></div>
+      </div>
+    </div>
+    <div class="chip">
+      <div class="chip-color" style="background:#4B5439;">
+        <span class="chip-role">Anchor</span>
+      </div>
+      <div class="chip-info">
+        <div class="chip-name">Banksia Leaf</div>
+        <div class="chip-meta"><span>#4B5439</span><span>S22A9</span></div>
+      </div>
+    </div>
+    <div class="chip">
+      <div class="chip-color" style="background:#497690;">
+        <span class="chip-role">Accent</span>
+      </div>
+      <div class="chip-info">
+        <div class="chip-name">Danube</div>
+        <div class="chip-meta"><span>#497690</span><span>S36C5</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>How they read together</h2>
+  <p class="section-note">
+    Calico carries the wall or page as a warm neutral ground; the two earths sit
+    as mid-tone furniture and text on top of it; Banksia Leaf grounds the darkest
+    detailing; Danube is kept scarce, as the one cool note against four warm ones.
+  </p>
+  <div class="strip">
+    <div style="background:#F5D5BA;"></div>
+    <div style="background:#C4795D;"></div>
+    <div style="background:#BC8743;"></div>
+    <div style="background:#4B5439;"></div>
+    <div style="background:#497690;"></div>
+  </div>
+
+  <h2>Reference values</h2>
+  <p class="section-note">
+    RGB and hex matched from Dulux Australia's published colour specifier.
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th class="mono">Hex</th>
+          <th class="mono">RGB</th>
+          <th class="mono">Atlas ref</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="swatch-cell"><span class="swatch-dot" style="background:#4B5439;"></span></td>
+          <td>Banksia Leaf</td>
+          <td class="mono">#4B5439</td>
+          <td class="mono">75, 84, 57</td>
+          <td class="mono">S22A9</td>
+        </tr>
+        <tr>
+          <td class="swatch-cell"><span class="swatch-dot" style="background:#F5D5BA;"></span></td>
+          <td>Unbleached Calico</td>
+          <td class="mono">#F5D5BA</td>
+          <td class="mono">245, 213, 186</td>
+          <td class="mono">S10F1</td>
+        </tr>
+        <tr>
+          <td class="swatch-cell"><span class="swatch-dot" style="background:#C4795D;"></span></td>
+          <td>Terracotta Chip</td>
+          <td class="mono">#C4795D</td>
+          <td class="mono">196, 121, 93</td>
+          <td class="mono">S08F7</td>
+        </tr>
+        <tr>
+          <td class="swatch-cell"><span class="swatch-dot" style="background:#BC8743;"></span></td>
+          <td>Red Ochre</td>
+          <td class="mono">#BC8743</td>
+          <td class="mono">188, 135, 67</td>
+          <td class="mono">S13F8</td>
+        </tr>
+        <tr>
+          <td class="swatch-cell"><span class="swatch-dot" style="background:#497690;"></span></td>
+          <td>Danube</td>
+          <td class="mono">#497690</td>
+          <td class="mono">73, 118, 144</td>
+          <td class="mono">S36C5</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    Values sourced from dulux.com.au's colour specifier, September 2026. Dulux and its colour names are trademarks of DuluxGroup — this page is an independent reference, not an official Dulux product.
+  </footer>
+</main>
