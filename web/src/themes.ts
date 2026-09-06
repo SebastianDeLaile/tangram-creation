@@ -49,6 +49,8 @@ export const THEME_GROUPS: ThemeGroup[] = [
       memphis: theme("#f6416c", "#f8aa4b", "#ffde7d", "#00b8a9", "#9d65c9"),
       // Muted earth tones / terracotta interior palette.
       terracotta: theme("#c1666b", "#d9a05b", "#e3c16f", "#8a9b68", "#8b5e3c"),
+      // Dulux Australia: Banksia Leaf, Terracotta Chip, Unbleached Calico, Red Ochre, Danube.
+      outback: theme("#4b5439", "#c4795d", "#f5d5ba", "#bc8743", "#497690"),
     },
   },
 ];
