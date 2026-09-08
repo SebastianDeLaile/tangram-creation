@@ -393,6 +393,7 @@ function drawPanel(svgEl: SVGSVGElement, viewMode: ViewMode, interactive: boolea
   const tangram = state.tangram!;
   svgEl.setAttribute("width", String(width));
   svgEl.setAttribute("height", String(height));
+  svgEl.setAttribute("viewBox", `0 0 ${width} ${height}`);
   svgEl.innerHTML = "";
 
   const rounding = viewMode === "silhouette" ? 0 : state.cornerRounding;

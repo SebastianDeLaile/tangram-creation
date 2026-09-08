@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: #1a1a1a;
@@ -10,6 +16,8 @@ body {
   align-items: center;
   padding: 24px;
   gap: 16px;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -79,6 +87,7 @@ h2 {
 
 #canvases {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   align-items: flex-start;
 }
@@ -87,6 +96,8 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .panel-label {
@@ -99,14 +110,23 @@ h2 {
 .canvas-wrap {
   border: 1px solid #ddd;
   background: #fff;
+  max-width: 100%;
 }
 
 svg {
   display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 svg path {
   transition: stroke 80ms ease, fill 80ms ease;
+}
+
+#canvas-solution {
+  /* Let pointer events drive dragging instead of the browser's touch-scroll
+   * gesture recognizer, which otherwise steals single-finger drags on mobile. */
+  touch-action: none;
 }
 
 #canvas-solution path {
@@ -406,3 +426,41 @@ select {
 
 /* Print-ready cards are now generated as a downloadable vector PDF
  * (web/src/pdf.ts) rather than via an @media print stylesheet. */
+
+@media (max-width: 720px) {
+  body {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  #layout {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 16px;
+  }
+
+  /* Canvases first, controls below -- on a phone you want to see the
+   * puzzle before the sidebar full of options. */
+  #main {
+    order: -1;
+    width: 100%;
+  }
+
+  #sidebar,
+  #sidebar-content {
+    width: 100%;
+  }
+
+  #canvases {
+    justify-content: center;
+  }
+
+  .canvas-panel {
+    flex: 1 1 260px;
+  }
+
+  #shape-list {
+    max-height: 260px;
+  }
+}
