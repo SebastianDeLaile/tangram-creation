@@ -16,6 +16,7 @@ body {
   align-items: center;
   padding: 24px;
   gap: 16px;
+  width: 100%;
   max-width: 100vw;
   overflow-x: hidden;
 }
@@ -37,6 +38,7 @@ h2 {
   display: flex;
   gap: 24px;
   align-items: flex-start;
+  min-width: 0;
 }
 
 #sidebar {
@@ -45,6 +47,7 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  min-width: 0;
   transition: width 150ms ease;
 }
 
@@ -57,6 +60,7 @@ h2 {
   flex-direction: column;
   gap: 20px;
   width: 220px;
+  min-width: 0;
 }
 
 #sidebar.collapsed #sidebar-content {
@@ -83,6 +87,7 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  min-width: 0;
 }
 
 #canvases {
@@ -90,6 +95,7 @@ h2 {
   flex-wrap: wrap;
   gap: 16px;
   align-items: flex-start;
+  min-width: 0;
 }
 
 .canvas-panel {
@@ -110,6 +116,7 @@ h2 {
 .canvas-wrap {
   border: 1px solid #ddd;
   background: #fff;
+  min-width: 0;
   max-width: 100%;
 }
 
@@ -153,6 +160,11 @@ button,
 select {
   font: inherit;
   padding: 4px 10px;
+}
+
+select {
+  width: 100%;
+  min-width: 0;
 }
 
 .button-list {
@@ -287,6 +299,7 @@ select {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  min-width: 0;
 }
 
 .shape-stars {
@@ -429,6 +442,7 @@ select {
 
 @media (max-width: 720px) {
   body {
+    align-items: stretch;
     padding: 12px;
     gap: 12px;
   }
