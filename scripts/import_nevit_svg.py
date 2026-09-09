@@ -699,6 +699,216 @@ def _solve_by_backtracking(name: str, fits: list) -> list[PiecePlacement] | None
             for fi in range(n)]
 
 
+# ---------------------------------------------------------------------------
+# Least-squares solver.  BFS welding and the edge-consensus solver above both
+# derive each piece's anchor from a SINGLE chosen touch (a vertex pair, or a
+# majority-vote offset) and never revisit that choice. When a piece pair has
+# two genuinely plausible touches in the drawn artwork -- both edges close to
+# collinear, both vertex pairs close together -- picking wrong sends that
+# piece to a position consistent with itself but not with the rest of the
+# figure (see Tangram_119 / numeral 4: large_triangle and medium_triangle
+# each independently fit their own polygon well, but one wrong touch choice
+# between them put medium_triangle overlapping half of large_triangle).
+#
+# This solver instead treats every detected touch (vertex-vertex or a
+# collinear, overlapping edge pair) as a linear constraint relating the two
+# pieces' anchors, and solves ALL of them jointly by least squares -- with a
+# small regularization pulling every anchor back toward its own independent
+# fit_piece() position, so the system stays well-posed even when constraints
+# are redundant. Where a piece pair has more than one similarly-plausible
+# touch, every combination of choices is tried; each is solved, snapped to
+# the exact Z[sqrt(2)] lattice, and checked for real (non-overlapping,
+# connected) validity -- the valid combination with the smallest total
+# misalignment wins.
+# ---------------------------------------------------------------------------
+
+_LSQ_MATCH_DIST = 3.0        # max gap to consider a vertex/edge pair a candidate touch
+_LSQ_AMBIGUOUS_RATIO = 1.6   # a second candidate within this factor of the best stays in play
+_LSQ_REG = 0.02              # weight pulling each anchor toward its independent float fit
+_LSQ_SNAP_RADIUS = 1.5       # max distance from the solved real position to its snapped anchor
+_LSQ_MAX_AMBIGUOUS = 8       # combinatorial safety valve (2**8 = 256 combinations, worst case)
+
+
+def _solve_linear(matrix: list[list[float]], rhs: list[float]) -> list[float] | None:
+    """Solve a square linear system by Gaussian elimination with partial pivoting."""
+    n = len(rhs)
+    aug = [row[:] + [rhs[i]] for i, row in enumerate(matrix)]
+    for col in range(n):
+        pivot = max(range(col, n), key=lambda r: abs(aug[r][col]))
+        if abs(aug[pivot][col]) < 1e-12:
+            return None
+        aug[col], aug[pivot] = aug[pivot], aug[col]
+        pv = aug[col][col]
+        for j in range(col, n + 1):
+            aug[col][j] /= pv
+        for r in range(n):
+            if r != col and abs(aug[r][col]) > 1e-15:
+                factor = aug[r][col]
+                for j in range(col, n + 1):
+                    aug[r][j] -= factor * aug[col][j]
+    return [aug[i][n] for i in range(n)]
+
+
+def _edge_coeffs(cls: int) -> tuple[float, float]:
+    """(c_x, c_y) such that a piece-local point (x, y) projects to this edge's
+    offset value as c_x*x + c_y*y -- matches the offset convention in
+    _edge_class_and_offset."""
+    if cls == 0:
+        return (0.0, 1.0)
+    if cls == 2:
+        return (1.0, 0.0)
+    if cls == 1:
+        return (-1.0 / _SQRT2, 1.0 / _SQRT2)
+    return (1.0 / _SQRT2, 1.0 / _SQRT2)  # cls == 3
+
+
+def _piece_edge_rows(fits: list, fi: int) -> tuple[list[dict], list[tuple[float, float]]]:
+    _, _, fa, _, _, exact_dirs, _ = fits[fi]
+    ax_f, ay_f = fa
+    verts = [(ax_f, ay_f)] + [(ax_f + d.x.to_float(), ay_f + d.y.to_float()) for d in exact_dirs]
+    n_v = len(verts)
+    rows = []
+    for k in range(n_v):
+        x1, y1 = verts[k]
+        x2, y2 = verts[(k + 1) % n_v]
+        cls, off, lo, hi = _edge_class_and_offset(x1, y1, x2, y2)
+        rows.append({
+            "cls": cls, "off": off, "lo": lo, "hi": hi,
+            "rel_x": ((x1 + x2) / 2.0) - ax_f, "rel_y": ((y1 + y2) / 2.0) - ay_f,
+        })
+    return rows, verts
+
+
+def _find_touch_slots(fits: list) -> tuple[list[list[tuple]], dict, dict]:
+    """For every piece pair, find the plausible touch(es): the closest vertex
+    pair and/or the closest pair of collinear, range-overlapping edges. Most
+    pairs yield exactly one candidate; a pair only keeps more than one when
+    they're genuinely close in the drawn artwork -- that's what later gets
+    tried as competing hypotheses."""
+    n = len(fits)
+    edge_rows: dict[int, list[dict]] = {}
+    verts: dict[int, list[tuple[float, float]]] = {}
+    for fi in range(n):
+        edge_rows[fi], verts[fi] = _piece_edge_rows(fits, fi)
+
+    slots = []
+    for fi in range(n):
+        for fj in range(fi + 1, n):
+            candidates = []
+
+            for vi, (vx, vy) in enumerate(verts[fi]):
+                for vj, (wx, wy) in enumerate(verts[fj]):
+                    d = math.hypot(vx - wx, vy - wy)
+                    if d <= _LSQ_MATCH_DIST:
+                        candidates.append((d, "vv", vi, vj))
+
+            for ei, ri in enumerate(edge_rows[fi]):
+                for ej, rj in enumerate(edge_rows[fj]):
+                    if ri["cls"] != rj["cls"]:
+                        continue
+                    if min(ri["hi"], rj["hi"]) <= max(ri["lo"], rj["lo"]):
+                        continue  # edges don't actually overlap along the line
+                    d = abs(ri["off"] - rj["off"])
+                    if d <= _LSQ_MATCH_DIST:
+                        candidates.append((d, "ee", ei, ej))
+
+            if not candidates:
+                continue
+            candidates.sort(key=lambda c: c[0])
+            best_d = candidates[0][0]
+            kept = [c for c in candidates if c[0] <= best_d * _LSQ_AMBIGUOUS_RATIO + 0.3]
+            slots.append([(fi, fj, kind, a, b) for (_, kind, a, b) in kept])
+    return slots, edge_rows, verts
+
+
+def _solve_least_squares(name: str, fits: list) -> Tangram | None:
+    n = len(fits)
+    slots, edge_rows, verts = _find_touch_slots(fits)
+    if not slots:
+        return None
+    if sum(1 for s in slots if len(s) > 1) > _LSQ_MAX_AMBIGUOUS:
+        return None
+
+    dim = 2 * n
+    rx, ry = _figure_residues(fits)
+
+    def solve_choice(choice: tuple[int, ...]) -> list[float] | None:
+        rows: list[list[float]] = []
+        rhs: list[float] = []
+        for slot_idx, cand_idx in enumerate(choice):
+            fi, fj, kind, a, b = slots[slot_idx][cand_idx]
+            if kind == "vv":
+                vx, vy = verts[fi][a]
+                wx, wy = verts[fj][b]
+                rel_fi_x, rel_fi_y = vx - fits[fi][2][0], vy - fits[fi][2][1]
+                rel_fj_x, rel_fj_y = wx - fits[fj][2][0], wy - fits[fj][2][1]
+                for (cx, cy), k in (((1.0, 0.0), rel_fj_x - rel_fi_x),
+                                     ((0.0, 1.0), rel_fj_y - rel_fi_y)):
+                    row = [0.0] * dim
+                    row[2 * fi] += cx; row[2 * fi + 1] += cy
+                    row[2 * fj] -= cx; row[2 * fj + 1] -= cy
+                    rows.append(row); rhs.append(k)
+            else:
+                ri, rj = edge_rows[fi][a], edge_rows[fj][b]
+                cx, cy = _edge_coeffs(ri["cls"])
+                rel_i = cx * ri["rel_x"] + cy * ri["rel_y"]
+                rel_j = cx * rj["rel_x"] + cy * rj["rel_y"]
+                row = [0.0] * dim
+                row[2 * fi] += cx; row[2 * fi + 1] += cy
+                row[2 * fj] -= cx; row[2 * fj + 1] -= cy
+                rows.append(row); rhs.append(rel_j - rel_i)
+
+        ata = [[0.0] * dim for _ in range(dim)]
+        atb = [0.0] * dim
+        for row, k in zip(rows, rhs):
+            nz = [i for i in range(dim) if row[i] != 0.0]
+            for i in nz:
+                atb[i] += row[i] * k
+                for j in nz:
+                    ata[i][j] += row[i] * row[j]
+        for i in range(n):
+            ata[2 * i][2 * i] += _LSQ_REG
+            ata[2 * i + 1][2 * i + 1] += _LSQ_REG
+            atb[2 * i] += _LSQ_REG * fits[i][2][0]
+            atb[2 * i + 1] += _LSQ_REG * fits[i][2][1]
+        return _solve_linear(ata, atb)
+
+    from itertools import product
+    from tangram.validate import is_connected
+
+    best: tuple[float, list[PiecePlacement]] | None = None
+    for choice in product(*(range(len(s)) for s in slots)):
+        sol = solve_choice(choice)
+        if sol is None:
+            continue
+        anchors = []
+        for i in range(n):
+            cx = _coord_candidates(sol[2 * i], _LSQ_SNAP_RADIUS, rx)
+            cy = _coord_candidates(sol[2 * i + 1], _LSQ_SNAP_RADIUS, ry)
+            if not cx or not cy:
+                anchors = None
+                break
+            anchors.append(Point(cx[0], cy[0]))
+        if anchors is None:
+            continue
+
+        pieces = [PiecePlacement(fits[i][0], fits[i][1], anchors[i], fits[i][3], fits[i][4])
+                  for i in range(n)]
+        if _total_overlap(pieces) > 0.05:
+            continue
+        if not is_connected(Tangram(name=name, pieces=pieces)):
+            continue
+
+        residual = sum((sol[2 * i] - fits[i][2][0]) ** 2 + (sol[2 * i + 1] - fits[i][2][1]) ** 2
+                       for i in range(n))
+        if best is None or residual < best[0]:
+            best = (residual, pieces)
+
+    if best is None:
+        return None
+    return Tangram(name=name, pieces=best[1])
+
+
 def _solve_faithful(name: str, fits: list) -> list[PiecePlacement] | None:
     """Snap each piece to the grid faithful to its drawn position, requiring only
     that pieces don't overlap -- no connectivity or touching constraint at all.
@@ -952,6 +1162,14 @@ def build_tangram(name: str, polygons: list[list[tuple[float, float]]],
     solved = _solve_by_backtracking(name, fits)
     if solved is not None:
         return Tangram(name=name, pieces=solved)
+
+    # Every solver above derives each piece's anchor from a single chosen
+    # touch. When a piece pair has two similarly-plausible touches in the
+    # drawn artwork, try every combination jointly and keep whichever is both
+    # genuinely valid and the best overall fit.
+    lsq_result = _solve_least_squares(name, fits)
+    if lsq_result is not None:
+        return lsq_result
 
     # When the caller permits it, fall back to faithful snapping: place every piece
     # at the grid point nearest its drawn position with no overlap, dropping the
