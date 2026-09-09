@@ -726,7 +726,9 @@ _LSQ_MATCH_DIST = 3.0        # max gap to consider a vertex/edge pair a candidat
 _LSQ_AMBIGUOUS_RATIO = 1.6   # a second candidate within this factor of the best stays in play
 _LSQ_REG = 0.02              # weight pulling each anchor toward its independent float fit
 _LSQ_SNAP_RADIUS = 1.5       # max distance from the solved real position to its snapped anchor
-_LSQ_MAX_AMBIGUOUS = 8       # combinatorial safety valve (2**8 = 256 combinations, worst case)
+_LSQ_MAX_CANDS_PER_SLOT = 3  # cap per pair, closest-first -- T-junction checks (every vertex
+# against every edge) find far more marginal candidates than vertex-vertex/edge-edge did
+_LSQ_MAX_COMBOS = 20_000     # combinatorial safety valve on the product of all slot sizes
 
 
 def _solve_linear(matrix: list[list[float]], rhs: list[float]) -> list[float] | None:
@@ -767,34 +769,57 @@ def _piece_edge_rows(fits: list, fi: int) -> tuple[list[dict], list[tuple[float,
     ax_f, ay_f = fa
     verts = [(ax_f, ay_f)] + [(ax_f + d.x.to_float(), ay_f + d.y.to_float()) for d in exact_dirs]
     n_v = len(verts)
+    cx = sum(v[0] for v in verts) / n_v
+    cy = sum(v[1] for v in verts) / n_v
     rows = []
     for k in range(n_v):
         x1, y1 = verts[k]
         x2, y2 = verts[(k + 1) % n_v]
         cls, off, lo, hi = _edge_class_and_offset(x1, y1, x2, y2)
+        # Inward-pointing unit normal: rotate the edge direction 90 degrees, then
+        # verify (rather than assume) it points toward the polygon's own
+        # centroid -- flipping the parallelogram reverses vertex winding, so a
+        # fixed rotation direction can't be trusted without this check.
+        dx, dy = x2 - x1, y2 - y1
+        mx, my = (x1 + x2) / 2.0, (y1 + y2) / 2.0
+        nlen = math.hypot(dx, dy) or 1.0
+        nx, ny = -dy / nlen, dx / nlen
+        if nx * (cx - mx) + ny * (cy - my) < 0:
+            nx, ny = -nx, -ny
         rows.append({
             "cls": cls, "off": off, "lo": lo, "hi": hi,
-            "rel_x": ((x1 + x2) / 2.0) - ax_f, "rel_y": ((y1 + y2) / 2.0) - ay_f,
+            "rel_x": mx - ax_f, "rel_y": my - ay_f,
+            "nx": nx, "ny": ny,
         })
     return rows, verts
 
 
 def _find_touch_slots(fits: list) -> tuple[list[list[tuple]], dict, dict]:
-    """For every piece pair, find the plausible touch(es): the closest vertex
-    pair and/or the closest pair of collinear, range-overlapping edges. Most
-    pairs yield exactly one candidate; a pair only keeps more than one when
-    they're genuinely close in the drawn artwork -- that's what later gets
-    tried as competing hypotheses."""
+    """For every piece pair, find the plausible touch(es): vertex-vertex,
+    collinear range-overlapping edges, or a vertex landing partway along the
+    other piece's edge (a T-junction). Every edge-based candidate is checked
+    against both pieces' inward normals -- interiors on the same side of a
+    shared line would require overlap, so those are dropped before they ever
+    reach the solver. Most pairs yield exactly one surviving candidate; a
+    pair only keeps more than one when they're genuinely close in the drawn
+    artwork -- that's what later gets tried as competing hypotheses."""
     n = len(fits)
     edge_rows: dict[int, list[dict]] = {}
     verts: dict[int, list[tuple[float, float]]] = {}
     for fi in range(n):
         edge_rows[fi], verts[fi] = _piece_edge_rows(fits, fi)
 
+    centroids = {}
+    for fi in range(n):
+        vs = verts[fi]
+        centroids[fi] = (sum(v[0] for v in vs) / len(vs), sum(v[1] for v in vs) / len(vs))
+
     slots = []
     for fi in range(n):
         for fj in range(fi + 1, n):
             candidates = []
+            cxi, cyi = centroids[fi]
+            cxj, cyj = centroids[fj]
 
             for vi, (vx, vy) in enumerate(verts[fi]):
                 for vj, (wx, wy) in enumerate(verts[fj]):
@@ -808,15 +833,57 @@ def _find_touch_slots(fits: list) -> tuple[list[list[tuple]], dict, dict]:
                         continue
                     if min(ri["hi"], rj["hi"]) <= max(ri["lo"], rj["lo"]):
                         continue  # edges don't actually overlap along the line
+                    # Two pieces sharing an edge must have their interiors on
+                    # OPPOSITE sides of it -- if both inward normals point the
+                    # same way, this "match" would require the pieces to
+                    # overlap, and no amount of anchor-fitting can fix that.
+                    if ri["nx"] * rj["nx"] + ri["ny"] * rj["ny"] > 0:
+                        continue
                     d = abs(ri["off"] - rj["off"])
                     if d <= _LSQ_MATCH_DIST:
                         candidates.append((d, "ee", ei, ej))
+
+            # T-junctions: a vertex of one piece landing partway along an edge
+            # of the other, rather than at one of that edge's own endpoints
+            # (e.g. Tangram_119 / numeral 4: medium_triangle's corner sits on
+            # large_triangle's base edge, not on either of its endpoints --
+            # pure vertex-vertex matching can never find this touch).
+            for vi, (vx, vy) in enumerate(verts[fi]):
+                nfj = len(verts[fj])
+                for ej in range(nfj):
+                    ax_, ay_ = verts[fj][ej]
+                    bx_, by_ = verts[fj][(ej + 1) % nfj]
+                    d = _point_segment_dist(vx, vy, ax_, ay_, bx_, by_)
+                    if d > _LSQ_MATCH_DIST:
+                        continue
+                    rj = edge_rows[fj][ej]
+                    # fi's body (approximated by its centroid) must sit on the
+                    # far side of fj's edge from fj's own interior.
+                    side = rj["nx"] * (cxi - vx) + rj["ny"] * (cyi - vy)
+                    if side > 0:
+                        continue
+                    candidates.append((d, "ve", vi, ej))
+
+            for vj, (wx, wy) in enumerate(verts[fj]):
+                nfi = len(verts[fi])
+                for ei in range(nfi):
+                    ax_, ay_ = verts[fi][ei]
+                    bx_, by_ = verts[fi][(ei + 1) % nfi]
+                    d = _point_segment_dist(wx, wy, ax_, ay_, bx_, by_)
+                    if d > _LSQ_MATCH_DIST:
+                        continue
+                    ri = edge_rows[fi][ei]
+                    side = ri["nx"] * (cxj - wx) + ri["ny"] * (cyj - wy)
+                    if side > 0:
+                        continue
+                    candidates.append((d, "ev", ei, vj))
 
             if not candidates:
                 continue
             candidates.sort(key=lambda c: c[0])
             best_d = candidates[0][0]
             kept = [c for c in candidates if c[0] <= best_d * _LSQ_AMBIGUOUS_RATIO + 0.3]
+            kept = kept[:_LSQ_MAX_CANDS_PER_SLOT]
             slots.append([(fi, fj, kind, a, b) for (_, kind, a, b) in kept])
     return slots, edge_rows, verts
 
@@ -826,8 +893,11 @@ def _solve_least_squares(name: str, fits: list) -> Tangram | None:
     slots, edge_rows, verts = _find_touch_slots(fits)
     if not slots:
         return None
-    if sum(1 for s in slots if len(s) > 1) > _LSQ_MAX_AMBIGUOUS:
-        return None
+    total_combos = 1
+    for s in slots:
+        total_combos *= len(s)
+        if total_combos > _LSQ_MAX_COMBOS:
+            return None
 
     dim = 2 * n
     rx, ry = _figure_residues(fits)
@@ -848,11 +918,35 @@ def _solve_least_squares(name: str, fits: list) -> Tangram | None:
                     row[2 * fi] += cx; row[2 * fi + 1] += cy
                     row[2 * fj] -= cx; row[2 * fj + 1] -= cy
                     rows.append(row); rhs.append(k)
-            else:
+            elif kind == "ee":
                 ri, rj = edge_rows[fi][a], edge_rows[fj][b]
                 cx, cy = _edge_coeffs(ri["cls"])
                 rel_i = cx * ri["rel_x"] + cy * ri["rel_y"]
                 rel_j = cx * rj["rel_x"] + cy * rj["rel_y"]
+                row = [0.0] * dim
+                row[2 * fi] += cx; row[2 * fi + 1] += cy
+                row[2 * fj] -= cx; row[2 * fj + 1] -= cy
+                rows.append(row); rhs.append(rel_j - rel_i)
+            elif kind == "ve":
+                # vertex `a` of fi lies on edge `b` of fj -- one equation (the
+                # vertex's position projects to the same offset as the edge).
+                vx, vy = verts[fi][a]
+                rel_vi_x, rel_vi_y = vx - fits[fi][2][0], vy - fits[fi][2][1]
+                rj = edge_rows[fj][b]
+                cx, cy = _edge_coeffs(rj["cls"])
+                rel_i = cx * rel_vi_x + cy * rel_vi_y
+                rel_j = cx * rj["rel_x"] + cy * rj["rel_y"]
+                row = [0.0] * dim
+                row[2 * fi] += cx; row[2 * fi + 1] += cy
+                row[2 * fj] -= cx; row[2 * fj + 1] -= cy
+                rows.append(row); rhs.append(rel_j - rel_i)
+            else:  # "ev": edge `a` of fi contains vertex `b` of fj
+                ri = edge_rows[fi][a]
+                wx, wy = verts[fj][b]
+                rel_vj_x, rel_vj_y = wx - fits[fj][2][0], wy - fits[fj][2][1]
+                cx, cy = _edge_coeffs(ri["cls"])
+                rel_i = cx * ri["rel_x"] + cy * ri["rel_y"]
+                rel_j = cx * rel_vj_x + cy * rel_vj_y
                 row = [0.0] * dim
                 row[2 * fi] += cx; row[2 * fi + 1] += cy
                 row[2 * fj] -= cx; row[2 * fj + 1] -= cy
