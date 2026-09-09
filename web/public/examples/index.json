@@ -148,8 +148,8 @@
     },
     {
       "file": "nevit_122.json",
-      "title": "Bat",
-      "category": "animals",
+      "title": "A",
+      "category": "letters",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_122_Nevit.svg",
       "tags": [
         "nevit_series"
@@ -214,8 +214,8 @@
     },
     {
       "file": "nevit_106.json",
-      "title": "Butterfly",
-      "category": "animals",
+      "title": "Rocket",
+      "category": "objects",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_106_Nevit.svg",
       "tags": [
         "nevit_series"
@@ -767,8 +767,8 @@
     },
     {
       "file": "nevit_098.json",
-      "title": "Bat",
-      "category": "animals",
+      "title": "Bowtie",
+      "category": "objects",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [],
       "difficulty": 4,
