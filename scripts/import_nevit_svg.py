@@ -214,8 +214,14 @@ def fit_piece(piece_type: PieceType, target: list[tuple[float, float]], flip_opt
     return math.sqrt(err / n), anchor, orientation, flip
 
 
-WELD_DISTANCE = 0.5  # units; float vertex pairs within this radius are treated
-# as the same tangram corner for BFS anchor propagation.
+WELD_DISTANCE = 2.5  # units; float vertex pairs within this radius are treated
+# as the same tangram corner for BFS anchor propagation. Matches _ADJ_GAP below
+# (same "is this piece actually touching that one" question, just asked earlier
+# in the pipeline) -- 0.5 was too tight for some real drawings (e.g. Tangram_119,
+# numeral 4: two true touches sit at 1.87 and 1.93 units), silently fragmenting
+# one connected figure into several BFS components that then get placed
+# independently and can overlap or misalign. A single best-match vertex pair per
+# piece-pair (below) is what keeps a looser threshold from mis-welding.
 
 
 def _exact_dirs(piece_type: PieceType, orientation: int, flip: bool) -> list[Point]:
