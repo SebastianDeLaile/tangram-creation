@@ -44,6 +44,13 @@ SVG_DELAY = 2.0    # seconds between SVG file downloads
 # MediaWiki API helpers
 # ---------------------------------------------------------------------------
 
+def _url_filename(url: str) -> str:
+    """Basename of a URL's path, ignoring any query string -- imageinfo URLs
+    come back with tracking params (?utm_source=...) that Path(url).name
+    would otherwise fold into the saved filename."""
+    return Path(urllib.parse.urlsplit(url).path).name
+
+
 def _api_get(params: dict) -> dict:
     url = API + "?" + urllib.parse.urlencode({**params, "format": "json", "formatversion": "2"})
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
@@ -227,14 +234,14 @@ def main(svg_dir: str, category: str = DEFAULT_CATEGORY) -> None:
     ]
     already = sum(
         1 for _, url in to_download
-        if (out_dir / Path(url).name).exists()
-        and (out_dir / Path(url).name).stat().st_size > 0
+        if (out_dir / _url_filename(url)).exists()
+        and (out_dir / _url_filename(url)).stat().st_size > 0
     )
     print(f"Downloading SVGs: {len(to_download)} total, {already} already present …", flush=True)
 
     downloaded = skipped = failed = 0
     for title, url in to_download:
-        fname = Path(url).name
+        fname = _url_filename(url)
         dest = out_dir / fname
         if dest.exists() and dest.stat().st_size > 0:
             skipped += 1
