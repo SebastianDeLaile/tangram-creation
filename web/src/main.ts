@@ -227,7 +227,8 @@ function buildShapeList(): void {
   function entryButton(e: IndexEntry, label: string, indented = false): string {
     const active = e.file === state.exampleFile ? " active" : "";
     const cls = indented ? "shape-row shape-row-child" : "shape-row";
-    return `<button data-file="${e.file}" class="${cls}${active}"><span class="shape-name">${label}</span>${shapeStars(e.difficulty)}</button>`;
+    const thumb = `<span class="shape-thumb">${e.thumb ?? ""}</span>`;
+    return `<button data-file="${e.file}" class="${cls}${active}">${thumb}<span class="shape-name">${label}</span>${shapeStars(e.difficulty)}</button>`;
   }
 
   // Flat rendering (search / difficulty sort): every entry visible, with
@@ -267,8 +268,9 @@ function buildShapeList(): void {
         if (g.items.length === 1) return entryButton(g.items[0], g.title);
         const expanded = state.expandedShapeGroups.has(g.title);
         const hasActive = g.items.some((e) => e.file === state.exampleFile);
+        const thumb = `<span class="shape-thumb">${g.items[0].thumb ?? ""}</span>`;
         const header = `<button type="button" class="shape-group-header${hasActive ? " active" : ""}" data-group="${g.title}">
-          <span class="shape-name">${expanded ? "▾" : "▸"} ${g.title}</span>
+          ${thumb}<span class="shape-name">${expanded ? "▾" : "▸"} ${g.title}</span>
           <span class="shape-group-count">${g.items.length}</span>
         </button>`;
         const children = expanded

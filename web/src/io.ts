@@ -89,6 +89,7 @@ export interface IndexEntry {
   source: string;
   tags: string[];
   difficulty?: number; // 1-5 stars, auto-scored (see scripts/score_difficulty.py)
+  thumb?: string; // silhouette <svg> markup, see scripts/gen_thumbnails.py
 }
 
 export async function loadIndex(url: string): Promise<IndexEntry[]> {
