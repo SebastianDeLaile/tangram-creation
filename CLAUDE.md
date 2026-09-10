@@ -26,12 +26,11 @@ A tangram is 7 pieces (tans) dissected from a square: 2 large triangles, 1 mediu
 ## Environment notes
 
 - Tkinter (used by `gui.py`) requires `python-tk@<version>` via Homebrew on macOS — not bundled with Homebrew's Python by default.
-- `web/` needs Node/npm (`cd web && npm install && npm run dev`). Currently runs locally only, no public deployment.
+- `web/` needs Node/npm (`cd web && npm install && npm run dev`). Deployed live at tangram.delaile.com via GitHub Pages — `.github/workflows/deploy.yml` builds and publishes `web/dist` automatically on every push to `main` (custom domain set via `web/public/CNAME`), so a plain `git push` to main updates the live site with no separate deploy step.
 
 ## Roadmap
 
 - Editor (both Python and web): snap-to-piece edges/vertices (not just integer grid), overlap/coverage feedback, a piece palette to start from a blank canvas, in-GUI SVG export.
-- Eventually deploy the web app to the user's own domain. No domain name, hosting provider, or timeline chosen yet — ask for specifics when this becomes concrete.
 
 ## See also
 
