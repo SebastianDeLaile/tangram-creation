@@ -1779,7 +1779,7 @@
     },
     {
       "file": "nevit_002.json",
-      "title": "Sitting",
+      "title": "Walking",
       "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_002_Nevit.svg",
       "tags": [],
@@ -1788,7 +1788,7 @@
     },
     {
       "file": "nevit_003.json",
-      "title": "Standing",
+      "title": "Leaning",
       "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_003_Nevit.svg",
       "tags": [],
@@ -1806,7 +1806,7 @@
     },
     {
       "file": "nevit_005.json",
-      "title": "Bowing",
+      "title": "Standing",
       "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_005_Nevit.svg",
       "tags": [],
@@ -1842,7 +1842,7 @@
     },
     {
       "file": "nevit_017.json",
-      "title": "Running",
+      "title": "Dancing",
       "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_017_Nevit.svg",
       "tags": [],
@@ -1851,7 +1851,7 @@
     },
     {
       "file": "nevit_018.json",
-      "title": "Striding",
+      "title": "Kicking",
       "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_018_Nevit.svg",
       "tags": [],
@@ -1878,7 +1878,7 @@
     },
     {
       "file": "nevit_052.json",
-      "title": "Swan",
+      "title": "Cat",
       "category": "animals",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_052_Nevit.svg",
       "tags": [],
@@ -1896,7 +1896,7 @@
     },
     {
       "file": "nevit_072.json",
-      "title": "Duck",
+      "title": "Cat",
       "category": "animals",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_072_Nevit.svg",
       "tags": [],
@@ -1905,8 +1905,8 @@
     },
     {
       "file": "nevit_091.json",
-      "title": "Swan",
-      "category": "animals",
+      "title": "Sailboat",
+      "category": "objects",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_091_Nevit.svg",
       "tags": [],
       "difficulty": 1,
@@ -1950,7 +1950,7 @@
     },
     {
       "file": "nevit_170.json",
-      "title": "Reaching",
+      "title": "Woman",
       "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_170_Nevit.svg",
       "tags": [],
@@ -1959,8 +1959,8 @@
     },
     {
       "file": "nevit_173.json",
-      "title": "Fox",
-      "category": "animals",
+      "title": "Kneeling",
+      "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_173_Nevit.svg",
       "tags": [],
       "difficulty": 2,
@@ -1968,8 +1968,8 @@
     },
     {
       "file": "nevit_209.json",
-      "title": "1",
-      "category": "letters",
+      "title": "Gesturing",
+      "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_209_Nevit.svg",
       "tags": [],
       "difficulty": 2,
@@ -1977,8 +1977,8 @@
     },
     {
       "file": "nevit_211.json",
-      "title": "Snake",
-      "category": "animals",
+      "title": "Kneeling",
+      "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_211_Nevit.svg",
       "tags": [],
       "difficulty": 3,
