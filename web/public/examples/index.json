@@ -1767,6 +1767,258 @@
       ],
       "difficulty": 1,
       "thumb": "<svg viewBox=\"0 0 33.9411 53.9117\" width=\"33.9411\" height=\"53.9117\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"30.4706,21.9853 18.4706,33.9853 18.4706,9.9853\"/><polygon points=\"18.4706,27.5000 1.5000,27.5000 18.4706,10.5294\"/><polygon points=\"17.9558,34.5000 26.4411,26.0147 26.4411,42.9853\"/><polygon points=\"32.4411,43.4117 26.4411,49.4117 26.4411,37.4117\"/><polygon points=\"14.9264,52.4117 6.4411,52.4117 14.9264,43.9264\"/><polygon points=\"20.4117,1.5000 20.4117,9.9853 11.9264,9.9853 11.9264,1.5000\"/><polygon points=\"17.9558,28.8970 17.9558,40.8970 11.9558,46.8970 11.9558,34.8970\"/></svg>"
+    },
+    {
+      "file": "nevit_001.json",
+      "title": "Standing",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_001_Nevit.svg",
+      "tags": [],
+      "difficulty": 3,
+      "thumb": "<svg viewBox=\"0 0 26.3970 54.9411\" width=\"26.3970\" height=\"54.9411\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"7.8970,28.9264 7.8970,11.9558 24.8675,28.9264\"/><polygon points=\"7.9264,28.9264 24.8970,28.9264 7.9264,45.8970\"/><polygon points=\"1.5000,1.5000 13.5000,1.5000 1.5000,13.5000\"/><polygon points=\"14.8970,47.4117 20.8970,53.4117 8.8970,53.4117\"/><polygon points=\"1.9264,47.4411 7.9264,41.4411 7.9264,53.4411\"/><polygon points=\"17.4706,9.5294 11.4706,15.5294 5.4706,9.5294 11.4706,3.5294\"/><polygon points=\"17.8970,35.9264 9.4117,44.4117 9.4117,52.8970 17.8970,44.4117\"/></svg>"
+    },
+    {
+      "file": "nevit_002.json",
+      "title": "Sitting",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_002_Nevit.svg",
+      "tags": [],
+      "difficulty": 2,
+      "thumb": "<svg viewBox=\"0 0 35.4558 53.9706\" width=\"35.4558\" height=\"53.9706\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"25.4706,45.9853 8.5000,45.9853 25.4706,29.0147\"/><polygon points=\"27.9853,26.5000 15.9853,38.5000 15.9853,14.5000\"/><polygon points=\"8.9853,1.5000 20.9853,1.5000 8.9853,13.5000\"/><polygon points=\"25.4706,51.9853 25.4706,43.5000 33.9558,51.9853\"/><polygon points=\"1.5000,43.9853 9.9853,43.9853 1.5000,52.4706\"/><polygon points=\"11.9853,10.5000 17.9853,4.5000 23.9853,10.5000 17.9853,16.5000\"/><polygon points=\"15.9853,26.5000 15.9853,38.5000 9.9853,44.5000 9.9853,32.5000\"/></svg>"
+    },
+    {
+      "file": "nevit_003.json",
+      "title": "Standing",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_003_Nevit.svg",
+      "tags": [],
+      "difficulty": 2,
+      "thumb": "<svg viewBox=\"0 0 35.3970 54.0883\" width=\"35.3970\" height=\"54.0883\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"24.5000,29.5589 7.5294,29.5589 24.5000,12.5883\"/><polygon points=\"7.5000,29.5589 24.4706,29.5589 7.5000,46.5294\"/><polygon points=\"18.3823,1.5000 30.3823,1.5000 18.3823,13.5000\"/><polygon points=\"19.9558,46.0736 25.9558,52.0736 13.9558,52.0736\"/><polygon points=\"1.5000,46.5883 7.5000,40.5883 7.5000,52.5883\"/><polygon points=\"21.8970,9.9853 27.8970,3.9853 33.8970,9.9853 27.8970,15.9853\"/><polygon points=\"19.9558,34.0736 19.9558,46.0736 13.9558,52.0736 13.9558,40.0736\"/></svg>"
+    },
+    {
+      "file": "nevit_004.json",
+      "title": "Striding",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_004_Nevit.svg",
+      "tags": [],
+      "difficulty": 2,
+      "thumb": "<svg viewBox=\"0 0 36.9706 55.3970\" width=\"36.9706\" height=\"55.3970\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"30.4117,25.0147 18.4117,37.0147 18.4117,13.0147\"/><polygon points=\"26.9853,45.4117 10.0147,45.4117 26.9853,28.4411\"/><polygon points=\"12.8970,1.5000 24.8970,1.5000 12.8970,13.5000\"/><polygon points=\"26.9853,45.4117 35.4706,45.4117 26.9853,53.8970\"/><polygon points=\"26.9853,45.4117 26.9853,36.9264 35.4706,45.4117\"/><polygon points=\"15.8970,10.5000 21.8970,4.5000 27.8970,10.5000 21.8970,16.5000\"/><polygon points=\"18.4706,45.4117 9.9853,53.8970 1.5000,53.8970 9.9853,45.4117\"/></svg>"
+    },
+    {
+      "file": "nevit_005.json",
+      "title": "Bowing",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_005_Nevit.svg",
+      "tags": [],
+      "difficulty": 2,
+      "thumb": "<svg viewBox=\"0 0 23.8528 59.9411\" width=\"23.8528\" height=\"59.9411\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"4.9853,32.9558 4.9853,15.9853 21.9558,32.9558\"/><polygon points=\"2.5000,1.5000 19.4706,1.5000 2.5000,18.4706\"/><polygon points=\"1.5000,32.9558 13.5000,32.9558 1.5000,44.9558\"/><polygon points=\"14.9853,14.4706 6.5000,14.4706 14.9853,5.9853\"/><polygon points=\"9.3823,58.4411 9.3823,49.9558 17.8675,58.4411\"/><polygon points=\"4.9853,41.4706 13.4706,41.4706 13.4706,49.9558 4.9853,49.9558\"/><polygon points=\"5.3823,41.4411 13.8675,32.9558 22.3528,32.9558 13.8675,41.4411\"/></svg>"
+    },
+    {
+      "file": "nevit_006.json",
+      "title": "Reaching",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_006_Nevit.svg",
+      "tags": [],
+      "difficulty": 2,
+      "thumb": "<svg viewBox=\"0 0 35.0000 53.0883\" width=\"35.0000\" height=\"53.0883\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"9.9853,23.5589 26.9558,23.5589 9.9853,40.5294\"/><polygon points=\"21.5000,11.5589 33.5000,23.5589 9.5000,23.5589\"/><polygon points=\"15.4706,1.5000 27.4706,1.5000 15.4706,13.5000\"/><polygon points=\"25.8970,11.5589 17.4117,11.5589 25.8970,3.0736\"/><polygon points=\"13.4117,51.5883 13.4117,43.1030 21.8970,51.5883\"/><polygon points=\"10.4117,40.1030 16.4117,34.1030 22.4117,40.1030 16.4117,46.1030\"/><polygon points=\"1.5000,23.5883 9.9853,32.0736 9.9853,40.5589 1.5000,32.0736\"/></svg>"
+    },
+    {
+      "file": "nevit_012.json",
+      "title": "Standing",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_012_Nevit.svg",
+      "tags": [],
+      "difficulty": 2,
+      "thumb": "<svg viewBox=\"0 0 28.9411 63.9706\" width=\"28.9411\" height=\"63.9706\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"18.4706,27.5000 1.5000,27.5000 18.4706,10.5294\"/><polygon points=\"18.4706,27.5000 18.4706,44.4706 1.5000,27.5000\"/><polygon points=\"18.4411,44.4411 9.9558,52.9264 9.9558,35.9558\"/><polygon points=\"18.4706,56.4706 24.4706,62.4706 12.4706,62.4706\"/><polygon points=\"3.9558,56.4117 9.9558,50.4117 9.9558,62.4117\"/><polygon points=\"15.4411,7.5000 21.4411,1.5000 27.4411,7.5000 21.4411,13.5000\"/><polygon points=\"18.4706,44.4706 18.4706,56.4706 12.4706,62.4706 12.4706,50.4706\"/></svg>"
+    },
+    {
+      "file": "nevit_016.json",
+      "title": "Kicking",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_016_Nevit.svg",
+      "tags": [],
+      "difficulty": 1,
+      "thumb": "<svg viewBox=\"0 0 43.0000 51.8823\" width=\"43.0000\" height=\"51.8823\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"9.9853,27.5000 26.9558,27.5000 9.9853,44.4706\"/><polygon points=\"26.9853,27.5000 10.0147,27.5000 26.9853,10.5294\"/><polygon points=\"26.9853,15.4706 38.9853,15.4706 26.9853,27.4706\"/><polygon points=\"9.9853,50.3823 1.5000,50.3823 9.9853,41.8970\"/><polygon points=\"41.5000,33.4411 33.0147,33.4411 41.5000,24.9558\"/><polygon points=\"23.9558,7.5000 29.9558,1.5000 35.9558,7.5000 29.9558,13.5000\"/><polygon points=\"38.9853,27.4706 26.9853,27.4706 20.9853,33.4706 32.9853,33.4706\"/></svg>"
+    },
+    {
+      "file": "nevit_017.json",
+      "title": "Running",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_017_Nevit.svg",
+      "tags": [],
+      "difficulty": 2,
+      "thumb": "<svg viewBox=\"0 0 32.3675 57.0000\" width=\"32.3675\" height=\"57.0000\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"18.4706,30.3823 1.5000,30.3823 18.4706,13.4117\"/><polygon points=\"30.8675,37.3823 18.8675,49.3823 18.8675,25.3823\"/><polygon points=\"18.4706,25.3823 18.4706,13.3823 30.4706,25.3823\"/><polygon points=\"12.8675,49.5000 18.8675,43.5000 18.8675,55.5000\"/><polygon points=\"18.4706,30.3823 18.4706,38.8675 9.9853,30.3823\"/><polygon points=\"12.4706,7.5000 18.4706,1.5000 24.4706,7.5000 18.4706,13.5000\"/><polygon points=\"24.8675,55.3823 24.8675,43.3823 30.8675,37.3823 30.8675,49.3823\"/></svg>"
+    },
+    {
+      "file": "nevit_018.json",
+      "title": "Striding",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_018_Nevit.svg",
+      "tags": [],
+      "difficulty": 3,
+      "thumb": "<svg viewBox=\"0 0 38.4853 49.4853\" width=\"38.4853\" height=\"49.4853\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"10.0147,35.9853 10.0147,19.0147 26.9853,35.9853\"/><polygon points=\"18.4706,10.5000 18.4706,27.4706 1.5000,10.5000\"/><polygon points=\"10.0147,35.9853 22.0147,35.9853 10.0147,47.9853\"/><polygon points=\"16.0147,41.9853 22.0147,47.9853 10.0147,47.9853\"/><polygon points=\"30.9853,39.9853 24.9853,33.9853 36.9853,33.9853\"/><polygon points=\"15.4706,7.5000 21.4706,1.5000 27.4706,7.5000 21.4706,13.5000\"/><polygon points=\"9.9853,30.9853 9.9853,18.9853 3.9853,12.9853 3.9853,24.9853\"/></svg>"
+    },
+    {
+      "file": "nevit_026.json",
+      "title": "Reaching",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_026_Nevit.svg",
+      "tags": [],
+      "difficulty": 2,
+      "thumb": "<svg viewBox=\"0 0 39.0000 63.4264\" width=\"39.0000\" height=\"63.4264\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"13.5000,9.9853 25.5000,21.9853 1.5000,21.9853\"/><polygon points=\"1.5000,21.9853 18.4706,21.9853 1.5000,38.9558\"/><polygon points=\"1.5000,38.9558 9.9853,30.4706 9.9853,47.4411\"/><polygon points=\"31.5000,27.9853 25.5000,21.9853 37.5000,21.9853\"/><polygon points=\"3.9853,61.9264 3.9853,53.4411 12.4706,61.9264\"/><polygon points=\"13.5000,1.5000 13.5000,9.9853 5.0147,9.9853 5.0147,1.5000\"/><polygon points=\"9.9853,59.4411 9.9853,47.4411 3.9853,41.4411 3.9853,53.4411\"/></svg>"
+    },
+    {
+      "file": "nevit_040.json",
+      "title": "Bird",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_040_Nevit.svg",
+      "tags": [],
+      "difficulty": 4,
+      "thumb": "<svg viewBox=\"0 0 39.0000 35.4853\" width=\"39.0000\" height=\"35.4853\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"25.5000,25.5000 13.5000,13.5000 37.5000,13.5000\"/><polygon points=\"7.5000,24.4706 7.5000,7.5000 24.4706,24.4706\"/><polygon points=\"1.5000,1.5000 13.5000,1.5000 1.5000,13.5000\"/><polygon points=\"17.0147,33.9853 8.5294,33.9853 17.0147,25.5000\"/><polygon points=\"25.5000,25.5000 25.5000,33.9853 17.0147,25.5000\"/><polygon points=\"7.5000,7.5000 13.5000,1.5000 19.5000,7.5000 13.5000,13.5000\"/><polygon points=\"31.5000,7.5000 19.5000,7.5000 13.5000,13.5000 25.5000,13.5000\"/></svg>"
+    },
+    {
+      "file": "nevit_052.json",
+      "title": "Swan",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_052_Nevit.svg",
+      "tags": [],
+      "difficulty": 2,
+      "thumb": "<svg viewBox=\"0 0 37.9706 41.4853\" width=\"37.9706\" height=\"41.4853\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"36.4706,23.0147 24.4706,35.0147 24.4706,11.0147\"/><polygon points=\"36.4706,39.9853 19.5000,39.9853 36.4706,23.0147\"/><polygon points=\"15.9853,19.5000 24.4706,11.0147 24.4706,27.9853\"/><polygon points=\"7.5000,7.5000 1.5000,13.5000 1.5000,1.5000\"/><polygon points=\"7.5000,7.5000 13.5000,1.5000 13.5000,13.5000\"/><polygon points=\"1.5000,13.5000 7.5000,7.5000 13.5000,13.5000 7.5000,19.5000\"/><polygon points=\"7.5000,19.5000 15.9853,11.0147 24.4706,11.0147 15.9853,19.5000\"/></svg>"
+    },
+    {
+      "file": "nevit_062.json",
+      "title": "Dancing",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_062_Nevit.svg",
+      "tags": [],
+      "difficulty": 2,
+      "thumb": "<svg viewBox=\"0 0 34.4853 59.0294\" width=\"34.4853\" height=\"59.0294\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"18.5000,40.5589 1.5294,40.5589 18.5000,23.5883\"/><polygon points=\"18.5000,40.5589 18.5000,57.5294 1.5294,40.5589\"/><polygon points=\"9.9853,49.0147 1.5000,57.5000 1.5000,40.5294\"/><polygon points=\"32.9853,15.1030 26.9853,21.1030 26.9853,9.1030\"/><polygon points=\"18.5000,40.5589 18.5000,32.0736 26.9853,40.5589\"/><polygon points=\"18.5000,19.5000 26.9853,19.5000 26.9853,27.9853 18.5000,27.9853\"/><polygon points=\"26.9853,19.5000 26.9853,7.5000 20.9853,1.5000 20.9853,13.5000\"/></svg>"
+    },
+    {
+      "file": "nevit_072.json",
+      "title": "Duck",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_072_Nevit.svg",
+      "tags": [],
+      "difficulty": 3,
+      "thumb": "<svg viewBox=\"0 0 51.0000 27.0000\" width=\"51.0000\" height=\"27.0000\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"13.5000,13.5000 25.5000,25.5000 1.5000,25.5000\"/><polygon points=\"25.5000,25.5000 13.5000,13.5000 37.5000,13.5000\"/><polygon points=\"37.5000,13.5000 45.9853,21.9853 29.0147,21.9853\"/><polygon points=\"43.5000,7.5000 37.5000,13.5000 37.5000,1.5000\"/><polygon points=\"43.5000,7.5000 49.5000,1.5000 49.5000,13.5000\"/><polygon points=\"37.5000,13.5000 43.5000,7.5000 49.5000,13.5000 43.5000,19.5000\"/><polygon points=\"1.5000,25.5000 1.5000,13.5000 7.5000,7.5000 7.5000,19.5000\"/></svg>"
+    },
+    {
+      "file": "nevit_091.json",
+      "title": "Swan",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_091_Nevit.svg",
+      "tags": [],
+      "difficulty": 1,
+      "thumb": "<svg viewBox=\"0 0 47.4853 41.4853\" width=\"47.4853\" height=\"41.4853\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"21.9853,27.9853 33.9853,39.9853 9.9853,39.9853\"/><polygon points=\"33.9853,39.9853 21.9853,27.9853 45.9853,27.9853\"/><polygon points=\"9.9853,39.9853 1.5000,31.5000 18.4706,31.5000\"/><polygon points=\"7.5000,25.5000 13.5000,31.5000 1.5000,31.5000\"/><polygon points=\"7.5000,21.9853 7.5000,13.5000 15.9853,21.9853\"/><polygon points=\"7.5000,1.5000 13.5000,7.5000 7.5000,13.5000 1.5000,7.5000\"/><polygon points=\"1.5000,31.5000 1.5000,19.5000 7.5000,13.5000 7.5000,25.5000\"/></svg>"
+    },
+    {
+      "file": "nevit_095.json",
+      "title": "Sailboat",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_095_Nevit.svg",
+      "tags": [],
+      "difficulty": 1,
+      "thumb": "<svg viewBox=\"0 0 53.8823 35.8823\" width=\"53.8823\" height=\"35.8823\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"22.3823,21.9853 34.3823,33.9853 10.3823,33.9853\"/><polygon points=\"34.3823,33.9853 22.3823,21.9853 46.3823,21.9853\"/><polygon points=\"9.9853,34.3823 1.5000,25.8970 18.4706,25.8970\"/><polygon points=\"40.3823,27.9853 46.3823,33.9853 34.3823,33.9853\"/><polygon points=\"46.3823,33.9853 40.3823,27.9853 52.3823,27.9853\"/><polygon points=\"26.9853,7.5000 32.9853,1.5000 38.9853,7.5000 32.9853,13.5000\"/><polygon points=\"28.8970,13.5000 37.3823,21.9853 45.8675,21.9853 37.3823,13.5000\"/></svg>"
+    },
+    {
+      "file": "nevit_096.json",
+      "title": "Sailboat",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_096_Nevit.svg",
+      "tags": [],
+      "difficulty": 3,
+      "thumb": "<svg viewBox=\"0 0 52.4558 29.4853\" width=\"52.4558\" height=\"29.4853\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"18.4706,27.9853 6.4706,15.9853 30.4706,15.9853\"/><polygon points=\"30.4706,15.9853 42.4706,27.9853 18.4706,27.9853\"/><polygon points=\"14.9558,7.5000 23.4411,15.9853 6.4706,15.9853\"/><polygon points=\"42.4706,19.5000 50.9558,19.5000 42.4706,27.9853\"/><polygon points=\"42.4706,19.5000 42.4706,27.9853 33.9853,19.5000\"/><polygon points=\"20.9558,1.5000 26.9558,7.5000 20.9558,13.5000 14.9558,7.5000\"/><polygon points=\"1.5000,19.5000 9.9853,27.9853 18.4706,27.9853 9.9853,19.5000\"/></svg>"
+    },
+    {
+      "file": "nevit_097.json",
+      "title": "Sailboat",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_097_Nevit.svg",
+      "tags": [],
+      "difficulty": 2,
+      "thumb": "<svg viewBox=\"0 0 55.9706 31.9706\" width=\"55.9706\" height=\"31.9706\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"25.5000,30.4706 13.5000,18.4706 37.5000,18.4706\"/><polygon points=\"42.4706,30.4706 25.5000,30.4706 42.4706,13.5000\"/><polygon points=\"42.4706,18.4706 54.4706,18.4706 42.4706,30.4706\"/><polygon points=\"13.5000,18.4706 19.5000,24.4706 7.5000,24.4706\"/><polygon points=\"7.5000,24.4706 1.5000,18.4706 13.5000,18.4706\"/><polygon points=\"36.4706,7.5000 42.4706,1.5000 48.4706,7.5000 42.4706,13.5000\"/><polygon points=\"25.5000,30.4706 13.5000,30.4706 7.5000,24.4706 19.5000,24.4706\"/></svg>"
+    },
+    {
+      "file": "nevit_149.json",
+      "title": "Camel",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_149_Nevit.svg",
+      "tags": [],
+      "difficulty": 3,
+      "thumb": "<svg viewBox=\"0 0 37.9706 39.0000\" width=\"37.9706\" height=\"39.0000\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"36.4706,19.5000 36.4706,36.4706 19.5000,19.5000\"/><polygon points=\"25.5000,25.5000 13.5000,37.5000 13.5000,13.5000\"/><polygon points=\"27.9853,11.0147 36.4706,19.5000 19.5000,19.5000\"/><polygon points=\"7.5000,7.5000 1.5000,1.5000 13.5000,1.5000\"/><polygon points=\"7.5000,7.5000 13.5000,1.5000 13.5000,13.5000\"/><polygon points=\"13.5000,13.5000 19.5000,7.5000 25.5000,13.5000 19.5000,19.5000\"/><polygon points=\"7.5000,7.5000 7.5000,19.5000 13.5000,25.5000 13.5000,13.5000\"/></svg>"
+    },
+    {
+      "file": "nevit_170.json",
+      "title": "Reaching",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_170_Nevit.svg",
+      "tags": [],
+      "difficulty": 3,
+      "thumb": "<svg viewBox=\"0 0 35.4853 48.9411\" width=\"35.4853\" height=\"48.9411\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"21.9853,35.4411 33.9853,47.4411 9.9853,47.4411\"/><polygon points=\"21.9853,35.4411 9.9853,47.4411 9.9853,23.4411\"/><polygon points=\"5.0147,18.4706 13.5000,9.9853 13.5000,26.9558\"/><polygon points=\"1.5000,23.4411 9.9853,23.4411 1.5000,31.9264\"/><polygon points=\"13.5000,1.5000 21.9853,1.5000 13.5000,9.9853\"/><polygon points=\"13.5000,1.5000 13.5000,9.9853 5.0147,9.9853 5.0147,1.5000\"/><polygon points=\"21.9853,35.4411 13.5000,26.9558 13.5000,18.4706 21.9853,26.9558\"/></svg>"
+    },
+    {
+      "file": "nevit_173.json",
+      "title": "Fox",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_173_Nevit.svg",
+      "tags": [],
+      "difficulty": 2,
+      "thumb": "<svg viewBox=\"0 0 43.9706 37.9706\" width=\"43.9706\" height=\"37.9706\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"26.9558,19.5000 26.9558,36.4706 9.9853,19.5000\"/><polygon points=\"21.9853,7.5000 33.9853,19.5000 9.9853,19.5000\"/><polygon points=\"18.4706,27.9853 26.9558,36.4706 9.9853,36.4706\"/><polygon points=\"42.4706,19.5000 42.4706,27.9853 33.9853,19.5000\"/><polygon points=\"39.9853,25.5000 33.9853,31.5000 33.9853,19.5000\"/><polygon points=\"21.9853,7.5000 27.9853,1.5000 33.9853,7.5000 27.9853,13.5000\"/><polygon points=\"1.5000,36.4706 9.9853,27.9853 18.4706,27.9853 9.9853,36.4706\"/></svg>"
+    },
+    {
+      "file": "nevit_209.json",
+      "title": "1",
+      "category": "letters",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_209_Nevit.svg",
+      "tags": [],
+      "difficulty": 2,
+      "thumb": "<svg viewBox=\"0 0 28.4558 51.0000\" width=\"28.4558\" height=\"51.0000\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"14.9558,25.5000 26.9558,13.5000 26.9558,37.5000\"/><polygon points=\"26.9558,37.5000 14.9558,49.5000 14.9558,25.5000\"/><polygon points=\"26.9558,49.5000 14.9558,49.5000 26.9558,37.5000\"/><polygon points=\"12.4706,27.9853 6.4706,21.9853 18.4706,21.9853\"/><polygon points=\"9.9853,21.9853 1.5000,21.9853 9.9853,13.5000\"/><polygon points=\"12.4706,7.5000 18.4706,1.5000 24.4706,7.5000 18.4706,13.5000\"/><polygon points=\"9.9853,21.9853 18.4706,13.5000 26.9558,13.5000 18.4706,21.9853\"/></svg>"
+    },
+    {
+      "file": "nevit_211.json",
+      "title": "Snake",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_211_Nevit.svg",
+      "tags": [],
+      "difficulty": 3,
+      "thumb": "<svg viewBox=\"0 0 49.9706 27.0000\" width=\"49.9706\" height=\"27.0000\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"42.4706,13.5000 30.4706,25.5000 30.4706,1.5000\"/><polygon points=\"30.4706,1.5000 30.4706,18.4706 13.5000,1.5000\"/><polygon points=\"19.5000,7.5000 19.5000,19.5000 7.5000,7.5000\"/><polygon points=\"36.4706,19.5000 42.4706,25.5000 30.4706,25.5000\"/><polygon points=\"13.5000,1.5000 19.5000,7.5000 7.5000,7.5000\"/><polygon points=\"36.4706,19.5000 42.4706,13.5000 48.4706,19.5000 42.4706,25.5000\"/><polygon points=\"19.5000,19.5000 7.5000,19.5000 1.5000,13.5000 13.5000,13.5000\"/></svg>"
+    },
+    {
+      "file": "nevit_217.json",
+      "title": "Hills",
+      "category": "abstract",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_217_Nevit.svg",
+      "tags": [],
+      "difficulty": 3,
+      "thumb": "<svg viewBox=\"0 0 53.9117 23.4853\" width=\"53.9117\" height=\"23.4853\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"18.4706,21.9853 1.5000,21.9853 18.4706,5.0147\"/><polygon points=\"35.4411,21.9853 35.4411,5.0147 52.4117,21.9853\"/><polygon points=\"26.9558,13.5000 35.4411,5.0147 35.4411,21.9853\"/><polygon points=\"18.4706,21.9853 18.4706,13.5000 26.9558,21.9853\"/><polygon points=\"26.9558,21.9853 26.9558,13.5000 35.4411,21.9853\"/><polygon points=\"20.9558,7.5000 26.9558,1.5000 32.9558,7.5000 26.9558,13.5000\"/><polygon points=\"26.9558,21.9853 18.4706,13.5000 18.4706,5.0147 26.9558,13.5000\"/></svg>"
+    },
+    {
+      "file": "nevit_225.json",
+      "title": "Goblet",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_225_Nevit.svg",
+      "tags": [],
+      "difficulty": 5,
+      "thumb": "<svg viewBox=\"0 0 36.9411 23.4853\" width=\"36.9411\" height=\"23.4853\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"18.4706,9.9853 30.4706,21.9853 6.4706,21.9853\"/><polygon points=\"9.9853,1.5000 26.9558,1.5000 9.9853,18.4706\"/><polygon points=\"26.9558,18.4706 18.4706,9.9853 35.4411,9.9853\"/><polygon points=\"9.9853,9.9853 9.9853,18.4706 1.5000,9.9853\"/><polygon points=\"35.4411,9.9853 26.9558,9.9853 35.4411,1.5000\"/><polygon points=\"1.5000,1.5000 9.9853,1.5000 9.9853,9.9853 1.5000,9.9853\"/><polygon points=\"35.4411,1.5000 26.9558,9.9853 18.4706,9.9853 26.9558,1.5000\"/></svg>"
+    },
+    {
+      "file": "nevit_229.json",
+      "title": "Bridge",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_229_Nevit.svg",
+      "tags": [],
+      "difficulty": 4,
+      "thumb": "<svg viewBox=\"0 0 62.3970 19.9706\" width=\"62.3970\" height=\"19.9706\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"18.4706,18.4706 1.5000,18.4706 18.4706,1.5000\"/><polygon points=\"43.9264,18.4706 43.9264,1.5000 60.8970,18.4706\"/><polygon points=\"26.9558,9.9853 18.4706,18.4706 18.4706,1.5000\"/><polygon points=\"35.4411,1.5000 35.4411,9.9853 26.9558,1.5000\"/><polygon points=\"43.9264,9.9853 43.9264,18.4706 35.4411,9.9853\"/><polygon points=\"35.4411,1.5000 43.9264,1.5000 43.9264,9.9853 35.4411,9.9853\"/><polygon points=\"35.4411,9.9853 26.9558,1.5000 18.4706,1.5000 26.9558,9.9853\"/></svg>"
+    },
+    {
+      "file": "nevit_243.json",
+      "title": "Trophy",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_243_Nevit.svg",
+      "tags": [],
+      "difficulty": 4,
+      "thumb": "<svg viewBox=\"0 0 27.0000 32.0000\" width=\"27.0000\" height=\"32.0000\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"13.5000,18.5000 1.5000,30.5000 1.5000,6.5000\"/><polygon points=\"13.5000,18.5000 25.5000,6.5000 25.5000,30.5000\"/><polygon points=\"13.4706,18.4706 4.9853,9.9853 21.9558,9.9853\"/><polygon points=\"13.5000,18.5000 19.5000,24.5000 7.5000,24.5000\"/><polygon points=\"7.5000,24.5000 13.5000,30.5000 1.5000,30.5000\"/><polygon points=\"17.8970,9.9853 9.4117,9.9853 9.4117,1.5000 17.8970,1.5000\"/><polygon points=\"7.5000,24.5000 19.5000,24.5000 25.5000,30.5000 13.5000,30.5000\"/></svg>"
     }
   ]
 }

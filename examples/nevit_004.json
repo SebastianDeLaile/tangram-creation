@@ -1,0 +1,118 @@
+{
+  "name": "nevit_004",
+  "description": "",
+  "pieces": [
+    {
+      "piece": "large_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          5,
+          17
+        ],
+        "y": [
+          49,
+          -18
+        ]
+      },
+      "orientation": 3,
+      "flipped": false
+    },
+    {
+      "piece": "large_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          44,
+          -13
+        ],
+        "y": [
+          10,
+          24
+        ]
+      },
+      "orientation": 4,
+      "flipped": false
+    },
+    {
+      "piece": "medium_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          -21,
+          23
+        ],
+        "y": [
+          17,
+          -12
+        ]
+      },
+      "orientation": 0,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 0,
+      "anchor": {
+        "x": [
+          44,
+          -13
+        ],
+        "y": [
+          10,
+          24
+        ]
+      },
+      "orientation": 0,
+      "flipped": false
+    },
+    {
+      "piece": "small_triangle",
+      "id": 1,
+      "anchor": {
+        "x": [
+          44,
+          -13
+        ],
+        "y": [
+          10,
+          24
+        ]
+      },
+      "orientation": 6,
+      "flipped": false
+    },
+    {
+      "piece": "square",
+      "id": 0,
+      "anchor": {
+        "x": [
+          -18,
+          23
+        ],
+        "y": [
+          26,
+          -12
+        ]
+      },
+      "orientation": 7,
+      "flipped": false
+    },
+    {
+      "piece": "parallelogram",
+      "id": 0,
+      "anchor": {
+        "x": [
+          27,
+          -7
+        ],
+        "y": [
+          10,
+          24
+        ]
+      },
+      "orientation": 3,
+      "flipped": false
+    }
+  ]
+}
