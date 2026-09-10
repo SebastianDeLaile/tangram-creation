@@ -47,12 +47,12 @@
     },
     {
       "file": "wiebke_interesting1.json",
-      "title": "Frame",
-      "category": "abstract",
+      "title": "Sailboat",
+      "category": "objects",
       "source": "https://github.com/Wiebke/TangramGenerator/blob/master/Code/exampleTangrams.js",
       "tags": [],
       "difficulty": 4,
-      "thumb": "<svg viewBox=\"0 0 27.0000 39.0000\" width=\"27.0000\" height=\"39.0000\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"13.5000,13.5000 25.5000,1.5000 25.5000,25.5000\"/><polygon points=\"13.5000,13.5000 1.5000,1.5000 25.5000,1.5000\"/><polygon points=\"13.5000,37.5000 13.5000,25.5000 25.5000,37.5000\"/><polygon points=\"25.5000,25.5000 19.5000,31.5000 19.5000,19.5000\"/><polygon points=\"19.5000,31.5000 25.5000,25.5000 25.5000,37.5000\"/><polygon points=\"19.5000,19.5000 13.5000,25.5000 7.5000,19.5000 13.5000,13.5000\"/><polygon points=\"7.5000,19.5000 7.5000,31.5000 13.5000,37.5000 13.5000,25.5000\"/></svg>"
+      "thumb": "<svg viewBox=\"0 0 39.0000 27.0000\" width=\"39.0000\" height=\"27.0000\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"25.5000,13.5000 37.5000,25.5000 13.5000,25.5000\"/><polygon points=\"25.5000,13.5000 37.5000,1.5000 37.5000,25.5000\"/><polygon points=\"1.5000,13.5000 13.5000,13.5000 1.5000,25.5000\"/><polygon points=\"13.5000,25.5000 7.5000,19.5000 19.5000,19.5000\"/><polygon points=\"7.5000,19.5000 13.5000,25.5000 1.5000,25.5000\"/><polygon points=\"19.5000,19.5000 13.5000,13.5000 19.5000,7.5000 25.5000,13.5000\"/><polygon points=\"19.5000,7.5000 7.5000,7.5000 1.5000,13.5000 13.5000,13.5000\"/></svg>"
     },
     {
       "file": "nevit_188.json",
@@ -119,8 +119,8 @@
     },
     {
       "file": "nevit_246.json",
-      "title": "Twin Peaks",
-      "category": "abstract",
+      "title": "Arrow",
+      "category": "objects",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [],
       "difficulty": 4,
@@ -471,8 +471,8 @@
     },
     {
       "file": "nevit_199.json",
-      "title": "Dog",
-      "category": "animals",
+      "title": "Bowing",
+      "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_199_Nevit.svg",
       "tags": [
         "nevit_series"
@@ -533,7 +533,7 @@
     },
     {
       "file": "nevit_041.json",
-      "title": "Eagle",
+      "title": "Hen",
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [],
@@ -654,7 +654,7 @@
     },
     {
       "file": "nevit_215.json",
-      "title": "Heron",
+      "title": "Swan",
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [],
@@ -674,7 +674,7 @@
     },
     {
       "file": "nevit_068.json",
-      "title": "Rabbit",
+      "title": "Fox",
       "category": "animals",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_68_Nevit.svg",
       "tags": [
@@ -776,7 +776,7 @@
     },
     {
       "file": "nevit_213.json",
-      "title": "Swift",
+      "title": "Swan",
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [],
@@ -1021,7 +1021,7 @@
     },
     {
       "file": "nevit_208.json",
-      "title": "Arrow",
+      "title": "House",
       "category": "objects",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_208_Nevit.svg",
       "tags": [
@@ -1308,7 +1308,7 @@
     },
     {
       "file": "nevit_014.json",
-      "title": "Bending",
+      "title": "Clapping",
       "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_14_Nevit.svg",
       "tags": [
@@ -1440,7 +1440,7 @@
     },
     {
       "file": "nevit_210.json",
-      "title": "Kicking",
+      "title": "Dancing",
       "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_210_Nevit.svg",
       "tags": [
@@ -1462,7 +1462,7 @@
     },
     {
       "file": "people_001.json",
-      "title": "Marching",
+      "title": "Standing",
       "category": "people",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [
@@ -1671,7 +1671,7 @@
     },
     {
       "file": "people_019.json",
-      "title": "Stepping",
+      "title": "Dancing",
       "category": "people",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [
@@ -1767,15 +1767,6 @@
       ],
       "difficulty": 1,
       "thumb": "<svg viewBox=\"0 0 33.9411 53.9117\" width=\"33.9411\" height=\"53.9117\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"30.4706,21.9853 18.4706,33.9853 18.4706,9.9853\"/><polygon points=\"18.4706,27.5000 1.5000,27.5000 18.4706,10.5294\"/><polygon points=\"17.9558,34.5000 26.4411,26.0147 26.4411,42.9853\"/><polygon points=\"32.4411,43.4117 26.4411,49.4117 26.4411,37.4117\"/><polygon points=\"14.9264,52.4117 6.4411,52.4117 14.9264,43.9264\"/><polygon points=\"20.4117,1.5000 20.4117,9.9853 11.9264,9.9853 11.9264,1.5000\"/><polygon points=\"17.9558,28.8970 17.9558,40.8970 11.9558,46.8970 11.9558,34.8970\"/></svg>"
-    },
-    {
-      "file": "0_number.json",
-      "title": "0",
-      "category": "letters",
-      "source": "constructed (base square rotated 45 degrees)",
-      "tags": [],
-      "difficulty": 5,
-      "thumb": "<svg viewBox=\"0 0 36.9411 36.9411\" width=\"36.9411\" height=\"36.9411\" fill=\"#2a271f\" stroke=\"#2a271f\" stroke-width=\"0.15\"><polygon points=\"18.4706,18.4706 18.4706,35.4411 1.5000,18.4706\"/><polygon points=\"18.4706,18.4706 35.4411,18.4706 18.4706,35.4411\"/><polygon points=\"18.4706,1.5000 26.9558,9.9853 9.9853,9.9853\"/><polygon points=\"9.9853,18.4706 1.5000,18.4706 9.9853,9.9853\"/><polygon points=\"18.4706,18.4706 18.4706,9.9853 26.9558,18.4706\"/><polygon points=\"9.9853,9.9853 18.4706,9.9853 18.4706,18.4706 9.9853,18.4706\"/><polygon points=\"35.4411,18.4706 26.9558,9.9853 18.4706,9.9853 26.9558,18.4706\"/></svg>"
     }
   ]
 }
