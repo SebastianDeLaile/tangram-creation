@@ -528,6 +528,104 @@
       "gap": 0.021,
       "parts": 5,
       "quality": "small_gap"
+    },
+    {
+      "file": "nevit_204.json",
+      "title": "Duck",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_204_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 5.492,
+      "parts": 2,
+      "quality": "substantial_separation"
+    },
+    {
+      "file": "nevit_131.json",
+      "title": "Kite",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_131_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 3,
+      "gap": 0.485,
+      "parts": 2,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_063.json",
+      "title": "Crab",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_063_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 4.515,
+      "parts": 3,
+      "quality": "substantial_separation"
+    },
+    {
+      "file": "nevit_232.json",
+      "title": "Bird",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_232_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 2.163,
+      "parts": 3,
+      "quality": "substantial_separation"
+    },
+    {
+      "file": "nevit_238.json",
+      "title": "Bird",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_238_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 1,
+      "gap": 7.545,
+      "parts": 2,
+      "quality": "substantial_separation"
+    },
+    {
+      "file": "nevit_069.json",
+      "title": "Swan",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_069_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 3,
+      "gap": 9.473,
+      "parts": 2,
+      "quality": "substantial_separation"
+    },
+    {
+      "file": "nevit_189.json",
+      "title": "Fish",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_189_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 1,
+      "gap": 6.673,
+      "parts": 2,
+      "quality": "substantial_separation"
     }
   ]
 }
