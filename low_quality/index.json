@@ -416,6 +416,118 @@
       "difficulty": 4,
       "quality": "duplicate",
       "duplicate_of": "wiebke_interesting1.json"
+    },
+    {
+      "file": "nevit_019.json",
+      "title": "Bird",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_019_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 4.825,
+      "parts": 3,
+      "quality": "substantial_separation"
+    },
+    {
+      "file": "nevit_022.json",
+      "title": "Dancing",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_022_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 1,
+      "gap": 8.614,
+      "parts": 2,
+      "quality": "substantial_separation"
+    },
+    {
+      "file": "nevit_024.json",
+      "title": "Kicking",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_024_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 1,
+      "gap": 7.912,
+      "parts": 3,
+      "quality": "substantial_separation"
+    },
+    {
+      "file": "nevit_031.json",
+      "title": "Dog",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_031_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 1,
+      "gap": 0.302,
+      "parts": 4,
+      "quality": "small_gap"
+    },
+    {
+      "file": "nevit_093.json",
+      "title": "Sailboat",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_093_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 2.485,
+      "parts": 2,
+      "quality": "substantial_separation"
+    },
+    {
+      "file": "nevit_094.json",
+      "title": "Sailboat",
+      "category": "objects",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_094_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 1,
+      "gap": 9.515,
+      "parts": 2,
+      "quality": "substantial_separation"
+    },
+    {
+      "file": "nevit_167.json",
+      "title": "Reaching",
+      "category": "people",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_167_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 2.787,
+      "parts": 2,
+      "quality": "substantial_separation"
+    },
+    {
+      "file": "nevit_193.json",
+      "title": "Dog",
+      "category": "animals",
+      "source": "https://commons.wikimedia.org/wiki/File:Tangram_193_Nevit.svg",
+      "tags": [
+        "nevit_series",
+        "disconnected"
+      ],
+      "difficulty": 2,
+      "gap": 0.021,
+      "parts": 5,
+      "quality": "small_gap"
     }
   ]
 }
