@@ -67,7 +67,19 @@ let transform = { scale: 1, offsetX: 0, offsetY: 0 };
 
 const app = document.getElementById("app")!;
 app.innerHTML = `
-  <h1>Tangram Editor</h1>
+  <div id="page-header">
+    <h1>Tangram Editor</h1>
+    <button id="gallery-toggle">Gallery</button>
+  </div>
+  <div id="gallery-overlay" hidden>
+    <div id="gallery-panel">
+      <div id="gallery-header">
+        <h2>All shapes</h2>
+        <button id="gallery-close" aria-label="Close gallery">&times;</button>
+      </div>
+      <div id="gallery-grid"></div>
+    </div>
+  </div>
   <div id="layout">
     <aside id="sidebar">
       <button id="sidebar-toggle" aria-label="Collapse sidebar">&laquo;</button>
@@ -163,6 +175,10 @@ const pdfAllBtn = document.getElementById("pdf-all-btn") as HTMLButtonElement;
 const gutterToggle = document.getElementById("gutter-toggle") as HTMLInputElement;
 const sidebar = document.getElementById("sidebar")!;
 const sidebarToggle = document.getElementById("sidebar-toggle")!;
+const galleryToggle = document.getElementById("gallery-toggle")!;
+const galleryOverlay = document.getElementById("gallery-overlay")!;
+const galleryClose = document.getElementById("gallery-close")!;
+const galleryGrid = document.getElementById("gallery-grid")!;
 
 function buildCategoryPills(): void {
   const cats = [...new Set(state.figures.map((f) => f.category))].sort();
@@ -325,6 +341,61 @@ function buildShapeList(): void {
       buildShapeList();
     });
   });
+}
+
+// Every shape at once, grouped by category, so it's easy to browse and spot
+// something visually rather than hunting through the sidebar's text list.
+function buildGallery(): void {
+  const byCategory = new Map<string, IndexEntry[]>();
+  for (const e of state.figures) {
+    const list = byCategory.get(e.category) ?? [];
+    list.push(e);
+    byCategory.set(e.category, list);
+  }
+
+  galleryGrid.innerHTML = [...byCategory.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([cat, entries]) => {
+      const sorted = [...entries].sort(byName);
+      const titleCount = new Map<string, number>();
+      for (const e of sorted) {
+        const t = e.title ?? labelFor(e.file);
+        titleCount.set(t, (titleCount.get(t) ?? 0) + 1);
+      }
+      const titleSeen = new Map<string, number>();
+      const cards = sorted
+        .map((e) => {
+          const base = e.title ?? labelFor(e.file);
+          const n = titleSeen.get(base) ?? 0;
+          titleSeen.set(base, n + 1);
+          const label = titleCount.get(base)! > 1 ? `${base} ${n + 1}` : base;
+          const active = e.file === state.exampleFile ? " active" : "";
+          return `<button type="button" class="gallery-card${active}" data-file="${e.file}">
+            <span class="gallery-thumb">${e.thumb ?? ""}</span>
+            <span class="gallery-name">${label}</span>
+          </button>`;
+        })
+        .join("");
+      return `<div class="gallery-category">${capitalize(cat)}</div>
+        <div class="gallery-row">${cards}</div>`;
+    })
+    .join("");
+
+  galleryGrid.querySelectorAll<HTMLButtonElement>(".gallery-card").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      loadExample(btn.dataset.file!);
+      closeGallery();
+    });
+  });
+}
+
+function openGallery(): void {
+  buildGallery();
+  galleryOverlay.hidden = false;
+}
+
+function closeGallery(): void {
+  galleryOverlay.hidden = true;
 }
 
 function buildColorList(): void {
@@ -615,6 +686,15 @@ sidebarToggle.addEventListener("click", () => {
   const collapsed = sidebar.classList.toggle("collapsed");
   sidebarToggle.innerHTML = collapsed ? "&raquo;" : "&laquo;";
   sidebarToggle.setAttribute("aria-label", collapsed ? "Expand sidebar" : "Collapse sidebar");
+});
+
+galleryToggle.addEventListener("click", openGallery);
+galleryClose.addEventListener("click", closeGallery);
+galleryOverlay.addEventListener("click", (e) => {
+  if (e.target === galleryOverlay) closeGallery();
+});
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && !galleryOverlay.hidden) closeGallery();
 });
 
 downloadBtn.addEventListener("click", downloadJson);
