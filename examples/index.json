@@ -203,8 +203,8 @@
     },
     {
       "file": "nevit_179.json",
-      "title": "Praying",
-      "category": "people",
+      "title": "Bird",
+      "category": "animals",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_179_Nevit.svg",
       "tags": [
         "nevit_series"
@@ -385,7 +385,7 @@
     },
     {
       "file": "nevit_146.json",
-      "title": "Bird",
+      "title": "Goose",
       "category": "animals",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_146_Nevit.svg",
       "tags": [
@@ -504,7 +504,7 @@
     },
     {
       "file": "bird.json",
-      "title": "Dove",
+      "title": "Bird",
       "category": "animals",
       "source": "TangramGenerator",
       "tags": [],
@@ -513,7 +513,7 @@
     },
     {
       "file": "nevit_142.json",
-      "title": "Duck",
+      "title": "Swan",
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [],
@@ -618,7 +618,7 @@
     },
     {
       "file": "nevit_178.json",
-      "title": "Goose",
+      "title": "Swan",
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [],
@@ -627,7 +627,7 @@
     },
     {
       "file": "nevit_206.json",
-      "title": "Goose",
+      "title": "Bird",
       "category": "animals",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_206_Nevit.svg",
       "tags": [],
@@ -727,7 +727,7 @@
     },
     {
       "file": "nevit_218.json",
-      "title": "Swallow",
+      "title": "Hen",
       "category": "animals",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [],
@@ -756,7 +756,7 @@
     },
     {
       "file": "nevit_196.json",
-      "title": "Swan",
+      "title": "Horse Head",
       "category": "animals",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_196_Nevit.svg",
       "tags": [
@@ -1110,7 +1110,7 @@
     },
     {
       "file": "nevit_107.json",
-      "title": "Chair",
+      "title": "Hook",
       "category": "objects",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [],
@@ -1119,7 +1119,7 @@
     },
     {
       "file": "nevit_109.json",
-      "title": "Crane",
+      "title": "Hook",
       "category": "objects",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [],
@@ -1288,7 +1288,7 @@
     },
     {
       "file": "nevit_235.json",
-      "title": "Vase",
+      "title": "Trophy",
       "category": "objects",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [],
@@ -1297,7 +1297,7 @@
     },
     {
       "file": "nevit_205.json",
-      "title": "Vase",
+      "title": "Pedestal",
       "category": "objects",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_205_Nevit.svg",
       "tags": [
@@ -1308,7 +1308,7 @@
     },
     {
       "file": "nevit_014.json",
-      "title": "Clapping",
+      "title": "Jumping",
       "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_14_Nevit.svg",
       "tags": [
@@ -1330,7 +1330,7 @@
     },
     {
       "file": "nevit_020.json",
-      "title": "Bowing",
+      "title": "Running",
       "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_20_Nevit.svg",
       "tags": [
@@ -1363,7 +1363,7 @@
     },
     {
       "file": "people_096.json",
-      "title": "Canoeing",
+      "title": "Lying Down",
       "category": "people",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [
@@ -1407,7 +1407,7 @@
     },
     {
       "file": "people_094.json",
-      "title": "Kayaking",
+      "title": "Lying Down",
       "category": "people",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [
@@ -1583,7 +1583,7 @@
     },
     {
       "file": "people_097.json",
-      "title": "Sculling",
+      "title": "Lying Down",
       "category": "people",
       "source": "Nevit Dilmen (Wikimedia Commons, CC-BY-SA 3.0)",
       "tags": [
