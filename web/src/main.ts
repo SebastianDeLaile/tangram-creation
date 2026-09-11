@@ -1,5 +1,6 @@
 import "./style.css";
 import { Z2 } from "./algebra";
+import { Fraction } from "./fraction";
 import { Point } from "./geometry";
 import { loadIndex, loadTangram, tangramToJson } from "./io";
 import type { IndexEntry } from "./io";
@@ -63,6 +64,12 @@ const state = {
 
 let dragStartScreen: [number, number] | null = null;
 let dragStartAnchor: Point | null = null;
+// Frozen copy of `transform` for the duration of a drag. The canvas re-fits
+// scale/offset to the whole figure's bounding box on every render(), which
+// the drag itself triggers -- without freezing, a large in-progress move
+// changes the box (hence the scale), making screen->world conversion drift
+// mid-gesture instead of staying a stable affine map for the whole drag.
+let dragTransform: { scale: number; offsetX: number; offsetY: number } | null = null;
 let transform = { scale: 1, offsetX: 0, offsetY: 0 };
 
 const app = document.getElementById("app")!;
@@ -512,21 +519,81 @@ function render(): void {
   updateStatus();
 }
 
+// Snap-to-piece: while dragging, a piece's own vertices are pulled onto nearby
+// vertices and edge-midpoints of the OTHER pieces (edge-midpoints cover
+// T-junction touches, e.g. a small triangle's leg landing on half of a large
+// triangle's leg). Candidates are exact Z[sqrt(2)] points, so a snap lands the
+// dragged piece exactly on a real touch -- no float drift.
+const SNAP_PX = 14;
+
+function half(a: Fraction): Fraction {
+  return a.mul(new Fraction(1, 2));
+}
+
+function midpoint(p1: Point, p2: Point): Point {
+  return new Point(
+    new Z2(half(p1.x.a.add(p2.x.a)), half(p1.x.b.add(p2.x.b))),
+    new Z2(half(p1.y.a.add(p2.y.a)), half(p1.y.b.add(p2.y.b))),
+  );
+}
+
+function snapCandidates(excludeIndex: number): Point[] {
+  const points: Point[] = [];
+  state.tangram!.pieces.forEach((piece, i) => {
+    if (i === excludeIndex) return;
+    const verts = piece.vertices();
+    verts.forEach((v, vi) => {
+      points.push(v);
+      points.push(midpoint(v, verts[(vi + 1) % verts.length]));
+    });
+  });
+  return points;
+}
+
+// Finds the closest (candidate point, piece vertex) pairing that would land
+// within SNAP_PX screen pixels of the raw drag position, and returns the
+// exact anchor that alignment implies -- or null if nothing is close enough.
+function findSnapAnchor(raw: [number, number], offsets: Point[], candidates: Point[], scale: number): Point | null {
+  const [rawX, rawY] = raw;
+  let best: { anchor: Point; distPx: number } | null = null;
+  for (const candidate of candidates) {
+    for (const offset of offsets) {
+      const anchor = candidate.sub(offset);
+      const [ax, ay] = anchor.toFloat();
+      const distPx = Math.hypot(ax - rawX, ay - rawY) * scale;
+      if (distPx < SNAP_PX && (!best || distPx < best.distPx)) {
+        best = { anchor, distPx };
+      }
+    }
+  }
+  return best?.anchor ?? null;
+}
+
 function onPointerDown(e: PointerEvent, index: number): void {
   state.selectedIndex = index;
   dragStartScreen = [e.clientX, e.clientY];
   dragStartAnchor = state.tangram!.pieces[index].anchor;
   (e.target as Element).setPointerCapture(e.pointerId);
   render();
+  dragTransform = { ...transform };
 }
 
 function onPointerMove(e: PointerEvent): void {
-  if (state.selectedIndex === null || dragStartScreen === null || dragStartAnchor === null) return;
+  if (state.selectedIndex === null || dragStartScreen === null || dragStartAnchor === null || dragTransform === null) return;
   const dxScreen = e.clientX - dragStartScreen[0];
   const dyScreen = e.clientY - dragStartScreen[1];
-  const dx = Math.round(dxScreen / transform.scale);
-  const dy = Math.round(dyScreen / transform.scale);
-  const newAnchor = dragStartAnchor.add(new Point(Z2.of(dx, 0), Z2.of(dy, 0)));
+  const dx = dxScreen / dragTransform.scale;
+  const dy = dyScreen / dragTransform.scale;
+
+  const piece = state.tangram!.pieces[state.selectedIndex];
+  const raw: [number, number] = [dragStartAnchor.x.toFloat() + dx, dragStartAnchor.y.toFloat() + dy];
+
+  const offsets = piece.vertices().map((v) => v.sub(piece.anchor));
+  const candidates = snapCandidates(state.selectedIndex);
+  const snapped = findSnapAnchor(raw, offsets, candidates, dragTransform.scale);
+
+  const newAnchor =
+    snapped ?? dragStartAnchor.add(new Point(Z2.of(Math.round(dx), 0), Z2.of(Math.round(dy), 0)));
   state.tangram!.pieces[state.selectedIndex] = state.tangram!.pieces[state.selectedIndex].withAnchor(newAnchor);
   render();
 }
@@ -534,6 +601,7 @@ function onPointerMove(e: PointerEvent): void {
 function onPointerUp(): void {
   dragStartScreen = null;
   dragStartAnchor = null;
+  dragTransform = null;
 }
 
 function onKeyDown(e: KeyboardEvent): void {
