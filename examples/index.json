@@ -203,7 +203,7 @@
     },
     {
       "file": "nevit_179.json",
-      "title": "Bird",
+      "title": "Heron",
       "category": "animals",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_179_Nevit.svg",
       "tags": [
@@ -327,7 +327,7 @@
     },
     {
       "file": "nevit_177.json",
-      "title": "Bird",
+      "title": "Rooster",
       "category": "animals",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_177_Nevit.svg",
       "tags": [
@@ -374,7 +374,7 @@
     },
     {
       "file": "nevit_044.json",
-      "title": "Bird",
+      "title": "Swan",
       "category": "animals",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_44_Nevit.svg",
       "tags": [
@@ -396,7 +396,7 @@
     },
     {
       "file": "nevit_159.json",
-      "title": "Bird",
+      "title": "Crane",
       "category": "animals",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_159_Nevit.svg",
       "tags": [
@@ -1950,7 +1950,7 @@
     },
     {
       "file": "nevit_170.json",
-      "title": "Woman",
+      "title": "Standing",
       "category": "people",
       "source": "https://commons.wikimedia.org/wiki/File:Tangram_170_Nevit.svg",
       "tags": [],
