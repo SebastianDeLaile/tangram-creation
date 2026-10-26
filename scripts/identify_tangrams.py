@@ -25,14 +25,16 @@ import os
 import anthropic
 import cairosvg
 
-# Load ANTHROPIC_API_KEY from ~/.env if not already set in the environment.
+# Load ANTHROPIC_API_KEY from ~/.config/anthropic/env if not already set in the
+# environment. Secrets live in one file per service, so this file holds only
+# Anthropic's key.
 if not os.environ.get("ANTHROPIC_API_KEY"):
-    env_path = Path.home() / ".env"
+    env_path = Path.home() / ".config" / "anthropic" / "env"
     if env_path.exists():
         for line in env_path.read_text().splitlines():
-            line = line.strip()
-            if line.startswith("ANTHROPIC_API_KEY=") and not line.startswith("#"):
-                os.environ["ANTHROPIC_API_KEY"] = line.split("=", 1)[1].strip()
+            line = line.strip().removeprefix("export ")
+            if line.startswith("ANTHROPIC_API_KEY="):
+                os.environ["ANTHROPIC_API_KEY"] = line.split("=", 1)[1].strip().strip("\"'")
                 break
 
 from tangram.io import load_tangram
